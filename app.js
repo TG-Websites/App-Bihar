@@ -64,3 +64,43 @@ let slideIndex = 1;
             showSlides(slideIndex);
             autoSlide();
         });
+        // Simple demo functionality
+        const selects = document.querySelectorAll('select');
+        const noRecord = document.getElementById('noRecord');
+        const dataRow = document.getElementById('dataRow');
+
+        function checkSelections() {
+            const district = document.getElementById('district').value;
+            const subdivision = document.getElementById('subdivision').value;
+            const block = document.getElementById('block').value;
+            const panchayat = document.getElementById('panchayat').value;
+
+            // Show data if all fields are selected
+            if (district && subdivision && block && panchayat) {
+                noRecord.classList.add('hidden');
+                dataRow.classList.remove('hidden');
+            } else {
+                noRecord.classList.remove('hidden');
+                dataRow.classList.add('hidden');
+            }
+        }
+
+        // Add event listeners to all select elements
+        selects.forEach(select => {
+            select.addEventListener('change', checkSelections);
+        });
+
+        // Simulate dependent dropdowns
+        document.getElementById('district').addEventListener('change', function() {
+            const subdivision = document.getElementById('subdivision');
+            const block = document.getElementById('block');
+            const panchayat = document.getElementById('panchayat');
+            
+            // Reset dependent dropdowns
+            subdivision.selectedIndex = 0;
+            block.selectedIndex = 0;
+            panchayat.selectedIndex = 0;
+            
+            checkSelections();
+        });
+       
