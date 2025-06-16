@@ -192,3 +192,15 @@ let slideIndex = 1;
         // Enhanced console logging for debugging
         console.log('AAP Social Media Feed initialized successfully');
         console.log('Available keyboard shortcuts: Press 1 for Social, 2 for Videos');
+    
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const dataRow = document.getElementById("dataRow");
+    const noRecord = document.getElementById("noRecord");
+
+    // Hide "No record" text
+    noRecord.style.display = "none";
+
+    // Show data row
+    dataRow.classList.remove("hidden");
+  });

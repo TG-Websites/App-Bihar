@@ -27,247 +27,173 @@
   </head>
   <body class="bg-white">
     <!-- nav bar  -->
-     <nav
-      class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50"
-    >
-      <div class="max-w-7xl mx-auto px-3 sm:px-5 lg:px-7">
-        <div class="flex justify-between items-center h-20">
-          <!-- Logo -->
-          <img
-            src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp"
-            alt="Logo"
-            class="w-28 h-10 mr-6"
-          />
+   <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+          class="w-28 h-10 mr-6" />
 
-          <!-- Desktop Menu -->
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-            
-              <div class="relative group">
-                 <a href="index.html">
-               <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+
+            <div class="relative group">
+              <a href="index.html">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
                   HOME
                 </button>
-                </a>
-                <a href="">
-               <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
+              </a>
+              <a href="">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
                   ABOUT US
                 </button>
-                </a>
-               
-              </div>
+              </a>
 
-              <!-- Our Leader Dropdown -->
-              <div class="relative group">
-                <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
-                  OUR LEADER ▼
-                </button>
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
-                >
-                  <a
-                    href="main_wing.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >MAIN WING</a
-                  >
-                  <a
-                    href="youth.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >YOUTH WING</a
-                  >
-                </div>
-              </div>
+            </div>
 
-              <!-- Join Us -->
-              <a
-                href="joinUS.html"
-                class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >JOIN US</a
-              >
-
-              <!-- Volunteer Dropdown -->
-              <div class="relative group">
-                <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
-                  VOLUNTEER ▼
-                </button>
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
-                >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >LOGIN</a
-                  >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >REGISTER</a
-                  >
-                </div>
+            <!-- Our Leader Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                OUR LEADER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
+                <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
               </div>
             </div>
-          </div>
 
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-button"
-              class="text-white hover:text-hover focus:outline-none"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+            <!-- Join Us -->
+            <a href="joinUS.html"
+              class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">JOIN US</a>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
-            <a
-            href="index.html"
-            class="block px-3 py-2 text-sm font-medium hover:text-hover"
-            >Home</a
-          >
-          <div class="block">
-            <button
-              class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('about-dropdown')"
-            >
-              ABOUT US
-            </button>
-          </div>
-          <div class="block">
-            <button
-              class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('leader-dropdown')"
-            >
-              OUR LEADER
-            </button>
-            <div id="leader-dropdown" class="hidden pl-6 space-y-1">
-              <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover"
-                >MAIN WING</a
-              >
-              <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover"
-                >YOUTH WING</a
-              >
-            </div>
-          </div>
-          <a
-            href="joinUS.html"
-            class="block px-3 py-2 text-sm font-medium hover:text-hover"
-            >JOIN US</a
-          >
-          <div class="block">
-            <button
-              class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('volunteer-dropdown')"
-            >
-              VOLUNTEER
-            </button>
-            <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
-              <a href="#" class="block px-3 py-2 text-sm hover:text-hover"
-                >LOGIN</a
-              >
-              <a href="#" class="block px-3 py-2 text-sm hover:text-hover"
-                >REGISTER</a
-              >
+            <!-- Volunteer Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                VOLUNTEER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </div>
-    </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
+        <a href="index.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">Home</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('about-dropdown')">
+            ABOUT US
+          </button>
+        </div>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('leader-dropdown')">
+            OUR LEADER
+          </button>
+          <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+            <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
+            <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
+          </div>
+        </div>
+        <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('volunteer-dropdown')">
+            VOLUNTEER
+          </button>
+          <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">LOGIN</a>
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">REGISTER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
     <!-- Hero Section -->
     <section class="bg-primary pt-20 min-h-screen flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <!-- Left Content -->
-          <div class="text-white space-y-8">
-            <div class="space-y-4">
-              <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
-                MAIN <span class="text-hover">WING</span>
-              </h1>
-              <div class="w-24 h-1 bg-hover"></div>
-            </div>
-            
-            <p class="text-xl lg:text-2xl text-gray-300 leading-relaxed">
-              Leading the charge for transparent governance, social justice, and progressive politics across the nation.
-            </p>
-            
-            <div class="space-y-4 text-lg">
-              <div class="flex items-center space-x-3">
-                <i class="fas fa-check-circle text-hover text-xl"></i>
-                <span>Committed to Anti-Corruption</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <i class="fas fa-check-circle text-hover text-xl"></i>
-                <span>Focused on Education & Healthcare</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <i class="fas fa-check-circle text-hover text-xl"></i>
-                <span>Empowering Common Citizens</span>
-              </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4 pt-4">
-              <button class="bg-hover text-primary px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
-                Join Our Movement
-              </button>
-              <button class="border-2 border-hover text-hover px-8 py-4 rounded-lg font-bold text-lg hover:bg-hover hover:text-primary transition-all duration-300">
-                Learn More
-              </button>
-            </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Left Content -->
+      <div class="text-white space-y-8">
+        <div class="space-y-4 text-center lg:text-left">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            MAIN <span class="text-hover">WING</span>
+          </h1>
+          <div class="w-24 h-1 bg-hover mx-auto lg:mx-0"></div>
+        </div>
+
+        <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed text-center lg:text-left">
+          Leading the charge for transparent governance, social justice, and progressive politics across the nation.
+        </p>
+
+        <div class="space-y-4 text-base sm:text-lg">
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check-circle text-hover text-xl"></i>
+            <span>Committed to Anti-Corruption</span>
           </div>
-          
-          <!-- Right Content - Hero Image -->
-          <div class="relative">
-            <div class="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-700">
-              <!-- Decorative elements -->
-       
-              
-              <!-- Main hero image -->
-              <img 
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                alt="Political Leadership" 
-                class="w-full h-96 lg:h-[500px] object-cover"
-              />
-              
-              <!-- Overlay content -->
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent p-8 z-20">
-                <div class="text-white">
-                  <h3 class="text-2xl font-bold mb-2">Building Tomorrow</h3>
-                  <p class="text-gray-200">Together for a stronger nation</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Floating elements -->
-            <div class="absolute -top-6 -left-6 w-24 h-24 bg-hover/20 rounded-full blur-xl animate-pulse"></div>
-            <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check-circle text-hover text-xl"></i>
+            <span>Focused on Education & Healthcare</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check-circle text-hover text-xl"></i>
+            <span>Empowering Common Citizens</span>
           </div>
         </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+          <button class="bg-hover text-primary px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
+            Join Our Movement
+          </button>
+          <button class="border-2 border-hover text-hover px-8 py-4 rounded-lg font-bold text-lg hover:bg-hover hover:text-primary transition-all duration-300">
+            Learn More
+          </button>
+        </div>
       </div>
-    </section>
+
+      <!-- Right Content - Hero Image -->
+      <div class="relative w-full">
+        <div class="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-700">
+          <img 
+            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+            alt="Political Leadership" 
+            class="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover"
+          />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent p-8 z-20">
+            <div class="text-white">
+              <h3 class="text-xl sm:text-2xl font-bold mb-1">Building Tomorrow</h3>
+              <p class="text-gray-200 text-sm sm:text-base">Together for a stronger nation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="absolute -top-6 -left-6 w-20 h-20 sm:w-24 sm:h-24 bg-hover/20 rounded-full blur-xl animate-pulse"></div>
+        <div class="absolute -bottom-8 -right-8 w-24 h-24 sm:w-32 sm:h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Our Leaders Section -->
     <section class="py-20 bg-gray-50">
