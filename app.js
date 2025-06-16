@@ -64,43 +64,131 @@ let slideIndex = 1;
             showSlides(slideIndex);
             autoSlide();
         });
-        // Simple demo functionality
-        const selects = document.querySelectorAll('select');
-        const noRecord = document.getElementById('noRecord');
-        const dataRow = document.getElementById('dataRow');
+        //  social media  js code 
+        const socialBtn = document.getElementById('socialBtn');
+        const videosBtn = document.getElementById('videosBtn');
+        const socialContent = document.getElementById('socialContent');
+        const videosContent = document.getElementById('videosContent');
+        
+        // Social Media Icons
+        const twitterIcon = document.getElementById('twitterIcon');
+        const facebookIcon = document.getElementById('facebookIcon');
+        const instagramIcon = document.getElementById('instagramIcon');
+        const youtubeIcon = document.getElementById('youtubeIcon');
 
-        function checkSelections() {
-            const district = document.getElementById('district').value;
-            const subdivision = document.getElementById('subdivision').value;
-            const block = document.getElementById('block').value;
-            const panchayat = document.getElementById('panchayat').value;
-
-            // Show data if all fields are selected
-            if (district && subdivision && block && panchayat) {
-                noRecord.classList.add('hidden');
-                dataRow.classList.remove('hidden');
-            } else {
-                noRecord.classList.remove('hidden');
-                dataRow.classList.add('hidden');
-            }
+        // Toggle Functions
+        function showSocial() {
+            // Update button states
+            socialBtn.classList.add('active-btn');
+            socialBtn.classList.remove('inactive-btn');
+            videosBtn.classList.add('inactive-btn');
+            videosBtn.classList.remove('active-btn');
+            
+            // Show/hide content with fade effect
+            videosContent.classList.add('fade-out', 'hidden');
+            videosContent.classList.remove('fade-in');
+            
+            setTimeout(() => {
+                socialContent.classList.remove('fade-out', 'hidden');
+                socialContent.classList.add('fade-in');
+            }, 300);
         }
 
-        // Add event listeners to all select elements
-        selects.forEach(select => {
-            select.addEventListener('change', checkSelections);
+        function showVideos() {
+            // Update button states
+            videosBtn.classList.add('active-btn');
+            videosBtn.classList.remove('inactive-btn');
+            socialBtn.classList.add('inactive-btn');
+            socialBtn.classList.remove('active-btn');
+            
+            // Show/hide content with fade effect
+            socialContent.classList.add('fade-out', 'hidden');
+            socialContent.classList.remove('fade-in');
+            
+            setTimeout(() => {
+                videosContent.classList.remove('fade-out', 'hidden');
+                videosContent.classList.add('fade-in');
+            }, 300);
+        }
+
+        // Event Listeners for Toggle Buttons
+        socialBtn.addEventListener('click', showSocial);
+        videosBtn.addEventListener('click', showVideos);
+
+        // Social Media Icon Click Handlers
+        twitterIcon.addEventListener('click', () => {
+            window.open('https://twitter.com/AamAadmiParty', '_blank');
         });
 
-        // Simulate dependent dropdowns
-        document.getElementById('district').addEventListener('change', function() {
-            const subdivision = document.getElementById('subdivision');
-            const block = document.getElementById('block');
-            const panchayat = document.getElementById('panchayat');
-            
-            // Reset dependent dropdowns
-            subdivision.selectedIndex = 0;
-            block.selectedIndex = 0;
-            panchayat.selectedIndex = 0;
-            
-            checkSelections();
+        facebookIcon.addEventListener('click', () => {
+            window.open('https://www.facebook.com/AamAadmiParty/', '_blank');
         });
-       
+
+        instagramIcon.addEventListener('click', () => {
+            window.open('https://www.instagram.com/aamaadmiparty/', '_blank');
+        });
+
+        youtubeIcon.addEventListener('click', () => {
+            window.open('https://www.youtube.com/@aamaadmiparty', '_blank');
+        });
+
+        // Add click feedback animation
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                }, 100);
+            });
+        });
+
+        // Add button click feedback
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Initialize page - show social content by default
+        document.addEventListener('DOMContentLoaded', () => {
+            showSocial();
+        });
+
+        // Add hover effects for cards
+        document.querySelectorAll('.bg-gray-50').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '1') {
+                showSocial();
+            } else if (e.key === '2') {
+                showVideos();
+            }
+        });
+
+        // Add loading animation for content switching
+        function showLoadingAnimation(targetElement) {
+            targetElement.innerHTML = `
+                <div class="flex justify-center items-center h-64">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-aap-orange"></div>
+                </div>
+            `;
+        }
+
+        // Enhanced console logging for debugging
+        console.log('AAP Social Media Feed initialized successfully');
+        console.log('Available keyboard shortcuts: Press 1 for Social, 2 for Videos');

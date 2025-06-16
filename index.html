@@ -1,1111 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Add in the <head> section -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#021A32",
-              hover: "#FFFF00",
-              "aap-navy": "#021A32",
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Add in the <head> section -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+   <style>
+    .active-btn {
+            background-color: #f97316 !important;
+            color: white !important;
+        }
+        .inactive-btn {
+            background-color: transparent !important;
+            color: white !important;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        .fade-in {
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+   </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#021A32",
+            hover: "#FFFF00",
+            "aap-navy": "#021A32",
           },
         },
-      };
-    </script>
-  </head>
-  <body class="bg-white">
-    <!-- nav bar  -->
-    <nav
-      class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50"
-    >
-      <div class="max-w-7xl mx-auto px-3 sm:px-5 lg:px-7">
-        <div class="flex justify-between items-center h-20">
-          <!-- Logo -->
-          <img
-            src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp"
-            alt="Logo"
-            class="w-28 h-10 mr-6"
-          />
+      },
+    };
+  </script>
+</head>
 
-          <!-- Desktop Menu -->
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-            
-              <div class="relative group">
-                 <a href="index.html">
-               <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
+<body class="bg-white">
+  <!-- nav bar  -->
+  <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+          class="w-28 h-10 mr-6" />
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+
+            <div class="relative group">
+              <a href="index.html">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
                   HOME
                 </button>
-                </a>
-                <a href="">
-               <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
+              </a>
+              <a href="">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
                   ABOUT US
                 </button>
-                </a>
-               
-              </div>
+              </a>
 
-              <!-- Our Leader Dropdown -->
-              <div class="relative group">
-                <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
-                  OUR LEADER ▼
-                </button>
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
-                >
-                  <a
-                    href="main_wing.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >MAIN WING</a
-                  >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >YOUTH WING</a
-                  >
-                </div>
-              </div>
+            </div>
 
-              <!-- Join Us -->
-              <a
-                href="joinUS.html"
-                class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >JOIN US</a
-              >
-
-              <!-- Volunteer Dropdown -->
-              <div class="relative group">
-                <button
-                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200"
-                >
-                  VOLUNTEER ▼
-                </button>
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
-                >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >LOGIN</a
-                  >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >REGISTER</a
-                  >
-                </div>
+            <!-- Our Leader Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                OUR LEADER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
+                <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
               </div>
             </div>
-          </div>
 
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-button"
-              class="text-white hover:text-hover focus:outline-none"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+            <!-- Join Us -->
+            <a href="joinUS.html"
+              class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">JOIN US</a>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
-            <a
-            href="index.html"
-            class="block px-3 py-2 text-sm font-medium hover:text-hover"
-            >Home</a
-          >
-          <div class="block">
-            <button
-              class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('about-dropdown')"
-            >
-              ABOUT US
-            </button>
-          </div>
-          <div class="block">
-            <button
-              class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('leader-dropdown')"
-            >
-              OUR LEADER
-            </button>
-            <div id="leader-dropdown" class="hidden pl-6 space-y-1">
-              <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover"
-                >MAIN WING</a
-              >
-              <a href="#" class="block px-3 py-2 text-sm hover:text-hover"
-                >YOUTH WING</a
-              >
-            </div>
-          </div>
-          <a
-            href="joinUS.html"
-            class="block px-3 py-2 text-sm font-medium hover:text-hover"
-            >JOIN US</a
-          >
-          <div class="block">
-            <button
-              class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('volunteer-dropdown')"
-            >
-              VOLUNTEER
-            </button>
-            <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
-              <a href="#" class="block px-3 py-2 text-sm hover:text-hover"
-                >LOGIN</a
-              >
-              <a href="#" class="block px-3 py-2 text-sm hover:text-hover"
-                >REGISTER</a
-              >
+            <!-- Volunteer Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                VOLUNTEER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
-    <!-- Hero Section with Image Slider -->
 
-    <section class="relative h-screen overflow-hidden">
-      <div class="slider-container relative w-full h-full">
-        <!-- Slide 1 -->
-        <div
-          class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out"
-          style="
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
+        <a href="index.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">Home</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('about-dropdown')">
+            ABOUT US
+          </button>
+        </div>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('leader-dropdown')">
+            OUR LEADER
+          </button>
+          <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+            <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
+            <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
+          </div>
+        </div>
+        <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('volunteer-dropdown')">
+            VOLUNTEER
+          </button>
+          <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">LOGIN</a>
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">REGISTER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section with Image Slider -->
+
+  <section class="relative h-screen overflow-hidden">
+    <div class="slider-container relative w-full h-full">
+      <!-- Slide 1 -->
+      <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out" style="
             background: linear-gradient(
                 rgba(2, 26, 50, 0.7),
                 rgba(2, 26, 50, 0.7)
               ),
               url('https://img.freepik.com/free-photo/corporate-businessman-giving-presentation-large-audience_53876-101865.jpg')
                 center/cover;
-          "
-        >
-          <div class="flex items-center justify-start h-full px-10">
-            <!-- px-0 for no horizontal padding -->
-            <div class="text-left text-white max-w-4xl px-4">
-              <!-- removed mx-auto -->
-              <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                AAM AADMI<span class="text-yellow-400"> PARTY BIHAR</span>
-              </h1>
-              <p class="text-lg mb-8">
-                आम आदमी पार्टी बिहार ईमानदार राजनीति और पारदर्शी शासन के लिए
-                प्रतिबद्ध है। हमारा उद्देश्य बिहार के लोगों को बेहतर शिक्षा,
-                स्वास्थ्य सेवा और भ्रष्टाचार मुक्त शासन प्रदान करना है। हम मानते
-                हैं कि राजनीति में जनता की भागीदारी अत्यंत आवश्यक है और हमारा
-                आंदोलन जनता के लिए और जनता द्वारा संचालित है।
-              </p>
-              <div class="relative inline-block">
-                <button
-                  class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto"
-                >
-                  <span class="relative z-10 flex items-center">
-                    <svg
-                      class="w-5 h-5 mr-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    JOIN AAP BIHAR
-                  </span>
+          ">
+        <div class="flex items-center justify-start h-full px-10">
+          <!-- px-0 for no horizontal padding -->
+          <div class="text-left text-white max-w-4xl px-4">
+            <!-- removed mx-auto -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+              AAM AADMI<span class="text-yellow-400"> PARTY BIHAR</span>
+            </h1>
+            <p class="text-lg mb-8">
+              आम आदमी पार्टी बिहार ईमानदार राजनीति और पारदर्शी शासन के लिए
+              प्रतिबद्ध है। हमारा उद्देश्य बिहार के लोगों को बेहतर शिक्षा,
+              स्वास्थ्य सेवा और भ्रष्टाचार मुक्त शासन प्रदान करना है। हम मानते
+              हैं कि राजनीति में जनता की भागीदारी अत्यंत आवश्यक है और हमारा
+              आंदोलन जनता के लिए और जनता द्वारा संचालित है।
+            </p>
+            <div class="relative inline-block">
+              <button
+                class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto">
+                <span class="relative z-10 flex items-center">
+                  <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  JOIN AAP BIHAR
+                </span>
 
-                  <div
-                    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full"
-                  ></div>
-                </button>
-              </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full">
+                </div>
+              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Slide 2 -->
-        <div
-          class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out"
-          style="
+      <!-- Slide 2 -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out" style="
             background: linear-gradient(
                 rgba(2, 26, 50, 0.7),
                 rgba(2, 26, 50, 0.7)
               ),
               url('https://t4.ftcdn.net/jpg/02/22/14/91/360_F_222149179_9BwWV0iM3mSmLdqdTTnKQEXOFxWUlUPl.jpg')
                 center/cover;
-          "
-        >
-          <div class="flex items-center justify-start h-full px-10">
-            <div class="text-left text-white max-w-4xl px-4">
-              <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                शिक्षा और <span class="text-yellow-400"> स्वास्थ्य</span>
-              </h1>
-              <p class="text-lg mb-8">
-                बिहार में शिक्षा और स्वास्थ्य को सर्वोच्च प्राथमिकता दी जा रही
-                है। बेहतर स्कूलों और आधुनिक सुविधाओं के माध्यम से बच्चों को
-                गुणवत्तापूर्ण शिक्षा प्रदान की जा रही है। साथ ही, मुफ्त और सुलभ
-                स्वास्थ्य सेवाओं के जरिए हर नागरिक को बेहतर इलाज और स्वास्थ्य
-                सुरक्षा उपलब्ध कराई जा रही है।
-              </p>
-              <div class="relative inline-block">
-                <button
-                  class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto"
-                >
-                  <span class="relative z-10 flex items-center">
-                    <svg
-                      class="w-5 h-5 mr-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    JOIN AAP BIHAR
-                  </span>
+          ">
+        <div class="flex items-center justify-start h-full px-10">
+          <div class="text-left text-white max-w-4xl px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+              शिक्षा और <span class="text-yellow-400"> स्वास्थ्य</span>
+            </h1>
+            <p class="text-lg mb-8">
+              बिहार में शिक्षा और स्वास्थ्य को सर्वोच्च प्राथमिकता दी जा रही
+              है। बेहतर स्कूलों और आधुनिक सुविधाओं के माध्यम से बच्चों को
+              गुणवत्तापूर्ण शिक्षा प्रदान की जा रही है। साथ ही, मुफ्त और सुलभ
+              स्वास्थ्य सेवाओं के जरिए हर नागरिक को बेहतर इलाज और स्वास्थ्य
+              सुरक्षा उपलब्ध कराई जा रही है।
+            </p>
+            <div class="relative inline-block">
+              <button
+                class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto">
+                <span class="relative z-10 flex items-center">
+                  <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  JOIN AAP BIHAR
+                </span>
 
-                  <div
-                    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full"
-                  ></div>
-                </button>
-              </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full">
+                </div>
+              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Slide 3 -->
-        <div
-          class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out"
-          style="
+      <!-- Slide 3 -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out" style="
             background: linear-gradient(
                 rgba(2, 26, 50, 0.7),
                 rgba(2, 26, 50, 0.7)
               ),
               url('https://media.gettyimages.com/id/523116590/photo/businessman-putting-euro-bills-on-table.jpg?s=612x612&w=0&k=20&c=ag1ja8-Ea4QgX11z8SCR_0imd4s3U410HqBb6DpbCDc=')
                 center/cover;
-          "
-        >
-          <div class="flex items-center justify-start h-full px-10">
-            <div class="text-left text-white max-w-4xl px-4">
-              <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                भ्रष्टाचार<span class="text-yellow-400"> मुक्त बिहार</span>
-              </h1>
-              <p class="text-lg mb-8">
-                बिहार में भ्रष्टाचार और मुक्त बिहार को सर्वोच्च प्राथमिकता दी जा
-                रही है। बेहतर स्कूलों और आधुनिक सुविधाओं के माध्यम से बच्चों को
-                गुणवत्तापूर्ण शिक्षा प्रदान की जा रही है। साथ ही, मुफ्त और सुलभ
-                स्वास्थ्य सेवाओं के जरिए हर नागरिक को बेहतर इलाज और स्वास्थ्य
-                सुरक्षा उपलब्ध कराई जा रही है।
-              </p>
-              <div class="relative inline-block">
-                <button
-                  class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto"
-                >
-                  <span class="relative z-10 flex items-center">
-                    <svg
-                      class="w-5 h-5 mr-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    JOIN AAP BIHAR
-                  </span>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full"
-                  ></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slider Navigation Dots -->
-      <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3"
-      >
-        <button
-          class="dot w-4 h-4 rounded-full bg-white shadow-lg transform hover:scale-125 transition-all duration-200"
-          onclick="currentSlide(1)"
-        ></button>
-        <button
-          class="dot w-4 h-4 rounded-full bg-white/50 shadow-lg transform hover:scale-125 transition-all duration-200"
-          onclick="currentSlide(2)"
-        ></button>
-        <button
-          class="dot w-4 h-4 rounded-full bg-white/50 shadow-lg transform hover:scale-125 transition-all duration-200"
-          onclick="currentSlide(3)"
-        ></button>
-      </div>
-    </section>
-    <!-- About Us -->
-    <section class="py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Left Image (Now Order Changed) -->
-          <div class="order-last lg:order-first">
-            <div class="relative">
-              <!-- Main Image -->
-              <div
-                class="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="AAP Bihar Team"
-                  class="w-full h-96 object-cover"
-                />
-                <!-- Overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"
-                ></div>
-                <!-- Overlay Text -->
-                <div class="absolute bottom-6 left-6 text-white">
-                  <h3 class="text-2xl font-bold mb-2">
-                    With the People of Bihar
-                  </h3>
-                  <p class="text-lg">A new chapter of honest politics</p>
-                </div>
-              </div>
-
-              <!-- Decorative Elements -->
-              <div
-                class="absolute -top-4 -right-4 w-24 h-24 bg-hover/20 rounded-full blur-xl"
-              ></div>
-              <div
-                class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-xl"
-              ></div>
-            </div>
-          </div>
-
-          <!-- Right Content (Now Order Changed) -->
-          <div class="space-y-8 order-first lg:order-last">
-            <div>
-              <h2 class="text-3xl font-bold mb-6 text-primary">
-                Aam Aadmi <span class="text-yellow-400">Party Bihar</span>
-              </h2>
-              <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                The Aam Aadmi Party (AAP) is a political party committed to true
-                politics and transparent governance in India. In Bihar, our goal
-                is to provide better education, healthcare, and corruption-free
-                governance to the people of the state.
-              </p>
-              <p class="text-gray-700 text-lg leading-relaxed">
-                We believe that public participation in politics is essential.
-                Our party was formed for those who believe in honest politics
-                and want to work for the betterment of society.
-              </p>
-            </div>
-
-            <!-- Join Us Button -->
-            <div class="text-center p-4">
+          ">
+        <div class="flex items-center justify-start h-full px-10">
+          <div class="text-left text-white max-w-4xl px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+              भ्रष्टाचार<span class="text-yellow-400"> मुक्त बिहार</span>
+            </h1>
+            <p class="text-lg mb-8">
+              बिहार में भ्रष्टाचार और मुक्त बिहार को सर्वोच्च प्राथमिकता दी जा
+              रही है। बेहतर स्कूलों और आधुनिक सुविधाओं के माध्यम से बच्चों को
+              गुणवत्तापूर्ण शिक्षा प्रदान की जा रही है। साथ ही, मुफ्त और सुलभ
+              स्वास्थ्य सेवाओं के जरिए हर नागरिक को बेहतर इलाज और स्वास्थ्य
+              सुरक्षा उपलब्ध कराई जा रही है।
+            </p>
+            <div class="relative inline-block">
               <button
-                class="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-700 text-white font-bold py-3 px-4 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl rounded-xl w-auto border hover:border-primary"
-              >
+                class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto">
                 <span class="relative z-10 flex items-center">
-                  <svg
-                    class="w-5 h-5 mr-3"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
+                  <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                      clip-rule="evenodd"
-                    />
+                      clip-rule="evenodd" />
                   </svg>
                   JOIN AAP BIHAR
                 </span>
 
-                <!-- Animated Overlay -->
                 <div
-                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out"
-                ></div>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- our leader -->
-    <section class="bg-gray-50 text-primary py-6 px-2 sm:px-4">
-      <div class="max-w-7xl mx-auto">
-        <!-- Section Heading -->
-        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6">
-          Meet our Leaders
-        </h2>
-
-        <!-- Card Grid -->
-        <div class="flex flex-wrap justify-center gap-4">
-          <!-- Arvind Kejriwal Card -->
-          <div
-            class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col"
-          >
-            <div class="h-[130px] overflow-hidden rounded-md mb-3">
-              <img
-                src="https://aamaadmiparty.org/wp-content/uploads/2024/05/CM-SIR-e1715953878123.webp"
-                alt="Arvind Kejriwal"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="flex-1 flex flex-col justify-center">
-              <div class="text-center mb-3">
-                <h3 class="text-lg font-semibold mb-1">Arvind Kejriwal</h3>
-                <p class="text-gray-600 text-sm">National Convenor, AAP</p>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-center space-x-2 mb-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fa-solid fa-envelope text-black text-xs"></i>
+                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full">
                 </div>
-                <span class="text-black font-medium">lk842569@gmail.com</span>
-              </div>
-
-              <!-- Phone -->
-              <div class="flex items-center space-x-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fas fa-phone text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">+91 98765 43210</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bhagwant Mann Card -->
-          <div
-            class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col"
-          >
-            <div class="h-[130px] overflow-hidden rounded-md mb-3">
-              <img
-                src="https://aamaadmiparty.org/wp-content/uploads/2024/05/EF0A9863-scaled-e1715953234202-1246x1536.webp"
-                alt="Bhagwant Mann"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="flex-1 flex flex-col justify-center">
-              <div class="text-center mb-3">
-                <h3 class="text-lg font-semibold mb-1 text-primary">
-                  Bhagwant Mann
-                </h3>
-                <p class="text-gray-600 text-sm">Chief Minister, Punjab</p>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-center space-x-2 mb-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fa-solid fa-envelope text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">lk842569@gmail.com</span>
-              </div>
-
-              <!-- Phone -->
-              <div class="flex items-center space-x-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fas fa-phone text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">+91 98765 43211</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Manish Sisodia Card -->
-          <div
-            class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col"
-          >
-            <div class="h-[130px] overflow-hidden rounded-md mb-3">
-              <img
-                src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
-                alt="Manish Sisodia"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="flex-1 flex flex-col justify-center">
-              <div class="text-center mb-3">
-                <h3 class="text-lg font-semibold mb-1 text-primary">
-                  Manish Sisodia
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Former Dy. Chief Minister, Delhi
-                </p>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-center space-x-2 mb-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fa-solid fa-envelope text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">lk842569@gmail.com</span>
-              </div>
-
-              <!-- Phone -->
-              <div class="flex items-center space-x-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fas fa-phone text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">+91 98765 43212</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sanjay Singh Card -->
-          <div
-            class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col"
-          >
-            <div class="h-[130px] overflow-hidden rounded-md mb-3">
-              <img
-                src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ss-scaled-e1715953979544.webp"
-                alt="Sanjay Singh"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="flex-1 flex flex-col justify-center">
-              <div class="text-center mb-3">
-                <h3 class="text-lg font-semibold mb-1 text-primary">
-                  Sanjay Singh
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Member of Parliament, Rajya Sabha
-                </p>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-center space-x-2 mb-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fa-solid fa-envelope text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">lk842569@gmail.com</span>
-              </div>
-
-              <!-- Phone -->
-              <div class="flex items-center space-x-2 text-sm">
-                <div
-                  class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center"
-                >
-                  <i class="fas fa-phone text-black text-xs"></i>
-                </div>
-                <span class="text-black font-medium">+91 98765 43213</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- add social medial icon -->
-    <div class="container mx-auto p-6 bg-white min-h-screen">
-      <!-- Header Section -->
-      <div class="bg-white rounded-t-2xl shadow-lg p-8">
-        <!-- Main Heading -->
-        <h1
-          class="text-3xl md:text-4xl font-bold text-center mb-8 text-aap-navy"
-        >
-          Latest From AAP
-        </h1>
-
-        <!-- Toggle Buttons -->
-        <div class="flex justify-center mb-8">
-          <div class="flex bg-blue-900 rounded-full p-1">
-            <button
-              id="socialBtn"
-              class="toggle-btn px-6 py-2 rounded-full font-medium transition-all duration-300 bg-aap-orange text-white"
-            >
-              Social
-            </button>
-            <button
-              id="videosBtn"
-              class="toggle-btn px-6 py-2 rounded-full font-medium transition-all duration-300 bg-aap-orange text-white hover:bg-white-50"
-            >
-              Videos
-            </button>
-          </div>
-        </div>
-
-        <!-- Icons -->
-        <div
-          class="flex justify-between space-x-8 mb-8 px-4 max-w-[80%] mx-auto"
-        >
-          <!-- Twitter Icon -->
-          <button
-            id="twitterIcon"
-            class="social-icon w-12 h-12 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-all duration-300 transform hover:scale-110 shadow-lg"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-              />
-            </svg>
-          </button>
-
-          <!-- Facebook Icon -->
-          <button
-            id="facebookIcon"
-            class="social-icon w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-              />
-            </svg>
-          </button>
-
-          <!-- Gradient Circle with SVG Instagram Logo -->
-          <a
-            href="https://instagram.com/yourprofile"
-            target="_blank"
-            class="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-1a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"
-              />
-            </svg>
-          </a>
-        </div>
-
-        <!-- Feed Containers -->
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Twitter Card -->
-          <div
-            class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300"
-          >
-            <div class="flex items-center justify-center mb-4">
-              <div
-                class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center mr-3"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold text-gray-800">
-                AAP on X (Twitter)
-              </h3>
-            </div>
-            <iframe
-              class="w-full h-80 rounded-lg"
-              src="https://twitframe.com/show?url=https://twitter.com/AamAadmiParty"
-              frameborder="0"
-              loading="lazy"
-            ></iframe>
-            <div class="text-center mt-4">
-              <a
-                href="https://twitter.com/AamAadmiParty"
-                target="_blank"
-                class="inline-flex items-center px-6 py-2 bg-aap-orange text-blue-900 font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow"
-              >
-                <svg
-                  class="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                  />
-                </svg>
-                Follow on X
-              </a>
-            </div>
-          </div>
-
-          <!-- Facebook Card -->
-          <div
-            class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300"
-          >
-            <div class="flex items-center justify-center mb-4">
-              <div
-                class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold text-gray-800">
-                AAP on Facebook
-              </h3>
-            </div>
-            <iframe
-              class="w-full h-80 rounded-lg"
-              src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/AamAadmiParty/&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-              frameborder="0"
-              loading="lazy"
-            ></iframe>
-            <div class="text-center mt-4">
-              <a
-                href="https://www.facebook.com/AamAadmiParty/"
-                target="_blank"
-                class="inline-flex items-center px-6 py-2 bg-aap-orange text-blue-900 font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow"
-              >
-                <svg
-                  class="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                  />
-                </svg>
-                Follow on Facebook
-              </a>
-            </div>
-          </div>
-
-          <!-- Instagram Card -->
-          <div
-            class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300"
-          >
-            <div class="flex items-center justify-center mb-4">
-              <div
-                class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full flex items-center justify-center mr-3"
-              >
-                <svg
-                  class="w-6 h-6 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-1a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold text-gray-800">
-                AAP on Instagram
-              </h3>
-            </div>
-            <div class="text-center py-6">
-              <div
-                class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <svg
-                  class="w-10 h-10 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"
-                  />
-                </svg>
-              </div>
-              <p class="text-gray-600 mb-4 text-sm">
-                Instagram doesn’t support public feed embedding. Visit our
-                profile to see the latest updates.
-              </p>
-              <div class="grid grid-cols-3 gap-2 mb-4">
-                <div
-                  class="bg-gray-200 h-24 rounded-lg flex items-center justify-center text-gray-500 text-sm"
-                >
-                  Post
-                </div>
-                <div
-                  class="bg-gray-200 h-24 rounded-lg flex items-center justify-center text-gray-500 text-sm"
-                >
-                  Story
-                </div>
-                <div
-                  class="bg-gray-200 h-24 rounded-lg flex items-center justify-center text-gray-500 text-sm"
-                >
-                  Reel
-                </div>
-              </div>
-            </div>
-            <div class="text-center">
-              <a
-                href="https://www.instagram.com/aamaadmiparty/"
-                target="_blank"
-                class="inline-flex items-center px-6 py-2 bg-aap-orange text-blue-900 font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow"
-              >
-                <svg
-                  class="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"
-                  />
-                </svg>
-                Follow on Instagram
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add Member Section -->
-    <div
-      class="container mx-auto px-6 sm:px-10 py-10 max-w-7xl bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md"
-    >
-      <!-- Header Section -->
-      <div class="text-center mb-12">
-        <h1 class="text-3xl sm:text-4xl font-bold text-primary mb-4">
-          हमारे पदाधिकारी
-        </h1>
-        <p
-          class="text-gray-700 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed"
-        >
-          जिला स्तर से पंचायत स्तर तक, अपने क्षेत्र के पदाधिकारियों को खोजें।<br />
-          जिला, उपमंडल, ब्लॉक, और पंचायत का चयन कर जानकारी प्राप्त करें।
-        </p>
-      </div>
-
-      <!-- Main Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Left: Steps -->
-        <div class="space-y-6">
-          <!-- Step Template -->
-          <div
-            class="flex items-start space-x-4 bg-white shadow rounded-lg p-5 border-l-4 border-blue-600"
-          >
-            <div
-              class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xl"
-            >
-              1
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">जिला</h3>
-              <select
-                id="district"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">अरेरिया</option>
-                <option value="patna">पटना</option>
-                <option value="gaya">गया</option>
-                <option value="muzaffarpur">मुजफ्फरपुर</option>
-              </select>
-            </div>
-          </div>
-
-          <div
-            class="flex items-start space-x-4 bg-white shadow rounded-lg p-5 border-l-4 border-green-600"
-          >
-            <div
-              class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl"
-            >
-              2
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">उपमंडल</h3>
-              <select
-                id="subdivision"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
-              >
-                <option value="">अपना उपमंडल चुनें</option>
-                <option value="araria">अरेरिया</option>
-                <option value="forbesganj">फॉर्बिसगंज</option>
-              </select>
-            </div>
-          </div>
-
-          <div
-            class="flex items-start space-x-4 bg-white shadow rounded-lg p-5 border-l-4 border-purple-600"
-          >
-            <div
-              class="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl"
-            >
-              3
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">प्रखंड</h3>
-              <select
-                id="block"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
-              >
-                <option value="">अपना प्रखंड चुनें</option>
-                <option value="araria">अरेरिया</option>
-                <option value="bhargama">भरगामा</option>
-              </select>
-            </div>
-          </div>
-
-          <div
-            class="flex items-start space-x-4 bg-white shadow rounded-lg p-5 border-l-4 border-orange-500"
-          >
-            <div
-              class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-xl"
-            >
-              4
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">पंचायत</h3>
-              <select
-                id="panchayat"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              >
-                <option value="">अपना पंचायत चुनें</option>
-                <option value="araria">अरेरिया</option>
-                <option value="kesariya">केसरिया</option>
-              </select>
-            </div>
-          </div>
-          <div
-            class="flex items-start space-x-4 bg-white shadow rounded-lg p-5 border-l-4 border-pink-600"
-          >
-            <div
-              class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold text-xl"
-            >
-              5
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">बूथ</h3>
-              <select
-                id="booth"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500 bg-white text-gray-800"
-              >
-                <option value="">अपना बूथ चुनें</option>
-                <option value="booth-1">बूथ - 1</option>
-                <option value="booth-2">बूथ - 2</option>
-                <option value="booth-3">बूथ - 3</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Table -->
-        <div
-          class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
-        >
-          <!-- Table Header -->
-          <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
-            <div
-              class="grid grid-cols-3 gap-4 text-sm sm:text-base font-semibold text-gray-700"
-            >
-              <div>नाम</div>
-              <div>पदनाम</div>
-              <div>संपर्क जानकारी</div>
-            </div>
-          </div>
-
-          <!-- Table Content -->
-          <div id="tableContent" class="min-h-[300px]">
-            <div
-              id="noRecord"
-              class="flex flex-col items-center justify-center py-16 px-6 text-center"
-            >
-              <svg
-                class="w-16 h-16 text-gray-400 mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              <p class="text-gray-500 text-lg font-medium">
-                कोई रिकॉर्ड नहीं मिला
-              </p>
-              <p class="text-gray-400 text-sm mt-1">कृपया अपनी जानकारी भरें</p>
-            </div>
-
-            <!-- Example Data Row (Hidden by default) -->
-            <div id="dataRow" class="hidden px-6 py-4 border-b border-gray-100">
-              <div class="grid grid-cols-3 gap-4 items-center">
-                <div class="flex items-center space-x-3">
-                  <div
-                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-5 h-5 text-blue-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span class="font-medium text-gray-900 text-sm sm:text-base"
-                    >विनोद श्रीवास्तव</span
-                  >
-                </div>
-                <div class="text-gray-700 text-sm sm:text-base">प्रबंधक</div>
-                <div class="text-blue-600 font-medium text-sm sm:text-base">
-                  +91 6201513990
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pagination -->
-          <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
-            <div class="flex items-center justify-between text-sm sm:text-base">
-              <button
-                class="px-4 py-2 font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50"
-                disabled
-              >
-                Prev
-              </button>
-              <span class="text-gray-700">Page 1 of 1</span>
-              <button
-                class="px-4 py-2 font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50"
-                disabled
-              >
-                Next
               </button>
             </div>
           </div>
@@ -1113,191 +279,808 @@
       </div>
     </div>
 
-    <!-- footer section  -->
-    <footer class="bg-gray-100 text-gray-900 pt-12 pb-0">
-      <div class="max-w-7xl mx-auto">
-        <h2
-          class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] mb-6 lg:mb-8 leading-snug text-center lg:text-left"
-        >
-          "First, they ignore you, then they laugh at you, then they fight you
-          and then you win." - Mahatma Gandhi
-        </h2>
+    <!-- Slider Navigation Dots -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+      <button class="dot w-4 h-4 rounded-full bg-white shadow-lg transform hover:scale-125 transition-all duration-200"
+        onclick="currentSlide(1)"></button>
+      <button
+        class="dot w-4 h-4 rounded-full bg-white/50 shadow-lg transform hover:scale-125 transition-all duration-200"
+        onclick="currentSlide(2)"></button>
+      <button
+        class="dot w-4 h-4 rounded-full bg-white/50 shadow-lg transform hover:scale-125 transition-all duration-200"
+        onclick="currentSlide(3)"></button>
+    </div>
+  </section>
+  <!-- About Us -->
+  <section class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+      <div class=" max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Image (Now Order Changed) -->
+        <div class="order-last lg:order-first">
+          <div class="relative">
+            <!-- Main Image -->
+            <div
+              class="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+              <img
+                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="AAP Bihar Team" class="w-full h-96 object-cover" />
+              <!-- Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+              <!-- Overlay Text -->
+              <div class="absolute bottom-6 left-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">
+                  With the People of Bihar
+                </h3>
+                <p class="text-lg">A new chapter of honest politics</p>
+              </div>
+            </div>
 
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-        >
-          <!-- Left Section -->
-          <div class="sm:col-span-2 lg:col-span-1">
-            <img
-              src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp"
-              alt="AAP Logo"
-              class="w-20 lg:w-24 mb-3 mx-auto sm:mx-0"
-            />
-            <h3
-              class="font-bold text-[#0b3c82] text-base mb-2 text-center sm:text-left"
-            >
-              AAM AADMI PARTY
-            </h3>
-            <p class="text-sm leading-relaxed text-center sm:text-left">
-              1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />
-              New Delhi – 110001
+            <!-- Decorative Elements -->
+            <div class="absolute -top-4 -right-4 w-24 h-24 bg-hover/20 rounded-full blur-xl"></div>
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-xl"></div>
+          </div>
+        </div>
+
+        <!-- Right Content (Now Order Changed) -->
+        <div class="space-y-8 order-first lg:order-last">
+          <div>
+            <h2 class="text-3xl font-bold mb-6 text-primary">
+              Aam Aadmi <span class="text-yellow-400">Party Bihar</span>
+            </h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+              The Aam Aadmi Party (AAP) is a political party committed to true
+              politics and transparent governance in India. In Bihar, our goal
+              is to provide better education, healthcare, and corruption-free
+              governance to the people of the state.
             </p>
-            <div class="mt-4 space-y-1 text-center sm:text-left">
-              <p class="text-sm">
-                <span class="font-semibold">Helpline No:</span> 97185 00606
-              </p>
-              <p class="text-sm">
-                <span class="font-semibold">Timing:</span> 9:00 am - 6:00 pm
-              </p>
-              <p class="text-sm">
-                <span class="font-semibold">Email ID:</span>
-                contact@aamaadmiparty.org
-              </p>
-            </div>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              We believe that public participation in politics is essential.
+              Our party was formed for those who believe in honest politics
+              and want to work for the betterment of society.
+            </p>
           </div>
 
-          <!-- About -->
-          <div class="text-center sm:text-left">
-            <h4 class="text-[#0b3c82] font-bold mb-3 text-base">About</h4>
-            <ul class="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >Our History</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >AAP Leadership</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >Constitution</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >Election Symbol</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >C2/C7 Documents</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >Archive Website</a
-                >
-              </li>
-            </ul>
-          </div>
+          <button id="joinBtn"
+            class="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-700 text-white font-bold py-3 px-4 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl rounded-xl w-auto border hover:text-blue-900">
+            <span id="joinBtnText" class="relative z-10 flex items-center">
+              <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                  clip-rule="evenodd" />
+              </svg>
+              JOIN AAP BIHAR
+            </span>
 
-          <!-- Media Resources -->
-          <div class="text-center sm:text-left">
-            <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
-              Media Resources
-            </h4>
-            <ul class="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >Press Release</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:underline hover:text-[#0b3c82] transition-colors"
-                  >Official Spokespersons</a
-                >
-              </li>
-            </ul>
-          </div>
 
-          <!-- Social Media -->
-          <div class="text-center sm:text-left">
-            <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
-              Follow us on
-            </h4>
-            <div
-              class="flex items-center justify-center sm:justify-start space-x-4 text-xl mt-2"
-            >
-              <a
-                href="#"
-                aria-label="Facebook"
-                class="hover:text-[#0b3c82] transition-colors"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                class="hover:text-[#0b3c82] transition-colors"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
-                aria-label="YouTube"
-                class="hover:text-[#0b3c82] transition-colors"
-              >
-                <i class="fab fa-youtube"></i>
-              </a>
-              <a
-                href="#"
-                aria-label="X"
-                class="hover:text-[#0b3c82] transition-colors"
-              >
-                <i class="fab fa-x-twitter"></i>
-              </a>
-            </div>
-          </div>
+          </button>
+
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Bottom Bar - Fixed Width Issues -->
-      <div class="mt-8  bg-primary">
+
+  <!-- our leader -->
+  <section class="bg-primary text-white py-6 px-2 sm:px-4">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Heading -->
+      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6">
+        Meet our<span class="text-yellow-400"> Leaders</span>
+      </h2>
+
+      <!-- Card Grid -->
+      <div class="flex flex-wrap justify-center gap-6">
+        <!-- Arvind Kejriwal Card -->
         <div
-          class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white"
-        >
-          <p class="text-center sm:text-left">
-            &copy; 2025 Aam Aadmi Party. All rights reserved.
-          </p>
-          <div class="flex flex-wrap justify-center sm:justify-end gap-4">
-            <a
-              href="#"
-              class="hover:underline hover:text-gray-200 transition-colors"
-              >Privacy Policy</a
-            >
-            <a
-              href="#"
-              class="hover:underline hover:text-gray-200 transition-colors"
-              >Terms of Service</a
-            >
-            <a
-              href="#"
-              class="hover:underline hover:text-gray-200 transition-colors"
-              >Contact Us</a
-            >
+          class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col">
+          <div class="h-[130px] overflow-hidden rounded-md mb-3">
+            <img src="https://aamaadmiparty.org/wp-content/uploads/2024/05/CM-SIR-e1715953878123.webp"
+              alt="Arvind Kejriwal" class="w-full h-full object-cover object-top" />
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <div class="text-center mb-3">
+              <h3 class="text-lg font-semibold mb-1">Arvind Kejriwal</h3>
+              <p class="text-gray-600 text-sm">National Convenor, AAP</p>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-center space-x-2 mb-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-envelope text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">lk842569@gmail.com</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-center space-x-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fas fa-phone text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">+91 98765 43210</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bhagwant Mann Card -->
+        <div
+          class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col">
+          <div class="h-[130px] overflow-hidden rounded-md mb-3">
+            <img
+              src="https://aamaadmiparty.org/wp-content/uploads/2024/05/EF0A9863-scaled-e1715953234202-1246x1536.webp"
+              alt="Bhagwant Mann" class="w-full h-full object-cover object-top" />
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <div class="text-center mb-3">
+              <h3 class="text-lg font-semibold mb-1 text-primary">
+                Bhagwant Mann
+              </h3>
+              <p class="text-gray-600 text-sm">Chief Minister, Punjab</p>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-center space-x-2 mb-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-envelope text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">lk842569@gmail.com</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-center space-x-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fas fa-phone text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">+91 98765 43211</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manish Sisodia Card -->
+        <div
+          class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col">
+          <div class="h-[130px] overflow-hidden rounded-md mb-3">
+            <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+              alt="Manish Sisodia" class="w-full h-full object-cover object-top" />
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <div class="text-center mb-3">
+              <h3 class="text-lg font-semibold mb-1 text-primary">
+                Manish Sisodia
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Former Dy. Chief Minister, Delhi
+              </p>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-center space-x-2 mb-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-envelope text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">lk842569@gmail.com</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-center space-x-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fas fa-phone text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">+91 98765 43212</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sanjay Singh Card -->
+        <div
+          class="bg-white text-black rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 w-[280px] h-[350px] p-4 flex flex-col">
+          <div class="h-[130px] overflow-hidden rounded-md mb-3">
+            <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ss-scaled-e1715953979544.webp"
+              alt="Sanjay Singh" class="w-full h-full object-cover object-top" />
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <div class="text-center mb-3">
+              <h3 class="text-lg font-semibold mb-1 text-primary">
+                Sanjay Singh
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Member of Parliament, Rajya Sabha
+              </p>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-center space-x-2 mb-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-envelope text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">lk842569@gmail.com</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-center space-x-2 text-sm">
+              <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center">
+                <i class="fas fa-phone text-black text-xs"></i>
+              </div>
+              <span class="text-black font-medium">+91 98765 43213</span>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="app.js"></script>
-  </body>
+
+  <!-- add social medial icon -->
+  <div class="container mx-auto p-6 bg-white min-h-screen">
+        <!-- Header Section -->
+        <div class="bg-white rounded-t-2xl shadow-lg p-8">
+            <!-- Main Heading -->
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-aap-navy">
+                Latest From AAP
+            </h1>
+
+            <!-- Toggle Buttons -->
+            <div class="flex justify-center mb-8">
+                <div class="flex bg-blue-900 rounded-full p-1">
+                    <button id="socialBtn"
+                        class="toggle-btn px-6 py-2 rounded-full font-medium transition-all duration-300 active-btn">
+                        Social
+                    </button>
+                    <button id="videosBtn"
+                        class="toggle-btn px-6 py-2 rounded-full font-medium transition-all duration-300 inactive-btn hover:bg-white hover:bg-opacity-10">
+                        Videos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-8 mb-8 px-4">
+                <!-- Twitter Icon -->
+                <button id="twitterIcon"
+                    class="social-icon w-12 h-12 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-all duration-300 shadow-lg">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                </button>
+
+                <!-- Facebook Icon -->
+                <button id="facebookIcon"
+                    class="social-icon w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-all duration-300 shadow-lg">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                </button>
+
+                <!-- Instagram Icon -->
+                <button id="instagramIcon"
+                    class="social-icon w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center transition-transform duration-300 shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-1a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                    </svg>
+                </button>
+
+                <!-- YouTube Icon -->
+                <button id="youtubeIcon"
+                    class="social-icon w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 shadow-lg">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Content Container -->
+            <div id="contentContainer">
+                <!-- Social Media Feeds (Default View) -->
+                <div id="socialContent" class="fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Twitter Card -->
+                        <div class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">AAP on X (Twitter)</h3>
+                            </div>
+                            <div class="w-full h-80 rounded-lg bg-gray-200 flex items-center justify-center mb-4">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-600 text-sm">Latest tweets from @AamAadmiParty</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="https://twitter.com/AamAadmiParty" target="_blank"
+                                    class="inline-flex items-center px-6 py-2 bg-aap-orange text-white font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                    Follow on X
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Facebook Card -->
+                        <div class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">AAP on Facebook</h3>
+                            </div>
+                            <div class="w-full h-80 rounded-lg bg-gray-200 flex items-center justify-center mb-4">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-600 text-sm">Latest updates from AAP Facebook</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="https://www.facebook.com/AamAadmiParty/" target="_blank"
+                                    class="inline-flex items-center px-6 py-2 bg-aap-orange text-white font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    </svg>
+                                    Follow on Facebook
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Instagram Card -->
+                        <div class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-1a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">AAP on Instagram</h3>
+                            </div>
+                            <div class="text-center py-6">
+                                <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+                                    </svg>
+                                </div>
+                                <p class="text-gray-600 mb-4 text-sm">Visit our profile to see the latest posts, stories & reels</p>
+                                <div class="grid grid-cols-3 gap-2 mb-4">
+                                    <div class="bg-gray-200 h-24 rounded-lg flex items-center justify-center text-gray-500 text-sm">Post</div>
+                                    <div class="bg-gray-200 h-24 rounded-lg flex items-center justify-center text-gray-500 text-sm">Story</div>
+                                    <div class="bg-gray-200 h-24 rounded-lg flex items-center justify-center text-gray-500 text-sm">Reel</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="https://www.instagram.com/aamaadmiparty/" target="_blank"
+                                    class="inline-flex items-center px-6 py-2 bg-aap-orange text-white font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+                                    </svg>
+                                    Follow on Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Videos Section (Hidden by default) -->
+                <div id="videosContent" class="fade-out hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- YouTube Main Channel -->
+                        <div class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">AAP YouTube Channel</h3>
+                            </div>
+                            
+                            <!-- Embedded YouTube Channel -->
+                            <div class="w-full mb-4">
+                                <iframe 
+                                    width="100%" 
+                                    height="315" 
+                                    src="https://www.youtube.com/embed/videoseries?list=UUnjzrnJaXRPNT19hYVmnf2w" 
+                                    title="AAP YouTube Channel" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen
+                                    class="rounded-lg">
+                                </iframe>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="https://www.youtube.com/@aamaadmiparty" target="_blank"
+                                    class="inline-flex items-center px-6 py-2 bg-red-600 text-white font-medium rounded-full hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    Subscribe to Channel
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Featured Video -->
+                        <div class="bg-gray-50 rounded-xl p-4 shadow hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">Latest Updates</h3>
+                            </div>
+                            
+                            <!-- Sample AAP Video -->
+                            <div class="w-full mb-4">
+                                <iframe 
+                                    width="100%" 
+                                    height="315" 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="AAP Latest Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen
+                                    class="rounded-lg">
+                                </iframe>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="https://www.youtube.com/@aamaadmiparty/videos" target="_blank"
+                                    class="inline-flex items-center px-6 py-2 bg-aap-orange text-white font-medium rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 shadow">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                    Watch All Videos
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                        <div class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition-all duration-300">
+                            <div class="aspect-video bg-gradient-to-br from-red-100 to-red-200 rounded-lg mb-3 flex items-center justify-center cursor-pointer" onclick="openVideo('speeches')">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-red-600 font-medium text-sm">Play Video</p>
+                                </div>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-1">Speeches & Rallies</h4>
+                            <p class="text-gray-600 text-sm">Latest political speeches and public rallies</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition-all duration-300">
+                            <div class="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-3 flex items-center justify-center cursor-pointer" onclick="openVideo('interviews')">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-blue-600 font-medium text-sm">Play Video</p>
+                                </div>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-1">Interviews</h4>
+                            <p class="text-gray-600 text-sm">Exclusive interviews and discussions</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition-all duration-300">
+                            <div class="aspect-video bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-3 flex items-center justify-center cursor-pointer" onclick="openVideo('policies')">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-green-600 font-medium text-sm">Play Video</p>
+                                </div>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-1">Policy Explanations</h4>
+                            <p class="text-gray-600 text-sm">Understanding AAP policies and initiatives</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Add Member Section -->
+  <div class="container mx-auto px-6 bg-primary sm:px-10 py-10 max-w-7xl shadow-md">
+    <!-- Header Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        हमारे <span class="text-yellow-400">पदाधिकारी </span> 
+      </h1>
+      <p class="text-white text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+        जिला स्तर से पंचायत स्तर तक, अपने क्षेत्र के पदाधिकारियों को खोजें।<br />
+        जिला, उपमंडल, ब्लॉक, और पंचायत का चयन कर जानकारी प्राप्त करें।
+      </p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Left: Steps -->
+      <div class="space-y-6">
+        <!-- Step Template -->
+        <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-900">
+          <div class="w-12 h-12 bg-yellow-900 text-white rounded-full flex items-center justify-center font-bold text-xl">
+            1
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-yellow-600 mb-2">राज्य</h3>
+            <select id="district"
+              class="w-full bg-yellow-100 px-4 py-2  rounded-md focus:ring-yellow-500 focus:border-yellow-500">
+              <option value="">अपना राज्य चुनें</option>
+              <option value="">उत्तर प्रदेश</option>
+              <option value="patna">मध्य प्रदेश</option>
+              <option value="gaya">महाराष्ट्र</option>
+              <option value="muzaffarpur">राजस्थान</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-800">
+          <div
+            class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+            2
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-yellow-500 mb-2">जिला</h3>
+            <select id="subdivision"
+              class="w-full bg-yellow-200 px-4 py-2  rounded-md focus:ring-yellow-500 focus:border-yellow-500">
+              <option value="">अपना जिला चुनें</option>
+              <option value="">फरीदाबाद</option>
+              <option value="araria">पटना</option>
+              <option value="forbesganj">अंबाला</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-700">
+          <div
+            class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+            3
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-yellow-600 mb-2">ब्लॉक</h3>
+            <select id="block"
+              class="w-full bg-yellow-300 px-4 py-2 rounded-md focus:ring-yellow-500 focus:border-yellow-500">
+             <option value="">अपना ब्लॉक चुनें</option>
+              <option value="">पटना सदर</option>
+              <option value="araria">फुलवारी शरीफ</option>
+              <option value="bhargama">दानापुर</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4 shadow rounded-lg p-5 border-l-4 border-yellow-800">
+          <div
+            class="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
+            4
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-yellow-700 mb-2">पंचायत</h3>
+            <select id="panchayat"
+              class="w-full px-4 py-2 bg-yellow-400 focus:ring-yellow-500 focus:border-yellow-500">
+               <option value="">अपना पंचायत चुनें</option>
+              <option value="">अथमलगोला</option>
+              <option value="araria"> बख्तियारपुर</option>
+              <option value="kesariya">बाढ़</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-600">
+          <div class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+            5
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-yellow-500 mb-2">बूथ</h3>
+            <select id="booth"
+              class="w-full px-4 py-2 bg-yellow-500 rounded-md focus:ring-pink-500 focus:border-pink-500 bg-white text-gray-800">
+              <option value="">अपना बूथ चुनें</option>
+              <option value="booth-1">बूथ - 1</option>
+              <option value="booth-2">बूथ - 2</option>
+              <option value="booth-3">बूथ - 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Table -->
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <!-- Table Header -->
+        <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+          <div class="grid grid-cols-3 gap-4 text-sm sm:text-base font-semibold text-gray-700">
+            <div>नाम</div>
+            <div>पदनाम</div>
+            <div>संपर्क जानकारी</div>
+          </div>
+        </div>
+
+        <!-- Table Content -->
+        <div id="tableContent" class="min-h-[300px]">
+          <div id="noRecord" class="flex flex-col items-center justify-center py-16 px-6 text-center">
+            <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <p class="text-gray-500 text-lg font-medium">
+              कोई रिकॉर्ड नहीं मिला
+            </p>
+            <p class="text-gray-400 text-sm mt-1">कृपया अपनी जानकारी भरें</p>
+          </div>
+
+          <!-- Example Data Row (Hidden by default) -->
+          <div id="dataRow" class="hidden px-6 py-4 border-b border-gray-100">
+            <div class="grid grid-cols-3 gap-4 items-center">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="font-medium text-gray-900 text-sm sm:text-base">विनोद श्रीवास्तव</span>
+              </div>
+              <div class="text-gray-700 text-sm sm:text-base">प्रबंधक</div>
+              <div class="text-blue-600 font-medium text-sm sm:text-base">
+                +91 6201513990
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
+          <div class="flex items-center justify-between text-sm sm:text-base">
+            <button
+              class="px-4 py-2 font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50"
+              disabled>
+              Prev
+            </button>
+            <span class="text-gray-700">Page 1 of 1</span>
+            <button
+              class="px-4 py-2 font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50"
+              disabled>
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer section  -->
+  <footer class="bg-gray-100 text-gray-900 pt-12 ">
+    <section class=" max-w-7xl p-10">
+    <div class="max-w-7xl mx-auto">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] mb-6 lg:mb-8 leading-snug text-center lg:text-left">
+        "First, they ignore you, then they laugh at you, then they fight you
+        and then you win." - Mahatma Gandhi
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <!-- Left Section -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="AAP Logo"
+            class="w-20 lg:w-24 mb-3 mx-auto sm:mx-0" />
+          <h3 class="font-bold text-[#0b3c82] text-base mb-2 text-center sm:text-left">
+            AAM AADMI PARTY
+          </h3>
+          <p class="text-sm leading-relaxed text-center sm:text-left">
+            1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />
+            New Delhi – 110001
+          </p>
+          <div class="mt-4 space-y-1 text-center sm:text-left">
+            <p class="text-sm">
+              <span class="font-semibold">Helpline No:</span> 97185 00606
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Timing:</span> 9:00 am - 6:00 pm
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Email ID:</span>
+              contact@aamaadmiparty.org
+            </p>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">About</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Our History</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">AAP Leadership</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Constitution</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Election Symbol</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">C2/C7 Documents</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Archive Website</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Media Resources -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+            Media Resources
+          </h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Press Release</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Official Spokespersons</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+            Follow us on
+          </h4>
+          <div class="flex items-center justify-center sm:justify-start space-x-4 text-xl mt-2">
+            <a href="#" aria-label="Facebook" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="YouTube" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" aria-label="X" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+    <!-- Bottom Bar - Fixed Width Issues -->
+    <div class="mt-8  bg-primary">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white">
+        <p class="text-center sm:text-left">
+          &copy; 2025 Aam Aadmi Party. All rights reserved.
+        </p>
+        <div class="flex flex-wrap justify-center sm:justify-end gap-4">
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
 </html>
