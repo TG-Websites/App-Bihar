@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#021A32',
+                        hover: '#FFFF00'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Navbar - Increased Height -->
+    <nav class="bg-white text-primary shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20"> 
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-primary font-bold text-2xl">AAP</span> 
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <span class="text-2xl font-bold">AAP BIHAR</span> 
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6"> 
+                        <!-- About Us Dropdown -->
+                        <div class="relative group">
+                            <button class="px-4 py-3 text-base font-medium hover:text-hover transition-colors duration-200"> <!-- Increased padding and font size -->
+                                ABOUT US
+                            </button>
+                            <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">About Organization</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Our Mission</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Our Vision</a>
+                            </div>
+                        </div>
+
+                        <!-- Our Leader Dropdown -->
+                        <div class="relative group">
+                            <button class="px-4 py-3 text-base font-medium hover:text-hover transition-colors duration-200"> <!-- Increased padding and font size -->
+                                OUR LEADER
+                            </button>
+                            <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
+                            </div>
+                        </div>
+
+                        <!-- Join Us -->
+                        <a href="#" class="px-4 py-3 text-base font-medium hover:text-hover transition-colors duration-200">JOIN US</a> <!-- Increased padding and font size -->
+
+                        <!-- Volunteer Dropdown -->
+                        <div class="relative group">
+                            <button class="px-4 py-3 text-base font-medium hover:text-hover transition-colors duration-200"> <!-- Increased padding and font size -->
+                                VOLUNTEER
+                            </button>
+                            <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <!-- Increased from h-6 w-6 to h-7 w-7 -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
+                <div class="block">
+                    <button class="block w-full text-left px-3 py-3 text-lg font-medium hover:text-hover" onclick="toggleMobileDropdown('about-dropdown')"> <!-- Increased padding and font size -->
+                        ABOUT US
+                    </button>
+                    <div id="about-dropdown" class="hidden pl-6 space-y-1">
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">About Organization</a> <!-- Increased font size -->
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">Our Mission</a>
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">Our Vision</a>
+                    </div>
+                </div>
+                <div class="block">
+                    <button class="block w-full text-left px-3 py-3 text-lg font-medium hover:text-hover" onclick="toggleMobileDropdown('leader-dropdown')"> <!-- Increased padding and font size -->
+                        OUR LEADER
+                    </button>
+                    <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">MAIN WING</a> <!-- Increased font size -->
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">YOUTH WING</a>
+                    </div>
+                </div>
+                <a href="#" class="block px-3 py-3 text-lg font-medium hover:text-hover">JOIN US</a> 
+                <div class="block">
+                    <button class="block w-full text-left px-3 py-3 text-lg font-medium hover:text-hover" onclick="toggleMobileDropdown('volunteer-dropdown')"> 
+                        VOLUNTEER
+                    </button>
+                    <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">LOGIN</a> <!-- Increased font size -->
+                        <a href="#" class="block px-3 py-2 text-base hover:text-hover">REGISTER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Image Slider -->
+    <section class="relative h-screen overflow-hidden">
+        <div class="slider-container relative w-full h-full">
+            <!-- Slide 1 -->
+            <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out" style="background: linear-gradient(rgba(2, 26, 50, 0.7), rgba(2, 26, 50, 0.7)), url('https://img.freepik.com/free-photo/corporate-businessman-giving-presentation-large-audience_53876-101865.jpg') center/cover;">
+                <div class="flex items-center justify-center h-full">
+                    <div class="text-center text-white max-w-4xl mx-auto px-4">
+                        <h1 class="text-3xl md:text-5xl font-bold mb-6">AAM AADMI PARTY BIHAR</h1>
+                        <p class="text-1xl md:text-2xl mb-8">बिहार की जनता के लिए - सच्ची राजनीति, साफ़ नीयत</p>
+                        <div class="relative inline-block">
+                            <button class="group relative overflow-hidden bg-gradient-to-r from-primary to-blue-800 hover:from-hover hover:to-yellow-400 text-white hover:text-primary font-bold py-4 px-12 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50">
+                                <span class="relative z-10 flex items-center">
+                                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    JOIN AAP BIHAR
+                                </span>
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out" style="background: linear-gradient(rgba(2, 26, 50, 0.7), rgba(2, 26, 50, 0.7)), url('https://t4.ftcdn.net/jpg/02/22/14/91/360_F_222149179_9BwWV0iM3mSmLdqdTTnKQEXOFxWUlUPl.jpg') center/cover;">
+                <div class="flex items-center justify-center h-full">
+                    <div class="text-center text-white max-w-4xl mx-auto px-4">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">शिक्षा और स्वास्थ्य</h1>
+                        <p class="text-xl md:text-2xl mb-8">बिहार में बेहतर शिक्षा और मुफ्त स्वास्थ्य सेवा के लिए</p>
+                        <div class="relative inline-block">
+                            <button class="group relative overflow-hidden bg-gradient-to-r from-primary to-blue-800 hover:from-hover hover:to-yellow-400 text-white hover:text-primary font-bold py-4 px-12 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50">
+                                <span class="relative z-10 flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    JOIN AAP BIHAR
+                                </span>
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out" style="background: linear-gradient(rgba(2, 26, 50, 0.7), rgba(2, 26, 50, 0.7)), url('https://media.gettyimages.com/id/523116590/photo/businessman-putting-euro-bills-on-table.jpg?s=612x612&w=0&k=20&c=ag1ja8-Ea4QgX11z8SCR_0imd4s3U410HqBb6DpbCDc=') center/cover;">
+                <div class="flex items-center justify-center h-full">
+                    <div class="text-center text-white max-w-4xl mx-auto px-4">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">भ्रष्टाचार मुक्त बिहार</h1>
+                        <p class="text-xl md:text-2xl mb-8">पारदर्शी शासन और ईमानदार नेतृत्व के साथ</p>
+                        <div class="relative inline-block">
+                            <button class="group relative overflow-hidden bg-gradient-to-r from-primary to-blue-800 hover:from-hover hover:to-yellow-400 text-white hover:text-primary font-bold py-4 px-12 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50">
+                                <span class="relative z-10 flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    JOIN AAP BIHAR
+                                </span>
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation Dots -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+            <button class="dot w-4 h-4 rounded-full bg-white shadow-lg transform hover:scale-125 transition-all duration-200" onclick="currentSlide(1)"></button>
+            <button class="dot w-4 h-4 rounded-full bg-white/50 shadow-lg transform hover:scale-125 transition-all duration-200" onclick="currentSlide(2)"></button>
+            <button class="dot w-4 h-4 rounded-full bg-white/50 shadow-lg transform hover:scale-125 transition-all duration-200" onclick="currentSlide(3)"></button>
+        </div>
+    </section>
+      <section class="py-16 bg-gray-50">
+        
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-primary mb-6">Aam Aadmi Party Bihar</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        The Aam Aadmi Party (AAP) is a political party committed to true politics and transparent governance in India. 
+                        In Bihar, our goal is to provide better education, healthcare, and corruption-free governance to the people of the state.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        We believe that public participation in politics is essential. Our party was formed for those who believe in honest politics 
+                        and want to work for the betterment of society.
+                    </p>
+                </div>
+
+                <!-- Our Principles -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-primary mb-4">Our Principles</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-hover mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Transparent and honest governance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-hover mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Quality education for all</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-hover mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Free and better healthcare</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-hover mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Continuous fight against corruption</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-hover mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-700">Direct public participation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Join Us Button -->
+                <div class="text-center lg:text-left">
+                    <button class="group relative overflow-hidden bg-gradient-to-r from-primary to-blue-800 hover:from-hover hover:to-yellow-400 text-white hover:text-primary font-bold py-4 px-12 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50">
+                        <span class="relative z-10 flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                            Join Us
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="order-first lg:order-last">
+                <div class="relative">
+                    <!-- Main Image -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="AAP Bihar Team" 
+                             class="w-full h-96 object-cover">
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                        <!-- Overlay Text -->
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">With the People of Bihar</h3>
+                            <p class="text-lg">A new chapter of honest politics</p>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-hover/20 rounded-full blur-xl"></div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+     <section class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Title -->
+            <h2 class="text-4xl md:text-5xl font-bold text-primary text-center mb-16">
+                Meet our Leaders
+            </h2>
+            
+            <!-- Leaders Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Leader 1: Arvind Kejriwal -->
+                <div class="bg-white rounded-lg border-4 border-white shadow-lg overflow-hidden">
+                    <div class="h-72 bg-gray-100 flex items-end justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face" 
+                             alt="Arvind Kejriwal" 
+                             class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6 bg-white text-center">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Arvind Kejriwal</h3>
+                        <p class="text-gray-600 mb-4 text-sm">National Convenor, AAP</p>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Contact:</span> +91-11-2335-5000
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Office:</span> +91-11-2335-5001
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 2: Bhagwant Mann -->
+                <div class="bg-white rounded-lg border-4 border-white shadow-lg overflow-hidden">
+                    <div class="h-72 bg-gray-100 flex items-end justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face" 
+                             alt="Bhagwant Mann" 
+                             class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6 bg-white text-center">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Bhagwant Mann</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Chief Minister, Punjab</p>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Contact:</span> +91-172-2740-000
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Office:</span> +91-172-2740-001
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 3: Manish Sisodia -->
+                <div class="bg-white rounded-lg border-4 border-white shadow-lg overflow-hidden">
+                    <div class="h-72 bg-gray-100 flex items-end justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face" 
+                             alt="Manish Sisodia" 
+                             class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6 bg-white text-center">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Manish Sisodia</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Former Dy. Chief Minister, Delhi</p>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Contact:</span> +91-11-2393-1000
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Office:</span> +91-11-2393-1001
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 4: Sanjay Singh -->
+                <div class="bg-white rounded-lg border-4 border-white shadow-lg overflow-hidden">
+                    <div class="h-72 bg-gray-100 flex items-end justify-center p-4">
+                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=500&fit=crop&crop=face" 
+                             alt="Sanjay Singh" 
+                             class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6 bg-white text-center">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Sanjay Singh</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Member of Parliament, Rajya Sabha</p>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Contact:</span> +91-11-2301-5000
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                <span class="font-medium">Office:</span> +91-11-2301-5001
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="app.js">
+        
+    </script>
+</body>
+</html>
