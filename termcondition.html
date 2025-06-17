@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms and Conditions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+         <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#021A32",
+            hover: "#FFFF00",
+            "aap-navy": "#021A32",
+          },
+        },
+      },
+    };
+  </script>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+    <!-- Navigation Bar -->
+      <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+          class="w-28 h-10 mr-6" />
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+
+            <div class="relative group">
+              <a href="index.html">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                  HOME
+                </button>
+              </a>
+              <a href="">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                  ABOUT US
+                </button>
+              </a>
+
+            </div>
+
+            <!-- Our Leader Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                OUR LEADER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
+                <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
+              </div>
+            </div>
+
+            <!-- Join Us -->
+            <a href="joinUS.html"
+              class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">JOIN US</a>
+
+            <!-- Volunteer Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                VOLUNTEER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
+                <a href="addmember.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
+        <a href="index.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">Home</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('about-dropdown')">
+            ABOUT US
+          </button>
+        </div>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('leader-dropdown')">
+            OUR LEADER
+          </button>
+          <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+            <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
+            <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
+          </div>
+        </div>
+        <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('volunteer-dropdown')">
+            VOLUNTEER
+          </button>
+          <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">LOGIN</a>
+            <a href="addmember.html" class="block px-3 py-2 text-sm hover:text-hover">REGISTER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <div class="py-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16 mt-16">
+          <div class="flex justify-center mb-6">
+            <div class="bg-hover p-4 rounded-full">
+              <i data-lucide="file-text" class="w-12 h-12 text-black"></i>
+            </div>
+          </div>
+          <h2 class="text-4xl font-bold text-primary mb-4">
+            Terms and Conditions
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Please read these terms and conditions carefully before using our
+            services. By accessing our website, you agree to be bound by these
+            terms.
+          </p>
+          <div class="flex items-center justify-center mt-6 text-gray-600">
+            <i data-lucide="calendar" class="w-5 h-5 mr-2"></i>
+            <span>Last updated: December 2025</span>
+          </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="bg-gray-200 rounded-2xl p-8 mb-12 border border-gray-300">
+          <h3 class="text-2xl font-semibold text-primary mb-4">
+            Agreement to Terms
+          </h3>
+          <p class="text-gray-700 text-lg leading-relaxed mb-4">
+            These Terms and Conditions constitute a legally binding agreement
+            made between you, whether personally or on behalf of an entity, and
+            BeyondWud, concerning your access to and use of our website and
+            services.
+          </p>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            You agree that by accessing our website, you have read, understood,
+            and agreed to be bound by all of these terms and conditions. If you
+            do not agree with all of these terms, then you are expressly
+            prohibited from using the site.
+          </p>
+        </div>
+
+        <!-- Terms Sections Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <!-- Acceptable Use -->
+          <div
+            class="bg-gray-200 rounded-xl p-8 border border-gray-300 hover:border-gray-400 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-6">
+              <div class="bg-hover p-3 rounded-lg mr-4">
+                <i data-lucide="check-circle" class="w-6 h-6 text-black"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-black">Acceptable Use</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              You may not use our service for any unlawful purpose or to solicit
+              others to perform unlawful acts. You may not violate any local,
+              state, national, or international laws or regulations.
+            </p>
+          </div>
+
+          <!-- User Accounts -->
+          <div
+            class="bg-gray-200 rounded-xl p-8 border border-gray-300 hover:border-gray-400 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-6">
+              <div class="bg-hover p-3 rounded-lg mr-4">
+                <i data-lucide="user" class="w-6 h-6 text-black"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-black">User Accounts</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              When you create an account with us, you are responsible for
+              safeguarding your password and for all activities that occur under
+              your account. You agree to provide accurate and complete
+              information.
+            </p>
+          </div>
+
+          <!-- Intellectual Property -->
+          <div
+            class="bg-gray-200 rounded-xl p-8 border border-gray-300 hover:border-gray-400 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-6">
+              <div class="bg-hover p-3 rounded-lg mr-4">
+                <i data-lucide="copyright" class="w-6 h-6 text-black"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-black">
+                Intellectual Property
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              All content, features, and functionality of our service are owned
+              by BeyondWud and are protected by international copyright,
+              trademark, and other intellectual property laws.
+            </p>
+          </div>
+
+          <!-- Prohibited Uses -->
+          <div
+            class="bg-gray-200 rounded-xl p-8 border border-gray-300 hover:border-gray-400 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-6">
+              <div class="bg-hover p-3 rounded-lg mr-4">
+                <i data-lucide="x-circle" class="w-6 h-6 text-black"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-black">Prohibited Uses</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              You may not use our service to transmit harmful code, engage in
+              unauthorized access, or interfere with the security of our systems
+              or other users' access to the service.
+            </p>
+          </div>
+
+          <!-- Payment Terms -->
+          <div
+            class="bg-gray-200 rounded-xl p-8 border border-gray-300 hover:border-gray-400 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-6">
+              <div class="bg-hover p-3 rounded-lg mr-4">
+                <i data-lucide="credit-card" class="w-6 h-6 text-black"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-black">Payment Terms</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              All payments are due immediately upon purchase. We accept various
+              payment methods and reserve the right to change our pricing at any
+              time with proper notice.
+            </p>
+          </div>
+
+          <!-- Limitation of Liability -->
+          <div
+            class="bg-gray-200 rounded-xl p-8 border border-gray-300 hover:border-gray-400 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-6">
+              <div class="bg-hover p-3 rounded-lg mr-4">
+                <i data-lucide="alert-triangle" class="w-6 h-6 text-black"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-black">
+                Limitation of Liability
+              </h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              In no event shall BeyondWud be liable for any indirect,
+              incidental, special, consequential, or punitive damages arising
+              from your use of our service.
+            </p>
+          </div>
+        </div>
+
+        <!-- Key Principles -->
+        <div
+          class="bg-gradient-to-r from-gray-200 to-gray-300 rounded-2xl p-8 mb-12"
+        >
+          <h3 class="text-2xl font-semibold text-black mb-6 text-center">
+            Our Service Principles
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div
+                class="bg-hover p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+              >
+                <i data-lucide="handshake" class="w-8 h-8 text-black"></i>
+              </div>
+              <h4 class="text-lg font-medium text-black mb-2">Fair Dealing</h4>
+              <p class="text-gray-700 text-sm">
+                We believe in honest and transparent business practices.
+              </p>
+            </div>
+            <div class="text-center">
+              <div
+                class="bg-hover p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+              >
+                <i data-lucide="shield-check" class="w-8 h-8 text-black"></i>
+              </div>
+              <h4 class="text-lg font-medium text-black mb-2">Reliability</h4>
+              <p class="text-gray-700 text-sm">
+                Our services are designed to be dependable and consistent.
+              </p>
+            </div>
+            <div class="text-center">
+              <div
+                class="bg-hover p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+              >
+                <i data-lucide="users" class="w-8 h-8 text-black"></i>
+              </div>
+              <h4 class="text-lg font-medium text-black mb-2">User-Focused</h4>
+              <p class="text-gray-700 text-sm">
+                Your needs and satisfaction are our top priority.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Terms -->
+        <div class="bg-gray-200 rounded-2xl p-8 mb-12 border border-gray-300">
+          <h3 class="text-2xl font-semibold text-black mb-6">Detailed Terms</h3>
+          <div class="space-y-6">
+            <div class="border-l-4 border-gray-400 pl-6">
+              <h4 class="text-lg font-medium text-black mb-2">
+                1. Service Availability
+              </h4>
+              <p class="text-gray-700">
+                We strive to maintain 99.9% uptime but cannot guarantee
+                uninterrupted service. Scheduled maintenance will be announced
+                in advance when possible.
+              </p>
+            </div>
+            <div class="border-l-4 border-gray-400 pl-6">
+              <h4 class="text-lg font-medium text-black mb-2">
+                2. User Content
+              </h4>
+              <p class="text-gray-700">
+                You retain ownership of content you submit but grant us a
+                license to use, display, and distribute it as necessary to
+                provide our services.
+              </p>
+            </div>
+            <div class="border-l-4 border-gray-400 pl-6">
+              <h4 class="text-lg font-medium text-black mb-2">
+                3. Termination
+              </h4>
+              <p class="text-gray-700">
+                We may terminate or suspend your account immediately if you
+                breach these terms or engage in activities that harm our service
+                or other users.
+              </p>
+            </div>
+            <div class="border-l-4 border-gray-400 pl-6">
+              <h4 class="text-lg font-medium text-black mb-2">
+                4. Governing Law
+              </h4>
+              <p class="text-gray-700">
+                These terms are governed by the laws of India. Any disputes will
+                be resolved in the courts of Delhi, India.
+              </p>
+            </div>
+            <div class="border-l-4 border-gray-400 pl-6">
+              <h4 class="text-lg font-medium text-black mb-2">
+                5. Changes to Terms
+              </h4>
+              <p class="text-gray-700">
+                We reserve the right to modify these terms at any time. Changes
+                will be effective immediately upon posting. Continued use
+                constitutes acceptance.
+              </p>
+            </div>
+          </div>
+        </div>
+
+    
+      </div>
+    </div>
+
+ 
+    <!-- footer -->
+    <footer class="bg-gray-100 text-gray-900 pt-12 ">
+    <section class=" max-w-7xl p-10">
+    <div class="max-w-7xl mx-auto">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] mb-6 lg:mb-8 leading-snug text-center lg:text-left">
+        "First, they ignore you, then they laugh at you, then they fight you
+        and then you win." - Mahatma Gandhi
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <!-- Left Section -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <img src="https://www.shutterstock.com/image-photo/broom-stick-on-background-260nw-1845343147.jpg" alt="AAP Logo"
+            class="w-20 lg:w-24 mb-3 mx-auto sm:mx-0" />
+          <h3 class="font-bold text-[#0b3c82] text-base mb-2 text-center sm:text-left">
+            AAM AADMI PARTY
+          </h3>
+          <p class="text-sm leading-relaxed text-center sm:text-left">
+            1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />
+            New Delhi – 110001
+          </p>
+          <div class="mt-4 space-y-1 text-center sm:text-left">
+            <p class="text-sm">
+              <span class="font-semibold">Helpline No:</span> 97185 00606
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Timing:</span> 9:00 am - 6:00 pm
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Email ID:</span>
+              contact@aamaadmiparty.org
+            </p>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">About</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Our History</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">AAP Leadership</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Constitution</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Election Symbol</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">C2/C7 Documents</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Archive Website</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Media Resources -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+            Media Resources
+          </h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Press Release</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Official Spokespersons</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+            Follow us on
+          </h4>
+          <div class="flex items-center justify-center sm:justify-start space-x-4 text-xl mt-2">
+            <a href="#" aria-label="Facebook" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="YouTube" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" aria-label="X" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+    <!-- Bottom Bar - Fixed Width Issues -->
+    <div class="mt-8  bg-primary">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white">
+        <p class="text-center sm:text-left">
+          &copy; 2025 Aam Aadmi Party. All rights reserved.
+        </p>
+        <div class="flex flex-wrap justify-center sm:justify-end gap-4">
+          <a href="privacy.html" class="hover:underline hover:text-gray-200 transition-colors">Privacy Policy</a>
+          <a href="termcondition.html" class="hover:underline hover:text-gray-200 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+    <script>
+      // Initialize Lucide icons when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Add interactive hover effects
+        const cards = document.querySelectorAll(".hover\\:border-gray-400");
+        cards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-2px)";
+            this.style.transition = "transform 0.2s ease";
+          });
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+        // Add click handlers for buttons
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Add a subtle click animation
+            this.style.transform = "scale(0.98)";
+            this.style.transition = "transform 0.1s ease";
+            setTimeout(() => {
+              this.style.transform = "scale(1)";
+            }, 100);
+          });
+        });
+      });
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
