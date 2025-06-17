@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#021A32",
+                        hover: "#FFFF00",
+                        "aap-navy": "#021A32"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+ <body class="bg-gray-50 min-h-screen">
+    <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+          class="w-28 h-10 mr-6" />
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+
+            <div class="relative group">
+              <a href="index.html">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                  HOME
+                </button>
+              </a>
+              <a href="">
+                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                  ABOUT US
+                </button>
+              </a>
+
+            </div>
+
+            <!-- Our Leader Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                OUR LEADER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
+                <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
+              </div>
+            </div>
+
+            <!-- Join Us -->
+            <a href="joinUS.html"
+              class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">JOIN US</a>
+
+            <!-- Volunteer Dropdown -->
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                VOLUNTEER ▼
+              </button>
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
+        <a href="index.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">Home</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('about-dropdown')">
+            ABOUT US
+          </button>
+        </div>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('leader-dropdown')">
+            OUR LEADER
+          </button>
+          <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+            <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
+            <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
+          </div>
+        </div>
+        <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
+        <div class="block">
+          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+            onclick="toggleMobileDropdown('volunteer-dropdown')">
+            VOLUNTEER
+          </button>
+          <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">LOGIN</a>
+            <a href="#" class="block px-3 py-2 text-sm hover:text-hover">REGISTER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+    
+    <div class="container mx-auto px-4 py-4 sm:py-8 max-w-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl pt-12 ">
+    
+        <div class="text-center mb-8 sm:mb-12">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary tracking-wide mb-4 mt-16">Registration for Volunteer</h1>
+            <p class="text-gray-600 text-sm sm:text-base">Join our mission to serve the community</p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="mb-6 sm:mb-8">
+            <div class="flex items-center justify-center mb-4">
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <div class="flex items-center">
+                        <div id="step1" class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-semibold text-sm sm:text-base">1</div>
+                        <div class="text-xs sm:text-sm text-gray-600 ml-2">Step 1 of 2</div>
+                    </div>
+                    <div class="w-8 sm:w-16 h-1 bg-orange-500"></div>
+                    <div id="step2" class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 font-semibold text-sm sm:text-base">2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <!-- Step 1 Form -->
+            <div id="form-step-1">
+                <form class="space-y-4 sm:space-y-6">
+                    <!-- For larger screens, create a grid layout -->
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
+                        <!-- Left Column -->
+                        <div class="space-y-4 sm:space-y-6">
+                            <!-- Full Name -->
+                            <div>
+                                <label class="block text-orange-500 font-medium mb-2 text-sm sm:text-base">Full Name</label>
+                                <input type="text" placeholder="Enter your name" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Date of Birth</label>
+                                <div class="relative">
+                                    <input type="date" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                    <div class="absolute right-3 top-2 sm:top-3 text-gray-400">📅</div>
+                                </div>
+                            </div>
+
+                            <!-- Age -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Age</label>
+                                <input type="number" placeholder="Enter your age" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+
+                            <!-- Gender -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Gender</label>
+                                <select class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none bg-white">
+                                    <option>Select your gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Mobile Number -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Mobile Number</label>
+                                <input type="tel" placeholder="Enter your mobile number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4 sm:space-y-6">
+                            <!-- Religion -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Religion</label>
+                                <input type="text" placeholder="Enter your religion" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+
+                            <!-- Profile Picture -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Profile Picture</label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-8 text-center cursor-pointer hover:border-orange-500 transition-colors">
+                                    <div class="text-gray-400 text-2xl sm:text-4xl mb-2">📷</div>
+                                    <p class="text-gray-500 text-xs sm:text-sm">Click to upload image</p>
+                                    <input type="file" accept="image/*" class="hidden" id="profile-upload">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <div class="pt-4">
+                        <button type="button" onclick="goToStep2()" class="w-full sm:w-auto sm:min-w-32 bg-orange-500 text-white py-2 sm:py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm sm:text-base">
+                            Next →
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2 Form -->
+            <div id="form-step-2" class="hidden">
+                <form class="space-y-4 sm:space-y-6">
+                    <!-- For larger screens, create a grid layout -->
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
+                        <!-- Left Column -->
+                        <div class="space-y-4 sm:space-y-6">
+                            <!-- Zone Selection -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-4 text-sm sm:text-base">What Zone do you live in?</label>
+                                <div class="flex flex-wrap gap-2 sm:gap-4 mb-6">
+                                    <label class="flex items-center cursor-pointer transform hover:scale-105 transition-transform">
+                                        <input type="radio" name="zone" value="urban" class="hidden zone-radio">
+                                        <span class="zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-orange-300 transition-all duration-300">
+                                            🏢 Urban
+                                        </span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer transform hover:scale-105 transition-transform">
+                                        <input type="radio" name="zone" value="rural" class="hidden zone-radio">
+                                        <span class="zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-green-300 transition-all duration-300">
+                                            🌾 Rural
+                                        </span>
+                                    </label>
+                                </div>
+                                
+                                <!-- Zone Description -->
+                                <div id="zone-description" class="hidden p-4 rounded-lg mb-4 transition-all duration-500">
+                                    <div id="urban-desc" class="hidden">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🏙️</span>
+                                            <span class="font-semibold text-orange-600">Urban Area Selected</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">You've selected Urban zone. Please fill in your city details below.</p>
+                                    </div>
+                                    <div id="rural-desc" class="hidden">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🏡</span>
+                                            <span class="font-semibold text-green-600">Rural Area Selected</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">You've selected Rural zone. Please provide your village and panchayat details below.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- District -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">District</label>
+                                <select id="district-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none bg-white">
+                                    <option>Select your district</option>
+                                    <option>Delhi</option>
+                                    <option>Mumbai</option>
+                                    <option>Bangalore</option>
+                                    <option>Pune</option>
+                                    <option>Jaipur</option>
+                                </select>
+                            </div>
+
+                            <!-- Block -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Block</label>
+                                <select id="block-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none bg-white">
+                                    <option>Select your block</option>
+                                </select>
+                            </div>
+
+                            <!-- Panchayat/City Name -->
+                            <div>
+                                <label id="panchayat-label" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Panchayat</label>
+                                <select id="panchayat-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none bg-white">
+                                    <option id="panchayat-option">Select your Panchayat</option>
+                                </select>
+                            </div>
+
+                            <!-- Village Name -->
+                            <div id="village-field">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Village Name</label>
+                                <input type="text" id="village-input" placeholder="Enter your village name" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4 sm:space-y-6">
+                            <!-- Ward Number -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Ward Number</label>
+                                <input type="text" placeholder="Enter your ward number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+
+                            <!-- Booth Number -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Booth Number</label>
+                                <input type="text" placeholder="Enter your booth number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+
+                            <!-- PIN Code -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">PIN Code</label>
+                                <input type="text" placeholder="Enter your pin code" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+
+                            <!-- Post Office -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Post Office</label>
+                                <input type="text" placeholder="Enter your post office" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+                        <button type="button" onclick="goToStep1()" class="w-full sm:flex-1 bg-gray-200 text-gray-700 py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-sm sm:text-base">
+                            ← Back
+                        </button>
+                        <button type="submit" class="w-full sm:flex-1 bg-orange-500 text-white py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm sm:text-base">
+                            Continue →
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+      <footer class="bg-gray-100 text-gray-900 pt-12 ">
+    <section class=" max-w-7xl p-10">
+    <div class="max-w-7xl mx-auto">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] mb-6 lg:mb-8 leading-snug text-center lg:text-left">
+        "First, they ignore you, then they laugh at you, then they fight you
+        and then you win." - Mahatma Gandhi
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <!-- Left Section -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="AAP Logo"
+            class="w-20 lg:w-24 mb-3 mx-auto sm:mx-0" />
+          <h3 class="font-bold text-[#0b3c82] text-base mb-2 text-center sm:text-left">
+            AAM AADMI PARTY
+          </h3>
+          <p class="text-sm leading-relaxed text-center sm:text-left">
+            1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />
+            New Delhi – 110001
+          </p>
+          <div class="mt-4 space-y-1 text-center sm:text-left">
+            <p class="text-sm">
+              <span class="font-semibold">Helpline No:</span> 97185 00606
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Timing:</span> 9:00 am - 6:00 pm
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Email ID:</span>
+              contact@aamaadmiparty.org
+            </p>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">About</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Our History</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">AAP Leadership</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Constitution</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Election Symbol</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">C2/C7 Documents</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Archive Website</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Media Resources -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+            Media Resources
+          </h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Press Release</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Official Spokespersons</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="text-center sm:text-left">
+          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+            Follow us on
+          </h4>
+          <div class="flex items-center justify-center sm:justify-start space-x-4 text-xl mt-2">
+            <a href="#" aria-label="Facebook" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="YouTube" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" aria-label="X" class="hover:text-[#0b3c82] transition-colors">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+    <!-- Bottom Bar - Fixed Width Issues -->
+    <div class="mt-8  bg-primary">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white">
+        <p class="text-center sm:text-left">
+          &copy; 2025 Aam Aadmi Party. All rights reserved.
+        </p>
+        <div class="flex flex-wrap justify-center sm:justify-end gap-4">
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:underline hover:text-gray-200 transition-colors">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+    <script>
+        // Sample data for rural areas
+const ruralData = {
+    blocks: {
+        'Delhi': ['Najafgarh Block', 'Alipur Block', 'Kanjhawala Block'],
+        'Mumbai': ['Andheri Block', 'Borivali Block', 'Kurla Block'],
+        'Bangalore': ['Anekal Block', 'Devanahalli Block', 'Doddaballapur Block'],
+        'Pune': ['Baramati Block', 'Indapur Block', 'Maval Block'],
+        'Jaipur': ['Amber Block', 'Bassi Block', 'Chaksu Block']
+    },
+    panchayats: {
+        'Najafgarh Block': ['Najafgarh Panchayat', 'Dichaun Kalan Panchayat', 'Jharoda Kalan Panchayat'],
+        'Alipur Block': ['Alipur Panchayat', 'Barwala Panchayat', 'Bakner Panchayat'],
+        'Kanjhawala Block': ['Kanjhawala Panchayat', 'Bakkarwala Panchayat', 'Ghoga Panchayat'],
+        'Andheri Block': ['Andheri East Panchayat', 'Andheri West Panchayat', 'Jogeshwari Panchayat'],
+        'Borivali Block': ['Borivali East Panchayat', 'Borivali West Panchayat', 'Kandivali Panchayat'],
+        'Kurla Block': ['Kurla East Panchayat', 'Kurla West Panchayat', 'Chembur Panchayat'],
+        'Anekal Block': ['Anekal Panchayat', 'Jigani Panchayat', 'Sarjapur Panchayat'],
+        'Devanahalli Block': ['Devanahalli Panchayat', 'Nandi Hills Panchayat', 'Vijayapura Panchayat'],
+        'Doddaballapur Block': ['Doddaballapur Panchayat', 'Peresandra Panchayat', 'Sulibele Panchayat'],
+        'Baramati Block': ['Baramati Panchayat', 'Morgaon Panchayat', 'Malshiras Panchayat'],
+        'Indapur Block': ['Indapur Panchayat', 'Bhigwan Panchayat', 'Nimgaon Panchayat'],
+        'Maval Block': ['Maval Panchayat', 'Talegaon Panchayat', 'Vadgaon Panchayat'],
+        'Amber Block': ['Amber Panchayat', 'Bassi Panchayat', 'Jamwa Panchayat'],
+        'Bassi Block': ['Bassi Panchayat', 'Kalwar Panchayat', 'Toda Panchayat'],
+        'Chaksu Block': ['Chaksu Panchayat', 'Morija Panchayat', 'Sanganer Panchayat']
+    }
+};
+
+const urbanData = {
+    blocks: {
+        'Delhi': ['Central Delhi', 'North Delhi', 'South Delhi', 'East Delhi', 'West Delhi'],
+        'Mumbai': ['South Mumbai', 'Western Suburbs', 'Eastern Suburbs', 'Navi Mumbai'],
+        'Bangalore': ['Bangalore North', 'Bangalore South', 'Bangalore East', 'Bangalore Central'],
+        'Pune': ['Pune City', 'Pimpri-Chinchwad', 'Pune Cantonment'],
+        'Jaipur': ['Jaipur North', 'Jaipur South', 'Jaipur East', 'Jaipur West']
+    },
+    areas: {
+        'Central Delhi': ['Connaught Place', 'Karol Bagh', 'Paharganj'],
+        'North Delhi': ['Civil Lines', 'Model Town', 'Kamla Nagar'],
+        'South Delhi': ['Defence Colony', 'Lajpat Nagar', 'Greater Kailash'],
+        'East Delhi': ['Laxmi Nagar', 'Preet Vihar', 'Mayur Vihar'],
+        'West Delhi': ['Rajouri Garden', 'Janakpuri', 'Dwarka'],
+        'South Mumbai': ['Colaba', 'Fort', 'Nariman Point'],
+        'Western Suburbs': ['Bandra', 'Andheri', 'Borivali'],
+        'Eastern Suburbs': ['Kurla', 'Chembur', 'Powai'],
+        'Navi Mumbai': ['Vashi', 'Nerul', 'Kharghar'],
+        'Bangalore North': ['Hebbal', 'Yelahanka', 'Mathikere'],
+        'Bangalore South': ['Koramangala', 'BTM Layout', 'Banashankari'],
+        'Bangalore East': ['Whitefield', 'Marathahalli', 'Indiranagar'],
+        'Bangalore Central': ['MG Road', 'Brigade Road', 'Chickpet'],
+        'Pune City': ['Shivajinagar', 'Kothrud', 'Deccan'],
+        'Pimpri-Chinchwad': ['Pimpri', 'Chinchwad', 'Akurdi'],
+        'Pune Cantonment': ['Camp Area', 'Wanowrie', 'Ghorpadi'],
+        'Jaipur North': ['C-Scheme', 'Malviya Nagar', 'Vaishali Nagar'],
+        'Jaipur South': ['Mansarovar', 'Jagatpura', 'Sanganer'],
+        'Jaipur East': ['Vidhyadhar Nagar', 'Nirman Nagar', 'Kardhani'],
+        'Jaipur West': ['Pratap Nagar', 'Chomu', 'Sikar Road']
+    }
+};
+
+function goToStep2() {
+    document.getElementById('form-step-1').classList.add('hidden');
+    document.getElementById('form-step-2').classList.remove('hidden');
+    
+    // Update progress indicators
+    document.getElementById('step1').classList.remove('bg-orange-500');
+    document.getElementById('step1').classList.add('bg-gray-300', 'text-gray-500');
+    document.getElementById('step2').classList.remove('bg-gray-300', 'text-gray-500');
+    document.getElementById('step2').classList.add('bg-orange-500', 'text-white');
+}
+
+function goToStep1() {
+    document.getElementById('form-step-2').classList.add('hidden');
+    document.getElementById('form-step-1').classList.remove('hidden');
+    
+    // Update progress indicators
+    document.getElementById('step2').classList.remove('bg-orange-500', 'text-white');
+    document.getElementById('step2').classList.add('bg-gray-300', 'text-gray-500');
+    document.getElementById('step1').classList.remove('bg-gray-300', 'text-gray-500');
+    document.getElementById('step1').classList.add('bg-orange-500', 'text-white');
+}
+
+function updateFormForZone(selectedZone) {
+    const panchayatLabel = document.getElementById('panchayat-label');
+    const panchayatOption = document.getElementById('panchayat-option');
+    const villageField = document.getElementById('village-field');
+    const villageInput = document.getElementById('village-input');
+    const zoneDescription = document.getElementById('zone-description');
+    const urbanDesc = document.getElementById('urban-desc');
+    const ruralDesc = document.getElementById('rural-desc');
+
+    // Show zone description
+    zoneDescription.classList.remove('hidden');
+    
+    if (selectedZone === 'rural') {
+        // Rural specific changes
+        panchayatLabel.textContent = 'Panchayat';
+        panchayatOption.textContent = 'Select your Panchayat';
+        villageField.classList.remove('hidden');
+        villageInput.placeholder = 'Enter your village name';
+        villageInput.style.borderColor = '#10B981'; // Green border for rural
+        
+        // Show rural description
+        urbanDesc.classList.add('hidden');
+        ruralDesc.classList.remove('hidden');
+        zoneDescription.style.backgroundColor = '#F0FDF4'; // Light green background
+        zoneDescription.style.borderLeft = '4px solid #10B981';
+        
+    } else if (selectedZone === 'urban') {
+        // Urban specific changes
+        panchayatLabel.textContent = 'Area/Ward';
+        panchayatOption.textContent = 'Select your area';
+        villageField.classList.add('hidden');
+        
+        // Show urban description
+        ruralDesc.classList.add('hidden');
+        urbanDesc.classList.remove('hidden');
+        zoneDescription.style.backgroundColor = '#FFF7ED'; // Light orange background
+        zoneDescription.style.borderLeft = '4px solid #EA580C';
+    }
+}
+
+function populateBlocks(district, zone) {
+    const blockSelect = document.getElementById('block-select');
+    blockSelect.innerHTML = '<option value="">Select your block</option>';
+    
+    const data = zone === 'rural' ? ruralData : urbanData;
+    const blocks = data.blocks[district] || [];
+    
+    blocks.forEach(block => {
+        const option = document.createElement('option');
+        option.value = block;
+        option.textContent = block;
+        blockSelect.appendChild(option);
+    });
+    
+    // Reset panchayat dropdown when blocks are populated
+    resetPanchayatDropdown();
+}
+
+function populatePanchayats(block, zone) {
+    const panchayatSelect = document.getElementById('panchayat-select');
+    const panchayatOption = document.getElementById('panchayat-option');
+    
+    panchayatSelect.innerHTML = `<option value="">${panchayatOption.textContent}</option>`;
+    
+    const data = zone === 'rural' ? ruralData : urbanData;
+    const panchayats = (zone === 'rural' ? data.panchayats[block] : data.areas[block]) || [];
+    
+    panchayats.forEach(panchayat => {
+        const option = document.createElement('option');
+        option.value = panchayat;
+        option.textContent = panchayat;
+        panchayatSelect.appendChild(option);
+    });
+}
+
+function resetPanchayatDropdown() {
+    const panchayatSelect = document.getElementById('panchayat-select');
+    const panchayatOption = document.getElementById('panchayat-option');
+    panchayatSelect.innerHTML = `<option value="">${panchayatOption.textContent}</option>`;
+}
+
+function resetBlockDropdown() {
+    const blockSelect = document.getElementById('block-select');
+    blockSelect.innerHTML = '<option value="">Select your block</option>';
+}
+
+// Profile picture upload handler
+document.addEventListener('DOMContentLoaded', function() {
+    const profileUpload = document.getElementById('profile-upload');
+    const uploadArea = profileUpload?.parentElement;
+    
+    if (uploadArea) {
+        uploadArea.addEventListener('click', function() {
+            profileUpload.click();
+        });
+        
+        profileUpload.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                uploadArea.innerHTML = '<div class="text-green-500 text-4xl mb-2">✓</div><p class="text-green-600 text-sm">Image uploaded successfully</p>';
+            }
+        });
+    }
+
+    // Zone selection handler
+    const zoneRadios = document.querySelectorAll('.zone-radio');
+    zoneRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Reset all zone buttons
+            document.querySelectorAll('.zone-button').forEach(button => {
+                button.className = 'zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-orange-300 transition-all duration-300';
+            });
+            
+            // Highlight selected zone with different colors
+            if (this.checked) {
+                const button = this.nextElementSibling;
+                if (this.value === 'rural') {
+                    button.className = 'zone-button bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-green-600 shadow-lg transform scale-105 transition-all duration-300';
+                } else {
+                    button.className = 'zone-button bg-orange-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-orange-600 shadow-lg transform scale-105 transition-all duration-300';
+                }
+                
+                // Update form based on selection
+                updateFormForZone(this.value);
+                
+                // Reset dependent dropdowns
+                resetBlockDropdown();
+                resetPanchayatDropdown();
+                
+                // Populate blocks if district is already selected
+                const selectedDistrict = document.getElementById('district-select').value;
+                if (selectedDistrict && selectedDistrict !== 'Select your district' && selectedDistrict !== '') {
+                    populateBlocks(selectedDistrict, this.value);
+                }
+            }
+        });
+    });
+
+    // District change handler
+    document.getElementById('district-select')?.addEventListener('change', function() {
+        const selectedDistrict = this.value;
+        const selectedZone = document.querySelector('.zone-radio:checked')?.value;
+        
+        // Reset dependent dropdowns
+        resetBlockDropdown();
+        resetPanchayatDropdown();
+        
+        if (selectedDistrict && selectedDistrict !== 'Select your district' && selectedDistrict !== '' && selectedZone) {
+            populateBlocks(selectedDistrict, selectedZone);
+        }
+    });
+
+    // Block change handler
+    document.getElementById('block-select')?.addEventListener('change', function() {
+        const selectedBlock = this.value;
+        const selectedZone = document.querySelector('.zone-radio:checked')?.value;
+        
+        // Reset panchayat dropdown
+        resetPanchayatDropdown();
+        
+        if (selectedBlock && selectedBlock !== 'Select your block' && selectedBlock !== '' && selectedZone) {
+            populatePanchayats(selectedBlock, selectedZone);
+        }
+    });
+});
+    </script>
+</body>
+</html>
