@@ -130,16 +130,15 @@
               </div>
 
               <!-- Our Leader Dropdown -->
-              <div class="relative group">
-                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  OUR LEADER ▼
-                </button>
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
-                  <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
-                </div>
-              </div>
+             <!-- DESKTOP Dropdown -->
+<div class="relative group hidden md:block">
+  <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+    OUR LEADER ▼
+  </button>
+  <div id="leader-dropdown-desktop"
+    class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+  </div>
+</div>
 
               <!-- Join Us -->
               <a href="joinUS.html"
@@ -180,16 +179,17 @@
               ABOUT US
             </button>
           </div>
-          <div class="block">
-            <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('leader-dropdown')">
-              OUR LEADER
-            </button>
-            <div id="leader-dropdown" class="hidden pl-6 space-y-1">
-              <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
-              <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
-            </div>
-          </div>
+        <!-- MOBILE Dropdown -->
+<div class="block md:hidden">
+  <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
+    onclick="toggleMobileDropdown('leader-dropdown-mobile')">
+    OUR LEADER
+  </button>
+  <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
+  </div>
+</div>
+ 
+
           <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
           <div class="block">
             <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
@@ -504,6 +504,42 @@
           this.parentElement.classList.remove('transform', 'scale-105');
         });
       });
+
+      const baseUrl = "http://localhost:8000";
+
+// Toggle mobile dropdown
+function toggleMobileDropdown(id) {
+  const dropdown = document.getElementById(id);
+  dropdown.classList.toggle("hidden");
+}
+
+// Fetch wings for both desktop and mobile dropdown
+async function fetchWings() {
+  try {
+    const res = await fetch(`${baseUrl}/wings`);
+    const result = await res.json();
+    const wings = result.data;
+
+    const desktopDropdown = document.getElementById("leader-dropdown-desktop");
+    const mobileDropdown = document.getElementById("leader-dropdown-mobile");
+
+    if (desktopDropdown) desktopDropdown.innerHTML = "";
+    if (mobileDropdown) mobileDropdown.innerHTML = "";
+
+    wings.forEach(wing => {
+      const link = `<a href="/main_wing.html?id=${wing._id}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">${wing.name}</a>`;
+      const linkMobile = `<a href="/main_wing.html?id=${wing._id}" class="block px-3 py-2 text-sm hover:text-hover">${wing.name}</a>`;
+
+      if (desktopDropdown) desktopDropdown.innerHTML += link;
+      if (mobileDropdown) mobileDropdown.innerHTML += linkMobile;
+    });
+  } catch (err) {
+    console.error("❌ Failed to fetch wings:", err);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", fetchWings);
+
     </script>
   </body>
 </html>

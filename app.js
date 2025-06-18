@@ -313,6 +313,54 @@ document.addEventListener("DOMContentLoaded", function () {
   // Hide "No record" text
   noRecord.style.display = "none";
 
-  // Show data row
-  dataRow.classList.remove("hidden");
-});
+    // Show data row
+    dataRow.classList.remove("hidden");
+  });
+
+
+
+
+   const baseUrl = "http://localhost:8000";
+
+// ✅ Toggle mobile dropdown
+function toggleMobileDropdown() {
+  const dropdown = document.getElementById("leader-dropdown-mobile");
+  dropdown.classList.toggle("hidden");
+}
+
+// ✅ Populate both desktop and mobile dropdowns
+async function fetchWings() {
+  try {
+    const response = await fetch(`${baseUrl}/wings`);
+    const result = await response.json();
+    const wings = result.data;
+
+    const desktopDropdown = document.getElementById("leader-dropdown-desktop");
+    const mobileDropdown = document.getElementById("leader-dropdown-mobile");
+
+    desktopDropdown.innerHTML = "";
+    mobileDropdown.innerHTML = "";
+
+    wings.forEach(wing => {
+      if (wing.name) {
+        // Desktop
+        const a1 = document.createElement("a");
+        a1.href = `/main_wing.html?id=${wing._id}`;
+        a1.className = "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition";
+        a1.textContent = wing.name;
+        desktopDropdown.appendChild(a1);
+
+        // Mobile
+        const a2 = document.createElement("a");
+        a2.href = `/main_wing.html?id=${wing._id}`;
+        a2.className = "block px-3 py-2 text-sm hover:text-hover";
+        a2.textContent = wing.name;
+        mobileDropdown.appendChild(a2);
+      }
+    });
+  } catch (err) {
+    console.error("❌ Failed to fetch wings:", err);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", fetchWings);
