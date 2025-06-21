@@ -141,11 +141,12 @@
             </div>
         </div>
 
+        
         <!-- Form Container -->
         <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
             <!-- Step 1 Form -->
             <div id="form-step-1">
-                <form class="space-y-4 sm:space-y-6">
+              <form class="space-y-4 sm:space-y-6" >
                     <!-- For larger screens, create a grid layout -->
                     <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
                         <!-- Left Column -->
@@ -153,28 +154,28 @@
                             <!-- Full Name -->
                             <div>
                                 <label class="block text-yellow-500 font-medium mb-2 text-sm sm:text-base">Full Name</label>
-                                <input type="text" placeholder="Enter your name" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" required name="fullName" placeholder="Enter your name" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
 
                             <!-- Date of Birth -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Date of Birth</label>
                                 <div class="relative">
-                                    <input type="date" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-                                    <div class="absolute right-3 top-2 sm:top-3 text-gray-400">📅</div>
+                                    <input type="date" name="dateOfBirth" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                    <div class="absolute right-3 top-2 sm:top-3 text-gray-400"></div>
                                 </div>
                             </div>
 
                             <!-- Age -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Age</label>
-                                <input type="number" placeholder="Enter your age" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="number" name="age" placeholder="Enter your age" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
 
                             <!-- Gender -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Gender</label>
-                                <select class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                                <select name="gender" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
                                     <option>Select your gender</option>
                                     <option>Male</option>
                                     <option>Female</option>
@@ -185,7 +186,12 @@
                             <!-- Mobile Number -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Mobile Number</label>
-                                <input type="tel" placeholder="Enter your mobile number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="tel" name="mobileNumber" placeholder="Enter your mobile number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                            </div>
+                            <!-- Password -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Password</label>
+                                <input type="password" name="password" placeholder="Enter your password" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
                         </div>
 
@@ -194,7 +200,7 @@
                             <!-- Religion -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Religion</label>
-                                <input type="text" placeholder="Enter your religion" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" name="religion" placeholder="Enter your religion" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
 
                             <!-- Profile Picture -->
@@ -203,7 +209,7 @@
                                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-8 text-center cursor-pointer hover:border-yellow-500 transition-colors">
                                     <div class="text-gray-400 text-2xl sm:text-4xl mb-2">📷</div>
                                     <p class="text-gray-500 text-xs sm:text-sm">Click to upload image</p>
-                                    <input type="file" accept="image/*" class="hidden" id="profile-upload">
+                                    <input type="file" name="profilePicture" accept="image/*" class="hidden" id="profile-upload">
                                 </div>
                             </div>
                         </div>
@@ -220,7 +226,7 @@
 
             <!-- Step 2 Form -->
             <div id="form-step-2" class="hidden">
-                <form class="space-y-4 sm:space-y-6">
+                <form class="space-y-4 sm:space-y-6" onsubmit="submitVolunteerForm(event); return false;">
                     <!-- For larger screens, create a grid layout -->
                     <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
                         <!-- Left Column -->
@@ -230,13 +236,13 @@
                                 <label class="block text-gray-700 font-medium mb-4 text-sm sm:text-base">What Zone do you live in?</label>
                                 <div class="flex flex-wrap gap-2 sm:gap-4 mb-6">
                                     <label class="flex items-center cursor-pointer transform hover:scale-105 transition-transform">
-                                        <input type="radio" name="zone" value="urban" class="hidden zone-radio">
+                                        <input type="radio" name="zone" value="Urban" class="hidden zone-radio">
                                         <span class="zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300">
                                             🏢 Urban
                                         </span>
                                     </label>
                                     <label class="flex items-center cursor-pointer transform hover:scale-105 transition-transform">
-                                        <input type="radio" name="zone" value="rural" class="hidden zone-radio">
+                                        <input type="radio" name="zone" value="Rural" class="hidden zone-radio">
                                         <span class="zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300">
                                             🌾 Rural
                                         </span>
@@ -265,36 +271,39 @@
                             <!-- District -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">District</label>
-                                <select id="district-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                                <input type="text" name="district" id="district-select" placeholder="Enter your district" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white"/>
+                                <!-- <select id="district-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
                                     <option>Select your district</option>
                                     <option>Delhi</option>
                                     <option>Mumbai</option>
                                     <option>Bangalore</option>
                                     <option>Pune</option>
                                     <option>Jaipur</option>
-                                </select>
+                                </select> -->
                             </div>
 
                             <!-- Block -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Block</label>
-                                <select id="block-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                                <input name="block" id="block-select" placeholder="Enter your block" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" />
+                                <!-- <select id="block-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
                                     <option>Select your block</option>
-                                </select>
+                                </select> -->
                             </div>
 
                             <!-- Panchayat/City Name -->
                             <div>
                                 <label id="panchayat-label" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Panchayat</label>
-                                <select id="panchayat-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                                <input id="panchayat-select" name="panchayat" placeholder="Enter your panchayat" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"/>
+                                <!-- <select id="panchayat-select" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
                                     <option id="panchayat-option">Select your Panchayat</option>
-                                </select>
+                                </select> -->
                             </div>
 
                             <!-- Village Name -->
                             <div id="village-field">
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Village Name</label>
-                                <input type="text" id="village-input" placeholder="Enter your village name" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" name="villageName" id="village-input" placeholder="Enter your village name" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
                         </div>
 
@@ -303,25 +312,25 @@
                             <!-- Ward Number -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Ward Number</label>
-                                <input type="text" placeholder="Enter your ward number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" name="wardNumber" placeholder="Enter your ward number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
 
                             <!-- Booth Number -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Booth Number</label>
-                                <input type="text" placeholder="Enter your booth number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" name="booth" placeholder="Enter your booth number" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
 
                             <!-- PIN Code -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">PIN Code</label>
-                                <input type="text" placeholder="Enter your pin code" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" name="pinCode" placeholder="Enter your pin code" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
 
                             <!-- Post Office -->
                             <div>
                                 <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Post Office</label>
-                                <input type="text" placeholder="Enter your post office" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                <input type="text" name="postOffice" placeholder="Enter your post office" class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
                             </div>
                         </div>
                     </div>
@@ -452,7 +461,7 @@
     </div>
 
   </footer>
-
+  <script src="app.js"></script>
     <script>
              // Sample data for rural areas
 const ruralData = {
@@ -548,7 +557,7 @@ function updateFormForZone(selectedZone) {
     // Show zone description
     zoneDescription.classList.remove('hidden');
     
-    if (selectedZone === 'rural') {
+    if (selectedZone === 'Rural') {
         // Rural specific changes
         panchayatLabel.textContent = 'Panchayat';
         panchayatOption.textContent = 'Select your Panchayat';
@@ -562,7 +571,7 @@ function updateFormForZone(selectedZone) {
         zoneDescription.style.backgroundColor = '#FEF3C7'; // Light yellow background
         zoneDescription.style.borderLeft = '4px solid #EAB308';
         
-    } else if (selectedZone === 'urban') {
+    } else if (selectedZone === 'Urban') {
         // Urban specific changes
         panchayatLabel.textContent = 'Area/Ward';
         panchayatOption.textContent = 'Select your area';
@@ -635,6 +644,7 @@ document.addEventListener('DOMContentLoaded', function() {
         profileUpload.addEventListener('change', function(e) {
             if (e.target.files.length > 0) {
                 uploadArea.innerHTML = '<div class="text-yellow-500 text-4xl mb-2">✓</div><p class="text-yellow-600 text-sm">Image uploaded successfully</p>';
+
             }
         });
     }
@@ -697,6 +707,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
     </script>
-    <script src="app.js"></script>
+ 
 </body>
 </html>
