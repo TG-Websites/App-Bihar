@@ -75,6 +75,7 @@
                   OUR LEADER ▼
                 </button>
                 <div
+                  id="leader-dropdown-desktop"
                   class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
                   <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
@@ -125,7 +126,7 @@
               onclick="toggleMobileDropdown('leader-dropdown')">
               OUR LEADER
             </button>
-            <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+            <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
               <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
               <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
             </div>
@@ -542,7 +543,7 @@
   <!-- add social medial icon -->
   
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
+     
 
     <div class="container mx-auto p-6 bg-white min-h-screen" id="social">
         <!-- Header Section -->

@@ -2,10 +2,12 @@ console.log("Hello from app.js");
 const fileInput = document.getElementById("profile-upload");
 let file;
 
-fileInput.addEventListener("change", function () {
-  file = this.files[0];
-  console.log(file);
-});
+if (fileInput) {
+  fileInput.addEventListener("change", function () {
+    file = this.files[0];
+    console.log(file);
+  });
+}
 
 function submitVolunteerForm(event) {
   event.preventDefault(); // Prevent default form submission
@@ -88,7 +90,7 @@ function submitVolunteerForm(event) {
   }
 
   // Send the request
-  fetch("http://localhost:8000/volunteers/", {
+  fetch("https://backend.aapbihar.org/volunteers/", {
     method: "POST",
     body: finalFormData,
   })
@@ -204,6 +206,10 @@ function showSocial() {
   setTimeout(() => {
     socialContent.classList.remove("fade-out", "hidden");
     socialContent.classList.add("fade-in");
+    // Re-parse the Facebook plugin after its container is visible
+    if (window.FB) {
+      FB.XFBML.parse();
+    }
   }, 300);
 }
 
@@ -306,6 +312,15 @@ function showLoadingAnimation(targetElement) {
 console.log("AAP Social Media Feed initialized successfully");
 console.log("Available keyboard shortcuts: Press 1 for Social, 2 for Videos");
 
+// Load Facebook SDK asynchronously
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 document.addEventListener("DOMContentLoaded", function () {
   const dataRow = document.getElementById("dataRow");
   const noRecord = document.getElementById("noRecord");
@@ -320,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-   const baseUrl = "http://localhost:8000";
+   const baseUrl = "https://backend.aapbihar.org";
 
 // ✅ Toggle mobile dropdown
 function toggleMobileDropdown() {
@@ -338,24 +353,32 @@ async function fetchWings() {
     const desktopDropdown = document.getElementById("leader-dropdown-desktop");
     const mobileDropdown = document.getElementById("leader-dropdown-mobile");
 
-    desktopDropdown.innerHTML = "";
-    mobileDropdown.innerHTML = "";
+    if (desktopDropdown) {
+      desktopDropdown.innerHTML = "";
+    }
+    if (mobileDropdown) {
+      mobileDropdown.innerHTML = "";
+    }
 
     wings.forEach(wing => {
       if (wing.name) {
         // Desktop
-        const a1 = document.createElement("a");
-        a1.href = `/main_wing.html?id=${wing._id}`;
-        a1.className = "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition";
-        a1.textContent = wing.name;
-        desktopDropdown.appendChild(a1);
+        if (desktopDropdown) {
+          const a1 = document.createElement("a");
+          a1.href = `/main_wing.html?id=${wing._id}`;
+          a1.className = "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition";
+          a1.textContent = wing.name;
+          desktopDropdown.appendChild(a1);
+        }
 
         // Mobile
-        const a2 = document.createElement("a");
-        a2.href = `/main_wing.html?id=${wing._id}`;
-        a2.className = "block px-3 py-2 text-sm hover:text-hover";
-        a2.textContent = wing.name;
-        mobileDropdown.appendChild(a2);
+        if (mobileDropdown) {
+          const a2 = document.createElement("a");
+          a2.href = `/main_wing.html?id=${wing._id}`;
+          a2.className = "block px-3 py-2 text-sm hover:text-hover";
+          a2.textContent = wing.name;
+          mobileDropdown.appendChild(a2);
+        }
       }
     });
   } catch (err) {
