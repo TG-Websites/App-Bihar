@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAIN WING</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Add in the <head> section -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#021A32",
-              hover: "#FFFF00",
-              "aap-navy": "#021A32",
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAIN WING</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Add in the <head> section -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#021A32",
+            hover: "#FFFF00",
+            "aap-navy": "#021A32",
           },
         },
-      };
-    </script>
-  </head>
-  <body class="bg-white">
-   <body class="">
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-white">
+
+  <body class="">
     <!-- nav bar  -->
-     <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
       <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
         <div class="flex justify-between items-center h-20">
           <!-- Logo -->
@@ -54,9 +54,9 @@
               <!-- Our Leader Dropdown -->
               <div class="relative group">
                 <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  OUR LEADER ▼
+                  OUR LEADER
                 </button>
-                <div
+                <div id="leader-dropdown-desktop"
                   class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
                   <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
@@ -70,7 +70,7 @@
               <!-- Volunteer Dropdown -->
               <div class="relative group">
                 <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  VOLUNTEER ▼
+                  VOLUNTEER
                 </button>
                 <div
                   class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -107,7 +107,7 @@
               onclick="toggleMobileDropdown('leader-dropdown')">
               OUR LEADER
             </button>
-            <div id="leader-dropdown" class="hidden pl-6 space-y-1">
+            <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
               <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
               <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
             </div>
@@ -128,96 +128,113 @@
     </nav>
 
     <!-- Hero Section -->
-<section class="bg-primary pt-20 min-h-screen flex items-center overflow-hidden">
-  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section class="bg-primary pt-20 min-h-screen flex items-center overflow-hidden">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-      <!-- Left Content -->
-      <div class="text-white space-y-8 text-center lg:text-left break-words overflow-hidden">
-        <div class="space-y-4">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-            MAIN <span class="text-hover">WING</span>
-          </h1>
-          <div class="w-24 h-1 bg-hover mx-auto lg:mx-0"></div>
-        </div>
+          <!-- Left Content -->
+          <div class="text-white space-y-8 text-center lg:text-left break-words overflow-hidden">
+            <div class="space-y-4">
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                MAIN <span class="text-hover">WING</span>
+              </h1>
+              <div class="w-24 h-1 bg-hover mx-auto lg:mx-0"></div>
+            </div>
 
-        <p class="text-base sm:text-lg lg:text-2xl text-gray-300 leading-relaxed">
-                  Leading the charge for transparent governance, social justice, and progressive politics across the nation.
-        </p>
+            <p class="text-base sm:text-lg lg:text-2xl text-gray-300 leading-relaxed">
+              Leading the charge for transparent governance, social justice, and progressive politics across the nation.
+            </p>
 
-        <div class="space-y-4 text-base sm:text-lg">
-          <div class="flex items-center justify-center lg:justify-start space-x-3">
-            <i class="fas fa-check-circle text-hover text-xl"></i>
-            <span>Committed to Anti-Corruption</span>
+            <div class="space-y-4 text-base sm:text-lg">
+              <div class="flex items-center justify-center lg:justify-start space-x-3">
+                <i class="fas fa-check-circle text-hover text-xl"></i>
+                <span>Committed to Anti-Corruption</span>
+              </div>
+              <div class="flex items-center justify-center lg:justify-start space-x-3">
+                <i class="fas fa-check-circle text-hover text-xl"></i>
+                <span>Focused on Education & Healthcare</span>
+              </div>
+              <div class="flex items-center justify-center lg:justify-start space-x-3">
+                <i class="fas fa-check-circle text-hover text-xl"></i>
+                <span>Environmental Sustainability</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
+              <button
+                class="bg-hover text-primary px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-yellow-400 transition duration-300 transform hover:scale-105">
+                Join Our Movement
+              </button>
+              <button
+                class="border-2 border-hover text-hover px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-hover hover:text-primary transition duration-300">
+                Learn More
+              </button>
+            </div>
           </div>
-          <div class="flex items-center justify-center lg:justify-start space-x-3">
-            <i class="fas fa-check-circle text-hover text-xl"></i>
-            <span>Focused on Education & Healthcare</span>
-          </div>
-          <div class="flex items-center justify-center lg:justify-start space-x-3">
-            <i class="fas fa-check-circle text-hover text-xl"></i>
-            <span>Environmental Sustainability</span>
-          </div>
-        </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
-          <button class="bg-hover text-primary px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-yellow-400 transition duration-300 transform hover:scale-105">
-            Join Our Movement
-          </button>
-          <button class="border-2 border-hover text-hover px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-hover hover:text-primary transition duration-300">
-              Learn More
-          </button>
-        </div>
-      </div>
+          <!-- Right Content - Hero Image -->
+          <div class="relative w-full">
+            <div
+              class="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-700">
+              <img
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Political Leadership" class="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover" />
+              <div
+                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent p-8 z-20">
+                <div class="text-white">
+                  <h3 class="text-xl sm:text-2xl font-bold mb-1">Building Tomorrow</h3>
+                  <p class="text-gray-200 text-sm sm:text-base">Together for a stronger nation</p>
+                </div>
+              </div>
+            </div>
 
-      <!-- Right Content - Hero Image -->
-            <div class="relative w-full">
-        <div class="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-700">
-          <img 
-            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-            alt="Political Leadership" 
-            class="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover"
-          />
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent p-8 z-20">
-            <div class="text-white">
-              <h3 class="text-xl sm:text-2xl font-bold mb-1">Building Tomorrow</h3>
-              <p class="text-gray-200 text-sm sm:text-base">Together for a stronger nation</p>
+            <!-- Floating Elements -->
+            <div
+              class="absolute -top-6 -left-6 w-20 h-20 sm:w-24 sm:h-24 bg-hover/20 rounded-full blur-xl animate-pulse">
+            </div>
+            <div
+              class="absolute -bottom-8 -right-8 w-24 h-24 sm:w-32 sm:h-32 bg-primary/20 rounded-full blur-2xl animate-pulse">
             </div>
           </div>
         </div>
-
-        <!-- Floating Elements -->
-        <div class="absolute -top-6 -left-6 w-20 h-20 sm:w-24 sm:h-24 bg-hover/20 rounded-full blur-xl animate-pulse"></div>
-        <div class="absolute -bottom-8 -right-8 w-24 h-24 sm:w-32 sm:h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
- <!-- Our Youth Leaders Section -->
+    <!-- Our Youth Leaders Section -->
     <section class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-5xl font-bold text-primary mb-4">
-              OUR LEADERS
+            OUR LEADERS
           </h2>
           <div class="w-24 h-1 bg-hover mx-auto mb-6"></div>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Meet the dynamic young leaders who are driving innovation, embracing technology, and championing sustainable development for a better tomorrow.
+            Meet the dynamic young leaders who are driving innovation, embracing technology, and championing sustainable
+            development for a better tomorrow.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+        <div id="our-leader"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
           <!-- Youth Leader Card 1 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Youth President</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Youth President</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -233,14 +250,23 @@
           </div>
 
           <!-- Youth Leader Card 2 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Digital Campaign Head</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Digital Campaign Head</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -256,14 +282,23 @@
           </div>
 
           <!-- Youth Leader Card 3 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Student Affairs Coordinator</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Student Affairs Coordinator</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -279,14 +314,23 @@
           </div>
 
           <!-- Youth Leader Card 4 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Environment Activist</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Environment Activist</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -302,14 +346,23 @@
           </div>
 
           <!-- Youth Leader Card 5 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Tech Innovation Lead</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Tech Innovation Lead</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -325,14 +378,23 @@
           </div>
 
           <!-- Youth Leader Card 6 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Social Media Manager</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Social Media Manager</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -348,14 +410,23 @@
           </div>
 
           <!-- Youth Leader Card 7 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Community Outreach</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Community Outreach</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -371,14 +442,23 @@
           </div>
 
           <!-- Youth Leader Card 8 -->
-          <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div
+            class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
             <div class="relative p-6">
-              <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
-                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp" alt="Youth Leader" class="w-full h-full object-cover">
+              <div
+                class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden ring-4 ring-hover/20 group-hover:ring-hover/60 transition-all duration-300">
+                <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/ms-scaled-e1715954046282.webp"
+                  alt="Youth Leader" class="w-full h-full object-cover">
               </div>
-              <h3 class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">Youth Leader Name</h3>
-              <p class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">Policy Research</p>
+              <h3
+                class="text-lg font-bold text-primary group-hover:text-white transition-colors duration-300 text-center mb-2">
+                Youth Leader Name</h3>
+              <p
+                class="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-300 text-center mb-3">
+                Policy Research</p>
               <div class="flex justify-center space-x-3">
                 <a href="#" class="text-primary group-hover:text-hover transition-colors duration-300">
                   <i class="fab fa-twitter text-lg"></i>
@@ -393,144 +473,148 @@
             </div>
           </div>
 
-          
-      
-           </div>
-          </div>
+
+
+        </div>
+      </div>
     </section>
     <!-- footer section  -->
-     <footer class="bg-gray-100 text-gray-900 pt-12 ">
-    <section class=" max-w-7xl p-10">
-    <div class="max-w-7xl mx-auto">
-      <h2
-        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] mb-6 lg:mb-8 leading-snug text-center lg:text-left">
-        "First, they ignore you, then they laugh at you, then they fight you
-        and then you win." - Mahatma Gandhi
-      </h2>
+    <footer class="bg-gray-100 text-gray-900 pt-12 ">
+      <section class=" max-w-7xl p-10">
+        <div class="max-w-7xl mx-auto">
+          <h2
+            class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] mb-6 lg:mb-8 leading-snug text-center lg:text-left">
+            "First, they ignore you, then they laugh at you, then they fight you
+            and then you win." - Mahatma Gandhi
+          </h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-        <!-- Left Section -->
-        <div class="sm:col-span-2 lg:col-span-1">
-          <img src="jharu-removebg-preview.png" alt="AAP Logo"
-            class="w-32 lg:w-32 mb-3 mx-auto sm:mx-0" />
-          <h3 class="font-bold text-[#0b3c82] text-base mb-2 text-center sm:text-left">
-            AAM AADMI PARTY
-          </h3>
-          <p class="text-sm leading-relaxed text-center sm:text-left">
-            1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />
-            New Delhi – 110001
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <!-- Left Section -->
+            <div class="sm:col-span-2 lg:col-span-1">
+              <img src="jharu-removebg-preview.png" alt="AAP Logo" class="w-32 lg:w-32 mb-3 mx-auto sm:mx-0" />
+              <h3 class="font-bold text-[#0b3c82] text-base mb-2 text-center sm:text-left">
+                AAM AADMI PARTY
+              </h3>
+              <p class="text-sm leading-relaxed text-center sm:text-left">
+                1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />
+                New Delhi – 110001
+              </p>
+              <div class="mt-4 space-y-1 text-center sm:text-left">
+                <p class="text-sm">
+                  <span class="font-semibold">Helpline No:</span> 97185 00606
+                </p>
+                <p class="text-sm">
+                  <span class="font-semibold">Timing:</span> 9:00 am - 6:00 pm
+                </p>
+                <p class="text-sm">
+                  <span class="font-semibold">Email ID:</span>
+                  contact@aamaadmiparty.org
+                </p>
+              </div>
+            </div>
+
+            <!-- About -->
+            <div class="text-center sm:text-left">
+              <h4 class="text-[#0b3c82] font-bold mb-3 text-base">About</h4>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a href="#about" class="hover:underline hover:text-[#0b3c82] transition-colors">Our History</a>
+                </li>
+                <li>
+                  <a href="main_wing.html" class="hover:underline hover:text-[#0b3c82] transition-colors">AAP
+                    Leadership</a>
+                </li>
+                <li>
+                  <a href="youth.html" class="hover:underline hover:text-[#0b3c82] transition-colors">Youth Wing</a>
+                </li>
+                <li>
+                  <a href="joinUS.html" class="hover:underline hover:text-[#0b3c82] transition-colors">Join Us</a>
+                </li>
+
+                <li>
+                  <a href="index.html" class="hover:underline hover:text-[#0b3c82] transition-colors">Archive
+                    Website</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Media Resources -->
+            <div class="text-center sm:text-left">
+              <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+                Media Resources
+              </h4>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a href="#social" class="hover:underline hover:text-[#0b3c82] transition-colors">Press Release</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Official Spokespersons</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center sm:text-left">
+              <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
+                Follow us on
+              </h4>
+              <div class="flex items-center justify-center sm:justify-start space-x-4 text-xl mt-2">
+                <a href="#" aria-label="Facebook" class="hover:text-[#0b3c82] transition-colors">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" aria-label="Instagram" class="hover:text-[#0b3c82] transition-colors">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="YouTube" class="hover:text-[#0b3c82] transition-colors">
+                  <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" aria-label="X" class="hover:text-[#0b3c82] transition-colors">
+                  <i class="fab fa-x-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Bottom Bar - Fixed Width Issues -->
+      <div class="mt-8  bg-primary">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white">
+          <p class="text-center sm:text-left">
+            &copy; 2025 Aam Aadmi Party. All rights reserved.
           </p>
-          <div class="mt-4 space-y-1 text-center sm:text-left">
-            <p class="text-sm">
-              <span class="font-semibold">Helpline No:</span> 97185 00606
-            </p>
-            <p class="text-sm">
-              <span class="font-semibold">Timing:</span> 9:00 am - 6:00 pm
-            </p>
-            <p class="text-sm">
-              <span class="font-semibold">Email ID:</span>
-              contact@aamaadmiparty.org
-            </p>
-          </div>
-        </div>
-
-        <!-- About -->
-        <div class="text-center sm:text-left">
-          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">About</h4>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <a href="#about" class="hover:underline hover:text-[#0b3c82] transition-colors">Our History</a>
-            </li>
-            <li>
-              <a href="main_wing.html" class="hover:underline hover:text-[#0b3c82] transition-colors">AAP Leadership</a>
-            </li>
-            <li>
-              <a href="youth.html" class="hover:underline hover:text-[#0b3c82] transition-colors">Youth Wing</a>
-            </li>
-            <li>
-              <a href="joinUS.html" class="hover:underline hover:text-[#0b3c82] transition-colors">Join Us</a>
-            </li>
-          
-            <li>
-              <a href="index.html" class="hover:underline hover:text-[#0b3c82] transition-colors">Archive Website</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Media Resources -->
-        <div class="text-center sm:text-left">
-          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
-            Media Resources
-          </h4>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <a href="#social" class="hover:underline hover:text-[#0b3c82] transition-colors">Press Release</a>
-            </li>
-            <li>
-              <a href="#" class="hover:underline hover:text-[#0b3c82] transition-colors">Official Spokespersons</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Social Media -->
-        <div class="text-center sm:text-left">
-          <h4 class="text-[#0b3c82] font-bold mb-3 text-base">
-            Follow us on
-          </h4>
-          <div class="flex items-center justify-center sm:justify-start space-x-4 text-xl mt-2">
-            <a href="#" aria-label="Facebook" class="hover:text-[#0b3c82] transition-colors">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" aria-label="Instagram" class="hover:text-[#0b3c82] transition-colors">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" aria-label="YouTube" class="hover:text-[#0b3c82] transition-colors">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="#" aria-label="X" class="hover:text-[#0b3c82] transition-colors">
-              <i class="fab fa-x-twitter"></i>
-            </a>
+          <div class="flex flex-wrap justify-center sm:justify-end gap-4">
+            <a href="privacy.html" class="hover:underline hover:text-gray-200 transition-colors">Privacy Policy</a>
+            <a href="termcondition.html" class="hover:underline hover:text-gray-200 transition-colors">Terms of
+              Service</a>
+            <a href="addmember.html" class="hover:underline hover:text-gray-200 transition-colors">Contact Us</a>
           </div>
         </div>
       </div>
-    </div>
-</section>
-    <!-- Bottom Bar - Fixed Width Issues -->
-    <div class="mt-8  bg-primary">
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white">
-        <p class="text-center sm:text-left">
-          &copy; 2025 Aam Aadmi Party. All rights reserved.
-        </p>
-        <div class="flex flex-wrap justify-center sm:justify-end gap-4">
-          <a href="privacy.html" class="hover:underline hover:text-gray-200 transition-colors">Privacy Policy</a>
-          <a href="termcondition.html" class="hover:underline hover:text-gray-200 transition-colors">Terms of Service</a>
-          <a href="addmember.html" class="hover:underline hover:text-gray-200 transition-colors">Contact Us</a>
-        </div>
-      </div>
-    </div>
 
-  </footer>
+    </footer>
 
 
 
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-button').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+      });
 
-        // Mobile dropdown toggle
-        function toggleMobileDropdown(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.classList.toggle('hidden');
-        }
+      // Mobile dropdown toggle
+      function toggleMobileDropdown(dropdownId) {
+        const dropdown = document.getElementById(dropdownId);
+        dropdown.classList.toggle('hidden');
+      }
     </script>
 
-    
+    <script src="./wings.js"></script>
+    <script src="./leader.js"></script>
+
 
   </body>
+
 </html>
-    
