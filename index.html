@@ -8,6 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   <style>
     .active-btn {
       background-color: #f97316 !important;
@@ -32,6 +35,36 @@
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
     }
+
+    .tab-button {
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .tab-button.active {
+      background-color: #f59e0b;
+      /* yellow-500 */
+      color: white;
+    }
+
+    .tab-button.inactive {
+      background-color: #e5e7eb;
+      /* gray-200 */
+      color: #4b5563;
+      /* gray-700 */
+    }
+
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, .5);
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #FFFF00;
+    }
   </style>
   <script>
     tailwind.config = {
@@ -39,6 +72,7 @@
         extend: {
           colors: {
             primary: "#021A32",
+            "primary-light": "#082F56", // submenu background
             hover: "#FFFF00",
             "aap-navy": "#021A32",
           },
@@ -50,104 +84,246 @@
 
 <body class="bg-white">
   <!-- nav bar  -->
+  <!-- =================== NAVBAR =================== -->
   <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
     <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
       <div class="flex justify-between items-center h-20">
+
         <!-- Logo -->
-        <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
-          class="w-28 h-10 mr-6" />
+        <a href="index.html" class="flex items-center">
+          <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+            class="w-28 h-10 mr-6" />
+        </a>
 
         <!-- Desktop Menu -->
         <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-4">
-            <div class="relative group">
-              <a href="index.html">
-                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  HOME
-                </button>
-              </a>
-              <a href="#About">
-                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  ABOUT US
-                </button>
-              </a>
-            </div>
+          <div class="ml-10 flex items-center space-x-2 lg:space-x-4">
 
-            <!-- Our Leader Dropdown -->
+            <!-- HOME -->
+            <a href="index.html" class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+              होम
+            </a>
+
+            <!-- जुड़े (Join) -->
             <div class="relative group">
-              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                OUR LEADER
+              <button type="button" aria-haspopup="menu" aria-expanded="false"
+                class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200 flex items-center gap-1">
+                जुड़े
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd" />
+                </svg>
               </button>
-              <div id="leader-dropdown-desktop"
-                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
-                <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
+
+              <!-- Desktop submenu -->
+              <div id="join-submenu-desktop" class="absolute left-0 mt-2 w-56 bg-primary-light text-white
+                        border border-white/10 rounded-xl shadow-xl
+                        opacity-0 invisible translate-y-1
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                        transition-all duration-200 z-50" role="menu" aria-label="Join submenu">
+                <!-- caret -->
+                <span class="absolute -top-2 left-6 
+             w-0 h-0 
+             border-l-8 border-r-8 border-b-8
+             border-l-transparent border-r-transparent 
+             border-b-primary-light"></span>
+
+
+                <a href="joinUS.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg
+                        hover:bg-hover hover:text-primary focus:bg-hover focus:text-primary
+                        transition-colors outline-none" role="menuitem">
+                  <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M3 20a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M19 7v6m-3-3h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm font-medium">Join Us</span>
+                </a>
+
+                <a href="addmember.html" class="mt-1 flex items-center gap-3 px-4 py-2.5 rounded-lg
+                        hover:bg-hover hover:text-primary focus:bg-hover focus:text-primary
+                        transition-colors outline-none" role="menuitem">
+                  <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M17 13a3.5 3.5 0 1 0-2.5-6" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M3 21a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M15 21a5 5 0 0 1 6-4.8" stroke="currentColor" stroke-width="1.5" />
+                  </svg>
+                  <span class="text-sm font-medium">Volunteer Register</span>
+                </a>
               </div>
             </div>
 
-            <!-- Join Us -->
-            <a href="joinUS.html"
-              class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">JOIN US</a>
+            <!-- लड़े -->
+            <a href="#" class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+              लड़े
+            </a>
 
-            <!-- Volunteer Dropdown -->
-            <div class="relative group">
-              <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                VOLUNTEER
-              </button>
-              <div
-                class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
-                <a href="addmember.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
-              </div>
-            </div>
+            <!-- बदले -->
+            <a href="#" class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+              बदले
+            </a>
           </div>
         </div>
 
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
-          <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- Right controls -->
+        <div class="flex items-center gap-2">
+          <!-- Hamburger → Sidebar -->
+          <button id="sidebar-open-btn" type="button" class="text-white hover:text-hover focus:outline-none"
+            aria-label="Open sidebar menu" onclick="toggleSidebar(true)">
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
-      </div>
-    </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
-        <a href="index.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">Home</a>
-        <div class="block">
-          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-            onclick="toggleMobileDropdown('about-dropdown')">
-            ABOUT US
-          </button>
-        </div>
-        <div class="block">
-          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-            onclick="toggleMobileDropdown('leader-dropdown')">
-            OUR LEADER
-          </button>
-          <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
-            <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
-            <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
-          </div>
-        </div>
-        <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
-        <div class="block">
-          <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-            onclick="toggleMobileDropdown('volunteer-dropdown')">
-            VOLUNTEER
-          </button>
-          <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
-            <a href="login.html" class="block px-3 py-2 text-sm hover:text-hover">LOGIN</a>
-            <a href="addmember.html" class="block px-3 py-2 text-sm hover:text-hover">REGISTER</a>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Overlay -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[60] hidden" onclick="toggleSidebar(false)"></div>
+
+  <!-- =================== SIDEBAR (Drawer) =================== -->
+  <aside id="sidebar" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-primary-light text-white shadow-2xl z-[61]
+              translate-x-full transition-transform duration-300" aria-hidden="true" aria-label="Sidebar menu">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between px-4 h-16 border-b border-white/20">
+      <h3 class="text-lg font-semibold">Menu</h3>
+      <button type="button" class="p-2 rounded hover:bg-hover hover:text-primary transition" aria-label="Close sidebar"
+        onclick="toggleSidebar(false)">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-4 space-y-2">
+
+      <!-- हमारे नेता (collapsible) -->
+      <div>
+        <button type="button" id="btn-leader" aria-controls="leader-dropdown-mobile" class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium rounded
+                     hover:bg-hover hover:text-primary transition"
+          onclick="toggleCollapse('leader-dropdown-mobile','icon-leader')" aria-expanded="false">
+          <span>हमारे नेता</span>
+          <svg id="icon-leader" class="w-4 h-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"
+            aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
+          <a href="main_wing.html"
+            class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">MAIN WING</a>
+          <a href="youth.html"
+            class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">YOUTH WING</a>
+        </div>
+      </div>
+
+      <!-- Login -->
+      <a href="login.html"
+        class="block px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
+        लॉग इन करें
+      </a>
+
+      <!-- Divider -->
+      <hr class="my-2 border-white/20">
+
+      <!-- Mobile-only main links -->
+      <a href="index.html"
+        class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
+        होम
+      </a>
+
+      <!-- जुड़े (collapsible) -->
+      <div class="sm:hidden">
+        <button type="button" id="btn-join" aria-controls="join-dropdown-sidebar" class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium rounded
+                     hover:bg-hover hover:text-primary transition"
+          onclick="toggleCollapse('join-dropdown-sidebar','icon-join')" aria-expanded="false">
+          <span>जुड़े</span>
+          <svg id="icon-join" class="w-4 h-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"
+            aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <!-- Sidebar submenu (simple collapse; no absolute/group-hover here) -->
+        <div id="join-dropdown-sidebar" class="hidden pl-6 space-y-1" role="menu" aria-label="Join submenu (mobile)">
+          <a href="joinUS.html"
+            class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">Join Us</a>
+          <a href="addmember.html"
+            class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">Volunteer Register</a>
+        </div>
+      </div>
+
+      <!-- Mobile Only Links -->
+      <a href="#"
+        class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">लड़े</a>
+      <a href="#"
+        class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">बदले</a>
+    </div>
+  </aside>
+
+  <!-- =================== SCRIPTS =================== -->
+  <script>
+    // ——— Drawer (Sidebar) ———
+    function toggleSidebar(open) {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const isOpening = typeof open === 'boolean' ? open : sidebar.classList.contains('translate-x-full');
+
+      if (isOpening) {
+        sidebar.classList.remove('translate-x-full');
+        sidebar.setAttribute('aria-hidden', 'false');
+        overlay.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('translate-x-full');
+        sidebar.setAttribute('aria-hidden', 'true');
+        overlay.classList.add('hidden');
+        // Optionally collapse any open sections when closing:
+        collapseIfOpen('leader-dropdown-mobile', 'icon-leader');
+        collapseIfOpen('join-dropdown-sidebar', 'icon-join');
+      }
+    }
+
+    // ——— Generic collapse/expand helper ———
+    function toggleCollapse(listId, iconId) {
+      const list = document.getElementById(listId);
+      const icon = document.getElementById(iconId);
+      const triggerBtn = list?.previousElementSibling;
+
+      if (!list) return;
+
+      const isHidden = list.classList.contains('hidden');
+      list.classList.toggle('hidden');
+
+      if (triggerBtn) triggerBtn.setAttribute('aria-expanded', String(isHidden));
+      if (icon) icon.classList.toggle('rotate-180', isHidden);
+    }
+
+    function collapseIfOpen(listId, iconId) {
+      const list = document.getElementById(listId);
+      const icon = document.getElementById(iconId);
+      const triggerBtn = list?.previousElementSibling;
+      if (list && !list.classList.contains('hidden')) {
+        list.classList.add('hidden');
+        if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) icon.classList.remove('rotate-180');
+      }
+    }
+
+    // Close sidebar with ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleSidebar(false);
+    });
+  </script>
+
   <!-- Hero Section with Image Slider -->
 
   <section class="relative h-screen overflow-hidden">
@@ -386,6 +562,103 @@
       </div>
     </div>
   </section>
+
+
+
+
+
+  <section class="bg-primary py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between mb-6">
+        <div class="w-full flex flex-col justify-center items-center">
+          <h2 class=" text-4xl font-bold text-white">Our Vision
+          </h2>
+          <br>
+          <p class="text-lg max-w-4xl text-white text-center">With a firm focus on education, health, water,
+            electricity, and the
+            rights of farmers and
+            women, AAP has
+            emerged as a rare political party that practices Kaam ki Raajneeti.</p>
+        </div>
+
+      </div>
+
+      <div class="flex justify-end gap-2">
+        <button
+          class="vision-prev w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl grid place-items-center"
+          aria-label="Prev">‹</button>
+        <button
+          class="vision-next w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl grid place-items-center"
+          aria-label="Next">›</button>
+      </div>
+
+      <!-- Slider -->
+      <div class="swiper vision-swiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide !w-auto">
+            <article class="bg-primary-light rounded-2xl shadow-lg w-[320px] h-[500px] flex flex-col p-6">
+              <!-- Top: Icon + Title -->
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-white/20 grid place-items-center text-2xl">🏛️</div>
+                <h3 class="text-lg font-semibold text-white">Social Welfare and Inclusive Governance</h3>
+              </div>
+
+              <!-- Image -->
+              <img class="w-full h-32 object-cover rounded-xl mb-4"
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop" alt="">
+
+              <!-- Content list -->
+              <ul class="space-y-2 text-white/90 text-sm flex-1 overflow-hidden">
+                <li class="flex gap-2"><span class="mt-2 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                  <p>86,000+ senior citizens benefited from Mukhyamantri Tirth Yatra Yojana till Feb 2024.</p>
+                </li>
+                <li class="flex gap-2"><span class="mt-2 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                  <p>Highest minimum wages in the country at ₹14,842.</p>
+                </li>
+                <li class="flex gap-2"><span class="mt-2 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                  <p>Free coaching for meritorious students.</p>
+                </li>
+                <li class="flex gap-2"><span class="mt-2 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                  <p>Support for 6.38 lakh families & mothers.</p>
+                </li>
+              </ul>
+            </article>
+          </div>
+
+
+
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="swiper-pagination !static mt-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const swiper = new Swiper('.vision-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: false,
+      navigation: {
+        nextEl: '.vision-next',
+        prevEl: '.vision-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    });
+  </script>
+
+
+
 
 
 
@@ -709,8 +982,8 @@
         हमारे <span class="text-yellow-400">पदाधिकारी </span>
       </h1>
       <p class="text-white text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-        जिला स्तर से पंचायत स्तर तक, अपने क्षेत्र के पदाधिकारियों को खोजें।<br />
-        जिला, उपमंडल, ब्लॉक, और पंचायत का चयन कर जानकारी प्राप्त करें।
+        राज्य से लेकर विधान सभा और बूथ स्तर तक, अपने क्षेत्र के पदाधिकारियों को खोजें.<br />
+        राज्य, जिला, विधान सभा और बूथ का चयन कर जानकारी प्राप्त करें.
       </p>
     </div>
 
@@ -718,87 +991,59 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Left: Steps -->
       <div class="space-y-6">
-        <!-- Step Template -->
+        <!-- 1) State -->
         <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-900">
           <div
             class="w-12 h-12 bg-yellow-900 text-white rounded-full flex items-center justify-center font-bold text-xl">
-            1
-          </div>
+            1</div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-yellow-600 mb-2">राज्य</h3>
-            <select id="district"
-              class="w-full bg-yellow-100 px-4 py-2  rounded-md focus:ring-yellow-500 focus:border-yellow-500">
+            <select id="state"
+              class="w-full bg-yellow-100 px-4 py-2 rounded-md focus:ring-yellow-500 focus:border-yellow-500">
               <option value="">अपना राज्य चुनें</option>
-              <option value="">उत्तर प्रदेश</option>
-              <option value="patna">मध्य प्रदेश</option>
-              <option value="gaya">महाराष्ट्र</option>
-              <option value="muzaffarpur">राजस्थान</option>
             </select>
           </div>
         </div>
 
+        <!-- 2) District -->
         <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-800">
           <div
             class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-            2
-          </div>
+            2</div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-yellow-500 mb-2">जिला</h3>
-            <select id="subdivision"
-              class="w-full bg-yellow-200 px-4 py-2  rounded-md focus:ring-yellow-500 focus:border-yellow-500">
+            <select id="district"
+              class="w-full bg-yellow-200 px-4 py-2 rounded-md focus:ring-yellow-500 focus:border-yellow-500" disabled>
               <option value="">अपना जिला चुनें</option>
-              <option value="">फरीदाबाद</option>
-              <option value="araria">पटना</option>
-              <option value="forbesganj">अंबाला</option>
             </select>
           </div>
         </div>
 
+        <!-- 3) Legislative Assembly -->
         <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-700">
           <div
             class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-            3
-          </div>
+            3</div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-yellow-600 mb-2">ब्लॉक</h3>
-            <select id="block"
-              class="w-full bg-yellow-300 px-4 py-2 rounded-md focus:ring-yellow-500 focus:border-yellow-500">
-              <option value="">अपना ब्लॉक चुनें</option>
-              <option value="">पटना सदर</option>
-              <option value="araria">फुलवारी शरीफ</option>
-              <option value="bhargama">दानापुर</option>
+            <h3 class="text-lg font-semibold text-yellow-600 mb-2">विधान सभा</h3>
+            <select id="assembly"
+              class="w-full bg-yellow-300 px-4 py-2 rounded-md focus:ring-yellow-500 focus:border-yellow-500" disabled>
+              <option value="">अपनी विधान सभा चुनें</option>
             </select>
           </div>
         </div>
 
-        <div class="flex items-start space-x-4 shadow rounded-lg p-5 border-l-4 border-yellow-800">
-          <div
-            class="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
-            4
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-yellow-700 mb-2">पंचायत</h3>
-            <select id="panchayat" class="w-full px-4 py-2 bg-yellow-400 focus:ring-yellow-500 focus:border-yellow-500">
-              <option value="">अपना पंचायत चुनें</option>
-              <option value="">अथमलगोला</option>
-              <option value="araria"> बख्तियारपुर</option>
-              <option value="kesariya">बाढ़</option>
-            </select>
-          </div>
-        </div>
+        <!-- 4) Booth -->
         <div class="flex items-start space-x-4 bg-primary shadow rounded-lg p-5 border-l-4 border-yellow-600">
           <div
             class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-            5
-          </div>
+            4</div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-yellow-500 mb-2">बूथ</h3>
             <select id="booth"
-              class="w-full px-4 py-2 bg-yellow-500 rounded-md focus:ring-pink-500 focus:border-pink-500 bg-white text-gray-800">
+              class="w-full px-4 py-2 bg-yellow-500 rounded-md focus:ring-yellow-500 focus:border-yellow-500 text-gray-900"
+              disabled>
               <option value="">अपना बूथ चुनें</option>
-              <option value="booth-1">बूथ - 1</option>
-              <option value="booth-2">बूथ - 2</option>
-              <option value="booth-3">बूथ - 3</option>
             </select>
           </div>
         </div>
@@ -806,6 +1051,12 @@
 
       <!-- Right: Table -->
       <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <!-- Tabs for Prabhari/Adhyaksh -->
+        <div class="flex justify-around bg-gray-100 p-2 border-b border-gray-200">
+          <button id="prabhariTab" class="tab-button active" data-post="Prabhari">प्रभारी</button>
+          <button id="adhyakshTab" class="tab-button inactive" data-post="Adhyaksh">अध्यक्ष</button>
+        </div>
+
         <!-- Table Header -->
         <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
           <div class="grid grid-cols-3 gap-4 text-sm sm:text-base font-semibold text-gray-700">
@@ -822,42 +1073,23 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <p class="text-gray-500 text-lg font-medium">
-              कोई रिकॉर्ड नहीं मिला
-            </p>
+            <p class="text-gray-500 text-lg font-medium">कोई रिकॉर्ड नहीं मिला</p>
             <p class="text-gray-400 text-sm mt-1">कृपया अपनी जानकारी भरें</p>
           </div>
 
-          <!-- Example Data Row (Hidden by default) -->
-          <div id="dataRow" class="hidden px-6 py-4 border-b border-gray-100">
-            <div class="grid grid-cols-3 gap-4 items-center">
-              <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <span class="font-medium text-gray-900 text-sm sm:text-base">विनोद श्रीवास्तव</span>
-              </div>
-              <div class="text-gray-700 text-sm sm:text-base">प्रबंधक</div>
-              <div class="text-blue-600 font-medium text-sm sm:text-base">
-                +91 6201513990
-              </div>
-            </div>
-          </div>
+
         </div>
 
         <!-- Pagination -->
-        <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
+        <div id="paginationControls" class="bg-gray-50 px-6 py-4 border-t border-gray-200">
           <div class="flex items-center justify-between text-sm sm:text-base">
-            <button
+            <button id="prevPage"
               class="px-4 py-2 font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50"
               disabled>
               Prev
             </button>
-            <span class="text-gray-700">Page 1 of 1</span>
-            <button
+            <span id="pageInfo" class="text-gray-700">Page 1 of 1</span>
+            <button id="nextPage"
               class="px-4 py-2 font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50"
               disabled>
               Next
@@ -867,6 +1099,231 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const stateSelect = document.getElementById("state");
+    const districtSelect = document.getElementById("district");
+    const legislativeAssemblySelect = document.getElementById("assembly"); // Corrected ID
+    const boothSelect = document.getElementById("booth");
+
+    const tableContent = document.getElementById("tableContent");
+    const noRecordDiv = document.getElementById("noRecord");
+    const paginationControls = document.getElementById("paginationControls");
+    const prevPageBtn = document.getElementById("prevPage");
+    const nextPageBtn = document.getElementById("nextPage");
+    const pageInfoSpan = document.getElementById("pageInfo");
+
+    const prabhariTab = document.getElementById("prabhariTab");
+    const adhyakshTab = document.getElementById("adhyakshTab");
+
+    const BASE_URL = "https://backend.aapbihar.org"; // Assuming your backend runs on this port
+
+    let currentPage = 1;
+    const membersPerPage = 5; // Define how many members per page
+    let currentBoothName = ""; // Store the currently selected booth name
+    let currentPostFilter = "Prabhari"; // Default filter
+
+    // Function to fetch data from API
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data; // Return full response including pagination metadata
+      } catch (error) {
+        console.error("Fetch error:", error);
+        return { data: [], currentPage: 1, totalPages: 1, totalMembers: 0 };
+      }
+    }
+
+    // Function to populate dropdowns
+    function populateDropdown(dropdown, items, placeholder) {
+      dropdown.innerHTML = `<option value="">${placeholder}</option>`;
+      items.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item._id;
+        option.textContent = item.name;
+        dropdown.appendChild(option);
+      });
+      dropdown.disabled = false;
+    }
+
+    // Function to render booth team members in the table
+    function renderBoothTeamMembers(members, page, totalPages, totalMembers) {
+      tableContent.innerHTML = ""; // Clear previous content
+      if (members.length === 0) {
+        noRecordDiv.style.display = "flex"; // Show no record message
+        tableContent.appendChild(noRecordDiv);
+      } else {
+        noRecordDiv.style.display = "none"; // Hide no record message
+        members.forEach(member => {
+          const row = document.createElement("div");
+          row.className = "px-6 py-4 border-b border-gray-100";
+          row.innerHTML = `
+                        <div class="grid grid-cols-3 gap-4 items-center">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="font-medium text-gray-900 text-sm sm:text-base">${member.name}</span>
+                            </div>
+                            <div class="text-gray-700 text-sm sm:text-base">${member.post} (${member.padnaam})</div>
+                            <div class="text-blue-600 font-medium text-sm sm:text-base">${member.phone}</div>
+                        </div>
+                    `;
+          tableContent.appendChild(row);
+        });
+      }
+
+      // Update pagination controls
+      pageInfoSpan.textContent = `Page ${page} of ${totalPages} (${totalMembers} members)`;
+      prevPageBtn.disabled = page === 1;
+      nextPageBtn.disabled = page === totalPages;
+      paginationControls.style.display = totalMembers > 0 ? "block" : "none";
+    }
+
+    // Function to load booth team members for the current booth, post filter, and page
+    async function loadBoothTeamMembers(boothName, pageNum, postFilter = currentPostFilter) {
+      if (!boothName) {
+        renderBoothTeamMembers([], 1, 1, 0); // Clear table if no booth name
+        return;
+      }
+      const response = await fetchData(`${BASE_URL}/booth-team?boothName=${boothName}&post=${postFilter}&page=${pageNum}&limit=${membersPerPage}`);
+      currentPage = response.currentPage;
+      renderBoothTeamMembers(response.data, response.currentPage, response.totalPages, response.totalMembers);
+    }
+
+    // Function to set active tab
+    function setActiveTab(activeTabId) {
+      prabhariTab.classList.remove("active", "inactive");
+      adhyakshTab.classList.remove("active", "inactive");
+
+      if (activeTabId === "prabhariTab") {
+        prabhariTab.classList.add("active");
+        adhyakshTab.classList.add("inactive");
+      } else {
+        adhyakshTab.classList.add("active");
+        prabhariTab.classList.add("inactive");
+      }
+    }
+
+    // Load States
+    async function loadStates() {
+      const response = await fetchData(`${BASE_URL}/states`);
+      populateDropdown(stateSelect, response.data, "अपना राज्य चुनें");
+    }
+
+    // Load Districts based on selected State
+    stateSelect.addEventListener("change", async () => {
+      const stateId = stateSelect.value;
+      districtSelect.disabled = true;
+      legislativeAssemblySelect.disabled = true;
+      boothSelect.disabled = true;
+      districtSelect.innerHTML = `<option value="">अपना जिला चुनें</option>`;
+      legislativeAssemblySelect.innerHTML = `<option value="">अपनी विधान सभा चुनें</option>`;
+      boothSelect.innerHTML = `<option value="">अपना बूथ चुनें</option>`;
+      loadBoothTeamMembers("", 1); // Clear table when state changes
+
+      if (stateId) {
+        const response = await fetchData(`${BASE_URL}/districts?parentId=${stateId}`);
+        populateDropdown(districtSelect, response.data, "अपना जिला चुनें");
+      }
+    });
+
+    // Load Legislative Assemblies based on selected District
+    districtSelect.addEventListener("change", async () => {
+      const districtId = districtSelect.value;
+      legislativeAssemblySelect.disabled = true;
+      boothSelect.disabled = true;
+      legislativeAssemblySelect.innerHTML = `<option value="">अपनी विधान सभा चुनें</option>`;
+      boothSelect.innerHTML = `<option value="">अपना बूथ चुनें</option>`;
+      loadBoothTeamMembers("", 1); // Clear table when district changes
+
+      if (districtId) {
+        const response = await fetchData(`${BASE_URL}/legislative-assemblies?parentId=${districtId}`);
+        populateDropdown(legislativeAssemblySelect, response.data, "अपनी विधान सभा चुनें");
+      }
+    });
+
+    // Load Booths based on selected Legislative Assembly
+    legislativeAssemblySelect.addEventListener("change", async () => {
+      const assemblyId = legislativeAssemblySelect.value;
+      boothSelect.disabled = true;
+      boothSelect.innerHTML = `<option value="">अपना बूथ चुनें</option>`;
+      loadBoothTeamMembers("", 1); // Clear table when assembly changes
+
+      if (assemblyId) {
+        const response = await fetchData(`${BASE_URL}/booths?parentId=${assemblyId}`);
+        populateDropdown(boothSelect, response.data, "अपना बूथ चुनें");
+      }
+    });
+
+    // Load Booth Team Members based on selected Booth
+    boothSelect.addEventListener("change", async () => {
+      const boothId = boothSelect.value;
+      if (boothId) {
+        const response = await fetchData(`${BASE_URL}/booths?_id=${boothId}`);
+        if (response.data && response.data.length > 0) {
+          currentBoothName = response.data[0].name;
+          currentPage = 1; // Reset to first page for new booth
+          loadBoothTeamMembers(currentBoothName, currentPage, currentPostFilter);
+        } else {
+          loadBoothTeamMembers("", 1); // No booth found, clear table
+        }
+      } else {
+        loadBoothTeamMembers("", 1); // No booth selected, clear table
+      }
+    });
+
+    // Pagination button event listeners
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        loadBoothTeamMembers(currentBoothName, currentPage - 1, currentPostFilter);
+      }
+    });
+
+    nextPageBtn.addEventListener("click", () => {
+      // totalPages is updated by renderBoothTeamMembers
+      const totalPagesText = pageInfoSpan.textContent.split(" of ")[1];
+      const totalPages = parseInt(totalPagesText.split(" ")[0]);
+      if (currentPage < totalPages) {
+        loadBoothTeamMembers(currentBoothName, currentPage + 1, currentPostFilter);
+      }
+    });
+
+    // Tab event listeners
+    prabhariTab.addEventListener("click", () => {
+      currentPostFilter = "Prabhari";
+      setActiveTab("prabhariTab");
+      currentPage = 1; // Reset to first page when tab changes
+      if (currentBoothName) {
+        loadBoothTeamMembers(currentBoothName, currentPage, currentPostFilter);
+      } else {
+        renderBoothTeamMembers([], 1, 1, 0); // Clear table if no booth selected
+      }
+    });
+
+    adhyakshTab.addEventListener("click", () => {
+      currentPostFilter = "Adhyaksh";
+      setActiveTab("adhyakshTab");
+      currentPage = 1; // Reset to first page when tab changes
+      if (currentBoothName) {
+        loadBoothTeamMembers(currentBoothName, currentPage, currentPostFilter);
+      } else {
+        renderBoothTeamMembers([], 1, 1, 0); // Clear table if no booth selected
+      }
+    });
+
+    // Initial load
+    loadStates();
+    setActiveTab("prabhariTab"); // Set default active tab
+  </script>
 
   <!-- footer section  -->
   <footer class="bg-gray-100 text-gray-900 pt-12 ">
@@ -984,7 +1441,8 @@
   </footer>
 
   <script src="app.js"></script>
-  <script src="./wings.js"></script>
+  <script src="/vision.js"></script>
+  <script src="./winglist.js"></script>
   <script src="./wing-leader.js"></script>
 </body>
 

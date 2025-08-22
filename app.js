@@ -110,14 +110,6 @@ function submitVolunteerForm(event) {
 let slideIndex = 1;
 let slideTimer;
 
-// Mobile menu toggle
-document
-  .getElementById("mobile-menu-button")
-  .addEventListener("click", function () {
-    const mobileMenu = document.getElementById("mobile-menu");
-    mobileMenu.classList.toggle("hidden");
-  });
-
 // Mobile dropdown toggle
 function toggleMobileDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
@@ -128,6 +120,10 @@ function toggleMobileDropdown(dropdownId) {
 function showSlides(n) {
   const slides = document.querySelectorAll(".slide");
   const dots = document.querySelectorAll(".dot");
+
+  if (slides.length === 0 || dots.length === 0) {
+    return; // Don't execute if slides or dots are not found
+  }
 
   if (n > slides.length) {
     slideIndex = 1;
@@ -142,7 +138,9 @@ function showSlides(n) {
   }
 
   // Show current slide
-  slides[slideIndex - 1].style.opacity = "1";
+  if (slides[slideIndex - 1]) {
+    slides[slideIndex - 1].style.opacity = "1";
+  }
 
   // Reset all dots
   for (let i = 0; i < dots.length; i++) {
@@ -151,8 +149,10 @@ function showSlides(n) {
   }
 
   // Highlight current dot
-  dots[slideIndex - 1].classList.remove("bg-white/50");
-  dots[slideIndex - 1].classList.add("bg-white");
+  if (dots[slideIndex - 1]) {
+    dots[slideIndex - 1].classList.remove("bg-white/50");
+    dots[slideIndex - 1].classList.add("bg-white");
+  }
 }
 
 function currentSlide(n) {
@@ -180,102 +180,122 @@ document.addEventListener("DOMContentLoaded", function () {
   autoSlide();
 });
 //  social media  js code
-const socialBtn = document.getElementById("socialBtn");
-const videosBtn = document.getElementById("videosBtn");
-const socialContent = document.getElementById("socialContent");
-const videosContent = document.getElementById("videosContent");
-
-// Social Media Icons
-const twitterIcon = document.getElementById("twitterIcon");
-const facebookIcon = document.getElementById("facebookIcon");
-const instagramIcon = document.getElementById("instagramIcon");
-const youtubeIcon = document.getElementById("youtubeIcon");
-
-// Toggle Functions
 function showSocial() {
-  // Update button states
-  socialBtn.classList.add("active-btn");
-  socialBtn.classList.remove("inactive-btn");
-  videosBtn.classList.add("inactive-btn");
-  videosBtn.classList.remove("active-btn");
+  const socialBtn = document.getElementById("socialBtn");
+  const videosBtn = document.getElementById("videosBtn");
+  const socialContent = document.getElementById("socialContent");
+  const videosContent = document.getElementById("videosContent");
 
-  // Show/hide content with fade effect
-  videosContent.classList.add("fade-out", "hidden");
-  videosContent.classList.remove("fade-in");
+  if (socialBtn && videosBtn && socialContent && videosContent) {
+    // Update button states
+    socialBtn.classList.add("active-btn");
+    socialBtn.classList.remove("inactive-btn");
+    videosBtn.classList.add("inactive-btn");
+    videosBtn.classList.remove("active-btn");
 
-  setTimeout(() => {
-    socialContent.classList.remove("fade-out", "hidden");
-    socialContent.classList.add("fade-in");
-    // Re-parse the Facebook plugin after its container is visible
-    if (window.FB) {
-      FB.XFBML.parse();
-    }
-  }, 300);
+    // Show/hide content with fade effect
+    videosContent.classList.add("fade-out", "hidden");
+    videosContent.classList.remove("fade-in");
+
+    setTimeout(() => {
+      socialContent.classList.remove("fade-out", "hidden");
+      socialContent.classList.add("fade-in");
+      // Re-parse the Facebook plugin after its container is visible
+      if (window.FB) {
+        FB.XFBML.parse();
+      }
+    }, 300);
+  }
 }
 
 function showVideos() {
-  // Update button states
-  videosBtn.classList.add("active-btn");
-  videosBtn.classList.remove("inactive-btn");
-  socialBtn.classList.add("inactive-btn");
-  socialBtn.classList.remove("active-btn");
+  const socialBtn = document.getElementById("socialBtn");
+  const videosBtn = document.getElementById("videosBtn");
+  const socialContent = document.getElementById("socialContent");
+  const videosContent = document.getElementById("videosContent");
 
-  // Show/hide content with fade effect
-  socialContent.classList.add("fade-out", "hidden");
-  socialContent.classList.remove("fade-in");
+  if (socialBtn && videosBtn && socialContent && videosContent) {
+    // Update button states
+    videosBtn.classList.add("active-btn");
+    videosBtn.classList.remove("inactive-btn");
+    socialBtn.classList.add("inactive-btn");
+    socialBtn.classList.remove("active-btn");
 
-  setTimeout(() => {
-    videosContent.classList.remove("fade-out", "hidden");
-    videosContent.classList.add("fade-in");
-  }, 300);
+    // Show/hide content with fade effect
+    socialContent.classList.add("fade-out", "hidden");
+    socialContent.classList.remove("fade-in");
+
+    setTimeout(() => {
+      videosContent.classList.remove("fade-out", "hidden");
+      videosContent.classList.add("fade-in");
+    }, 300);
+  }
 }
 
-// Event Listeners for Toggle Buttons
-socialBtn.addEventListener("click", showSocial);
-videosBtn.addEventListener("click", showVideos);
+document.addEventListener("DOMContentLoaded", () => {
+  const socialBtn = document.getElementById("socialBtn");
+  const videosBtn = document.getElementById("videosBtn");
 
-// Social Media Icon Click Handlers
-twitterIcon.addEventListener("click", () => {
-  window.open("https://twitter.com/AamAadmiParty", "_blank");
-});
+  // Event Listeners for Toggle Buttons
+  if (socialBtn) {
+    socialBtn.addEventListener("click", showSocial);
+  }
+  if (videosBtn) {
+    videosBtn.addEventListener("click", showVideos);
+  }
 
-facebookIcon.addEventListener("click", () => {
-  window.open("https://www.facebook.com/AamAadmiParty/", "_blank");
-});
+  // Social Media Icons
+  const twitterIcon = document.getElementById("twitterIcon");
+  const facebookIcon = document.getElementById("facebookIcon");
+  const instagramIcon = document.getElementById("instagramIcon");
+  const youtubeIcon = document.getElementById("youtubeIcon");
 
-instagramIcon.addEventListener("click", () => {
-  window.open("https://www.instagram.com/aamaadmiparty/", "_blank");
-});
+  // Social Media Icon Click Handlers
+  if (twitterIcon) {
+    twitterIcon.addEventListener("click", () => {
+      window.open("https://twitter.com/AamAadmiParty", "_blank");
+    });
+  }
+  if (facebookIcon) {
+    facebookIcon.addEventListener("click", () => {
+      window.open("https://www.facebook.com/AamAadmiParty/", "_blank");
+    });
+  }
+  if (instagramIcon) {
+    instagramIcon.addEventListener("click", () => {
+      window.open("https://www.instagram.com/aamaadmiparty/", "_blank");
+    });
+  }
+  if (youtubeIcon) {
+    youtubeIcon.addEventListener("click", () => {
+      window.open("https://www.youtube.com/@aamaadmiparty", "_blank");
+    });
+  }
 
-youtubeIcon.addEventListener("click", () => {
-  window.open("https://www.youtube.com/@aamaadmiparty", "_blank");
-});
+  // Add click feedback animation
+  document.querySelectorAll(".social-icon").forEach((icon) => {
+    icon.addEventListener("click", function () {
+      this.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        this.style.transform = "scale(1.1)";
+        setTimeout(() => {
+          this.style.transform = "scale(1)";
+        }, 150);
+      }, 100);
+    });
+  });
 
-// Add click feedback animation
-document.querySelectorAll(".social-icon").forEach((icon) => {
-  icon.addEventListener("click", function () {
-    this.style.transform = "scale(0.95)";
-    setTimeout(() => {
-      this.style.transform = "scale(1.1)";
+  // Add button click feedback
+  document.querySelectorAll(".toggle-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      this.style.transform = "scale(0.98)";
       setTimeout(() => {
         this.style.transform = "scale(1)";
-      }, 150);
-    }, 100);
+      }, 100);
+    });
   });
-});
 
-// Add button click feedback
-document.querySelectorAll(".toggle-btn").forEach((btn) => {
-  btn.addEventListener("click", function () {
-    this.style.transform = "scale(0.98)";
-    setTimeout(() => {
-      this.style.transform = "scale(1)";
-    }, 100);
-  });
-});
-
-// Initialize page - show social content by default
-document.addEventListener("DOMContentLoaded", () => {
+  // Initialize page - show social content by default
   showSocial();
 });
 
@@ -325,11 +345,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataRow = document.getElementById("dataRow");
   const noRecord = document.getElementById("noRecord");
 
-  // Hide "No record" text
-  noRecord.style.display = "none";
+  if (noRecord) {
+    // Hide "No record" text
+    noRecord.style.display = "none";
+  }
 
-  // Show data row
-  dataRow.classList.remove("hidden");
+  if (dataRow) {
+    // Show data row
+    dataRow.classList.remove("hidden");
+  }
 });
 
 

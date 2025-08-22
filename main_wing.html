@@ -15,6 +15,7 @@
         extend: {
           colors: {
             primary: "#021A32",
+            "primary-light": "#082F56", // submenu background
             hover: "#FFFF00",
             "aap-navy": "#021A32",
           },
@@ -28,107 +29,250 @@
 
   <body class="">
     <!-- nav bar  -->
+    <!-- =================== NAVBAR =================== -->
     <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
       <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
         <div class="flex justify-between items-center h-20">
+
           <!-- Logo -->
-          <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
-            class="w-28 h-10 mr-6" />
+          <a href="index.html" class="flex items-center">
+            <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+              class="w-28 h-10 mr-6" />
+          </a>
 
           <!-- Desktop Menu -->
           <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <div class="relative group">
-                <a href="index.html">
-                  <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                    HOME
-                  </button>
-                </a>
-                <a href="">
-                  <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                    ABOUT US
-                  </button>
-                </a>
-              </div>
+            <div class="ml-10 flex items-center space-x-2 lg:space-x-4">
 
-              <!-- Our Leader Dropdown -->
+              <!-- HOME -->
+              <a href="index.html"
+                class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                होम
+              </a>
+
+              <!-- जुड़े (Join) -->
               <div class="relative group">
-                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  OUR LEADER
+                <button type="button" aria-haspopup="menu" aria-expanded="false"
+                  class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200 flex items-center gap-1">
+                  जुड़े
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd" />
+                  </svg>
                 </button>
-                <div id="leader-dropdown-desktop"
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <a href="main_wing.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">MAIN WING</a>
-                  <a href="youth.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">YOUTH WING</a>
+
+                <!-- Desktop submenu -->
+                <div id="join-submenu-desktop" class="absolute left-0 mt-2 w-56 bg-primary-light text-white
+                        border border-white/10 rounded-xl shadow-xl
+                        opacity-0 invisible translate-y-1
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                        transition-all duration-200 z-50" role="menu" aria-label="Join submenu">
+                  <!-- caret -->
+                  <span class="absolute -top-2 left-6 
+             w-0 h-0 
+             border-l-8 border-r-8 border-b-8
+             border-l-transparent border-r-transparent 
+             border-b-primary-light"></span>
+
+                  <a href="joinUS.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg
+                        hover:bg-hover hover:text-primary focus:bg-hover focus:text-primary
+                        transition-colors outline-none" role="menuitem">
+                    <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M15 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" stroke="currentColor" stroke-width="1.5" />
+                      <path d="M3 20a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+                      <path d="M19 7v6m-3-3h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    <span class="text-sm font-medium">Join Us</span>
+                  </a>
+
+                  <a href="addmember.html" class="mt-1 flex items-center gap-3 px-4 py-2.5 rounded-lg
+                        hover:bg-hover hover:text-primary focus:bg-hover focus:text-primary
+                        transition-colors outline-none" role="menuitem">
+                    <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M9 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" stroke="currentColor" stroke-width="1.5" />
+                      <path d="M17 13a3.5 3.5 0 1 0-2.5-6" stroke="currentColor" stroke-width="1.5" />
+                      <path d="M3 21a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+                      <path d="M15 21a5 5 0 0 1 6-4.8" stroke="currentColor" stroke-width="1.5" />
+                    </svg>
+                    <span class="text-sm font-medium">Volunteer Register</span>
+                  </a>
                 </div>
               </div>
 
-              <!-- Join Us -->
-              <a href="joinUS.html"
-                class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">JOIN US</a>
+              <!-- लड़े -->
+              <a href="#" class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                लड़े
+              </a>
 
-              <!-- Volunteer Dropdown -->
-              <div class="relative group">
-                <button class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
-                  VOLUNTEER
-                </button>
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">LOGIN</a>
-                  <a href="addmember.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">REGISTER</a>
-                </div>
-              </div>
+              <!-- बदले -->
+              <a href="#" class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                बदले
+              </a>
             </div>
           </div>
 
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button id="mobile-menu-button" class="text-white hover:text-hover focus:outline-none">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <!-- Right controls -->
+          <div class="flex items-center gap-2">
+            <!-- Hamburger → Sidebar -->
+            <button id="sidebar-open-btn" type="button" class="text-white hover:text-hover focus:outline-none"
+              aria-label="Open sidebar menu" onclick="toggleSidebar(true)">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
-        </div>
-      </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary">
-          <a href="index.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">Home</a>
-          <div class="block">
-            <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('about-dropdown')">
-              ABOUT US
-            </button>
-          </div>
-          <div class="block">
-            <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('leader-dropdown')">
-              OUR LEADER
-            </button>
-            <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
-              <a href="main_wing.html" class="block px-3 py-2 text-sm hover:text-hover">MAIN WING</a>
-              <a href="youth.html" class="block px-3 py-2 text-sm hover:text-hover">YOUTH WING</a>
-            </div>
-          </div>
-          <a href="joinUS.html" class="block px-3 py-2 text-sm font-medium hover:text-hover">JOIN US</a>
-          <div class="block">
-            <button class="block w-full text-left px-3 py-2 text-sm font-medium hover:text-hover"
-              onclick="toggleMobileDropdown('volunteer-dropdown')">
-              VOLUNTEER
-            </button>
-            <div id="volunteer-dropdown" class="hidden pl-6 space-y-1">
-              <a href="login.html" class="block px-3 py-2 text-sm hover:text-hover">LOGIN</a>
-              <a href="addmember.html" class="block px-3 py-2 text-sm hover:text-hover">REGISTER</a>
-            </div>
-          </div>
         </div>
       </div>
     </nav>
 
+    <!-- Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[60] hidden" onclick="toggleSidebar(false)"></div>
+
+    <!-- =================== SIDEBAR (Drawer) =================== -->
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-primary-light text-white shadow-2xl z-[61]
+              translate-x-full transition-transform duration-300" aria-hidden="true" aria-label="Sidebar menu">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between px-4 h-16 border-b border-white/20">
+        <h3 class="text-lg font-semibold">Menu</h3>
+        <button type="button" class="p-2 rounded hover:bg-hover hover:text-primary transition"
+          aria-label="Close sidebar" onclick="toggleSidebar(false)">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="p-4 space-y-2">
+
+        <!-- हमारे नेता (collapsible) -->
+        <div>
+          <button type="button" id="btn-leader" aria-controls="leader-dropdown-mobile" class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium rounded
+                     hover:bg-hover hover:text-primary transition"
+            onclick="toggleCollapse('leader-dropdown-mobile','icon-leader')" aria-expanded="false">
+            <span>हमारे नेता</span>
+            <svg id="icon-leader" class="w-4 h-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
+            <a href="main_wing.html"
+              class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">MAIN WING</a>
+            <a href="youth.html"
+              class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">YOUTH WING</a>
+          </div>
+        </div>
+
+        <!-- Login -->
+        <a href="login.html"
+          class="block px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
+          लॉग इन करें
+        </a>
+
+        <!-- Divider -->
+        <hr class="my-2 border-white/20">
+
+        <!-- Mobile-only main links -->
+        <a href="index.html"
+          class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
+          होम
+        </a>
+
+        <!-- जुड़े (collapsible) -->
+        <div class="sm:hidden">
+          <button type="button" id="btn-join" aria-controls="join-dropdown-sidebar" class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium rounded
+                     hover:bg-hover hover:text-primary transition"
+            onclick="toggleCollapse('join-dropdown-sidebar','icon-join')" aria-expanded="false">
+            <span>जुड़े</span>
+            <svg id="icon-join" class="w-4 h-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <!-- Sidebar submenu (simple collapse; no absolute/group-hover here) -->
+          <div id="join-dropdown-sidebar" class="hidden pl-6 space-y-1" role="menu" aria-label="Join submenu (mobile)">
+            <a href="joinUS.html"
+              class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">Join Us</a>
+            <a href="addmember.html"
+              class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">Volunteer
+              Register</a>
+          </div>
+        </div>
+
+        <!-- Mobile Only Links -->
+        <a href="#"
+          class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">लड़े</a>
+        <a href="#"
+          class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">बदले</a>
+      </div>
+    </aside>
+
+    <!-- =================== SCRIPTS =================== -->
+    <script>
+      // ——— Drawer (Sidebar) ———
+      function toggleSidebar(open) {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isOpening = typeof open === 'boolean' ? open : sidebar.classList.contains('translate-x-full');
+
+        if (isOpening) {
+          sidebar.classList.remove('translate-x-full');
+          sidebar.setAttribute('aria-hidden', 'false');
+          overlay.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('translate-x-full');
+          sidebar.setAttribute('aria-hidden', 'true');
+          overlay.classList.add('hidden');
+          // Optionally collapse any open sections when closing:
+          collapseIfOpen('leader-dropdown-mobile', 'icon-leader');
+          collapseIfOpen('join-dropdown-sidebar', 'icon-join');
+        }
+      }
+
+      // ——— Generic collapse/expand helper ———
+      function toggleCollapse(listId, iconId) {
+        const list = document.getElementById(listId);
+        const icon = document.getElementById(iconId);
+        const triggerBtn = list?.previousElementSibling;
+
+        if (!list) return;
+
+        const isHidden = list.classList.contains('hidden');
+        list.classList.toggle('hidden');
+
+        if (triggerBtn) triggerBtn.setAttribute('aria-expanded', String(isHidden));
+        if (icon) icon.classList.toggle('rotate-180', isHidden);
+      }
+
+      function collapseIfOpen(listId, iconId) {
+        const list = document.getElementById(listId);
+        const icon = document.getElementById(iconId);
+        const triggerBtn = list?.previousElementSibling;
+        if (list && !list.classList.contains('hidden')) {
+          list.classList.add('hidden');
+          if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
+          if (icon) icon.classList.remove('rotate-180');
+        }
+      }
+
+      // Close sidebar with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') toggleSidebar(false);
+      });
+    </script>
+
+
     <!-- Hero Section -->
-    <section class="bg-primary pt-20 min-h-screen flex items-center overflow-hidden">
+    <section id="wing-hero" class="bg-primary pt-20 min-h-screen flex items-center overflow-hidden">
       <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -611,9 +755,9 @@
       }
     </script>
 
-    <script src="./wings.js"></script>
+    <script src="./winglist.js"></script>
+    <script src="./wing.js"></script>
     <script src="./leader.js"></script>
-
 
   </body>
 
