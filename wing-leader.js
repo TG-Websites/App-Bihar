@@ -1,26 +1,26 @@
 // const baseUrl = "https://backend.aapbihar.org";
 async function fetchWingLeaders() {
-    try {
-        const response = await fetch(`${baseUrl}/wings`);
-        const result = await response.json();
-        const wings = result?.data || [];
+  try {
+    const response = await fetch(`${baseUrl}/wings`);
+    const result = await response.json();
+    const wings = result?.data || [];
 
-        const container = document.getElementById("our-main-leader");
-        if (!container) return;
+    const container = document.getElementById("our-main-leader");
+    if (!container) return;
 
-        container.innerHTML = ""; // Clear existing content
+    container.innerHTML = ""; // Clear existing content
 
-        wings.forEach(wing => {
-            const leader = wing.leader;
-            const wingName = wing.name
-            if (!leader) return;
+    wings.forEach(wing => {
+      const leader = wing.leader;
+      const wingName = wing.name
+      if (!leader) return;
 
-            const { name, post, phone, image } = leader;
+      const { name, post, phone, image } = leader;
 
-            const card = document.createElement("div");
-            card.className = "group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-6 hover:scale-101 transition-all duration-500 ease-out overflow-hidden";
+      const card = document.createElement("div");
+      card.className = "group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-6 hover:scale-101 transition-all duration-500 ease-out overflow-hidden";
 
-            card.innerHTML = `
+      card.innerHTML = `
         <!-- Card Header with Image -->
         <div class="relative h-48 overflow-hidden rounded-t-3xl">
           <img src="${image || 'https://via.placeholder.com/400x200'}"
@@ -59,11 +59,11 @@ async function fetchWingLeaders() {
         <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/0 to-purple-600/0 group-hover:from-indigo-600/10 group-hover:to-purple-600/10 transition-all duration-500 rounded-3xl"></div>
       `;
 
-            container.appendChild(card);
-        });
-    } catch (err) {
-        console.error("❌ Failed to fetch wing leaders:", err);
-    }
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error("❌ Failed to fetch wing leaders:", err);
+  }
 }
 
 fetchWingLeaders();

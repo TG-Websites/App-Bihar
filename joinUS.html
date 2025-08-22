@@ -525,7 +525,7 @@
 
 
   <script>
-    
+
 
     // Mobile dropdown toggle
     function toggleMobileDropdown(dropdownId) {
@@ -548,7 +548,7 @@
     });
 
     // Form validation
-    document.querySelector("form").addEventListener("submit", function (e) {
+    document.querySelector("form").addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const state = document.getElementById("state").value;
@@ -557,17 +557,44 @@
       const declaration = document.getElementById("declaration").checked;
       const consent = document.getElementById("consent").checked;
 
+      // Validation
       if (!state || !name || !mobile || !declaration || !consent) {
         alert("Please fill all fields and accept the terms.");
         return;
       }
-
       if (mobile.length < 10) {
         alert("Please enter a valid mobile number.");
         return;
       }
 
-      alert("Registration submitted successfully!");
+      try {
+        const res = await fetch("https://backend.aapbihar.org/members", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // 👈 backend पर express.json() enable होना चाहिए
+          },
+          body: JSON.stringify({
+            state,
+            name,
+            mobileNumber: mobile,
+            declaration,
+            consent,
+            joinedBy: "self"
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert("Registration submitted successfully!");
+          console.log("Server Response:", data.data);
+        } else {
+          alert("Failed: " + (data.error || "Something went wrong"));
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Error submitting form!");
+      }
     });
   </script>
 </body>
