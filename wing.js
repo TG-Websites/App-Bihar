@@ -3,7 +3,7 @@
    and only fills content into it from /api/wings/:id
 */
 
-const API_BASE = "http://localhost:8000"; // GET /api/wings/:id
+const API_BASE = "https://admin.aapbihar.org/"; // GET /api/wings/:id
 
 // ------------ Utils ------------
 function escapeHTML(str = "") {

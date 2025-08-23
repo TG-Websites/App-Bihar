@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8000";
+const baseUrl = "https://admin.aapbihar.org/";
 
 // ✅ Populate both desktop and mobile dropdowns (themed)
 async function fetchWings() {
