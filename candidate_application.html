@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Candidate Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#021A32",
+                        "primary-light": "#082F56",
+                        hover: "#FFFF00",
+                        "aap-navy": "#021A32",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-primary min-h-screen text-white">
+    <!-- =================== NAVBAR =================== -->
+    <nav class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 sm:px-5 lg:px-7">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="https://aamaadmiparty.org/wp-content/uploads/2024/02/unnamed-33.webp" alt="Logo"
+                        class="w-28 h-10 mr-6" />
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-2 lg:space-x-4">
+
+                        <!-- HOME -->
+                        <a href="index.html"
+                            class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                            होम
+                        </a>
+
+                        <!-- जुड़े (Join) -->
+                        <div class="relative group">
+                            <button type="button" aria-haspopup="menu" aria-expanded="false"
+                                class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200 flex items-center gap-1">
+                                जुड़े
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+
+                            <!-- Desktop submenu -->
+                            <div id="join-submenu-desktop" class="absolute left-0 mt-2 w-56 bg-primary-light text-white
+                        border border-white/10 rounded-xl shadow-xl
+                        opacity-0 invisible translate-y-1
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                        transition-all duration-200 z-50" role="menu" aria-label="Join submenu">
+                                <!-- caret -->
+                                <span class="absolute -top-2 left-6 
+             w-0 h-0 
+             border-l-8 border-r-8 border-b-8
+             border-l-transparent border-r-transparent 
+             border-b-primary-light"></span>
+
+
+                                <a href="joinUS.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg
+                        hover:bg-hover hover:text-primary focus:bg-hover focus:text-primary
+                        transition-colors outline-none" role="menuitem">
+                                    <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M15 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <path d="M3 20a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+                                        <path d="M19 7v6m-3-3h6" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                    <span class="text-sm font-medium">Join Us</span>
+                                </a>
+
+                                <a href="addmember.html" class="mt-1 flex items-center gap-3 px-4 py-2.5 rounded-lg
+                        hover:bg-hover hover:text-primary focus:bg-hover focus:text-primary
+                        transition-colors outline-none" role="menuitem">
+                                    <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M9 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <path d="M17 13a3.5 3.5 0 1 0-2.5-6" stroke="currentColor" stroke-width="1.5" />
+                                        <path d="M3 21a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+                                        <path d="M15 21a5 5 0 0 1 6-4.8" stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                    <span class="text-sm font-medium">Volunteer Register</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- लड़े -->
+                        <a href="./candidate_application.html"
+                            class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                            लड़े
+                        </a>
+
+                        <!-- बदले -->
+                        <a href="./campaign.html"
+                            class="px-3 py-2 text-sm font-medium hover:text-hover transition-colors duration-200">
+                            बदले
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right controls -->
+                <div class="flex items-center gap-2">
+                    <!-- Hamburger → Sidebar -->
+                    <button id="sidebar-open-btn" type="button" class="text-white hover:text-hover focus:outline-none"
+                        aria-label="Open sidebar menu" onclick="toggleSidebar(true)">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[60] hidden" onclick="toggleSidebar(false)"></div>
+
+    <!-- =================== SIDEBAR (Drawer) =================== -->
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-primary-light text-white shadow-2xl z-[61]
+              translate-x-full transition-transform duration-300" aria-hidden="true" aria-label="Sidebar menu">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between px-4 h-16 border-b border-white/20">
+            <h3 class="text-lg font-semibold">Menu</h3>
+            <button type="button" class="p-2 rounded hover:bg-hover hover:text-primary transition"
+                aria-label="Close sidebar" onclick="toggleSidebar(false)">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="p-4 space-y-2">
+
+            <!-- हमारे नेता (collapsible) -->
+            <div>
+                <button type="button" id="btn-leader" aria-controls="leader-dropdown-mobile" class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium rounded
+                     hover:bg-hover hover:text-primary transition"
+                    onclick="toggleCollapse('leader-dropdown-mobile','icon-leader')" aria-expanded="false">
+                    <span>हमारे नेता</span>
+                    <svg id="icon-leader" class="w-4 h-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="leader-dropdown-mobile" class="hidden pl-6 space-y-1">
+                    <a href="main_wing.html"
+                        class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">MAIN
+                        WING</a>
+                    <a href="youth.html"
+                        class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">YOUTH
+                        WING</a>
+                </div>
+            </div>
+
+            <!-- Login -->
+            <a href="https://admin.aapbihar.org/"
+                class="block px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
+                लॉग इन करें
+            </a>
+
+            <!-- Divider -->
+            <hr class="my-2 border-white/20">
+
+            <!-- Mobile-only main links -->
+            <a href="index.html"
+                class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
+                होम
+            </a>
+
+            <!-- जुड़े (collapsible) -->
+            <div class="sm:hidden">
+                <button type="button" id="btn-join" aria-controls="join-dropdown-sidebar" class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium rounded
+                     hover:bg-hover hover:text-primary transition"
+                    onclick="toggleCollapse('join-dropdown-sidebar','icon-join')" aria-expanded="false">
+                    <span>जुड़े</span>
+                    <svg id="icon-join" class="w-4 h-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <!-- Sidebar submenu (simple collapse; no absolute/group-hover here) -->
+                <div id="join-dropdown-sidebar" class="hidden pl-6 space-y-1" role="menu"
+                    aria-label="Join submenu (mobile)">
+                    <a href="joinUS.html"
+                        class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">Join Us</a>
+                    <a href="addmember.html"
+                        class="block px-3 py-2 text-sm rounded hover:bg-hover hover:text-primary transition">Volunteer
+                        Register</a>
+                </div>
+            </div>
+
+            <!-- Mobile Only Links -->
+            <a href="./candidate_application.html"
+                class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">लड़े</a>
+            <a href="/campaign.html"
+                class="block sm:hidden px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">बदले</a>
+        </div>
+    </aside>
+
+    <!-- =================== SCRIPTS =================== -->
+    <script>
+        // ——— Drawer (Sidebar) ———
+        function toggleSidebar(open) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const isOpening = typeof open === 'boolean' ? open : sidebar.classList.contains('translate-x-full');
+
+            if (isOpening) {
+                sidebar.classList.remove('translate-x-full');
+                sidebar.setAttribute('aria-hidden', 'false');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('translate-x-full');
+                sidebar.setAttribute('aria-hidden', 'true');
+                overlay.classList.add('hidden');
+                // Optionally collapse any open sections when closing:
+                collapseIfOpen('leader-dropdown-mobile', 'icon-leader');
+                collapseIfOpen('join-dropdown-sidebar', 'icon-join');
+            }
+        }
+
+        // ——— Generic collapse/expand helper ———
+        function toggleCollapse(listId, iconId) {
+            const list = document.getElementById(listId);
+            const icon = document.getElementById(iconId);
+            const triggerBtn = list?.previousElementSibling;
+
+            if (!list) return;
+
+            const isHidden = list.classList.contains('hidden');
+            list.classList.toggle('hidden');
+
+            if (triggerBtn) triggerBtn.setAttribute('aria-expanded', String(isHidden));
+            if (icon) icon.classList.toggle('rotate-180', isHidden);
+        }
+
+        function collapseIfOpen(listId, iconId) {
+            const list = document.getElementById(listId);
+            const icon = document.getElementById(iconId);
+            const triggerBtn = list?.previousElementSibling;
+            if (list && !list.classList.contains('hidden')) {
+                list.classList.add('hidden');
+                if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Close sidebar with ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleSidebar(false);
+        });
+    </script>
+    <br>
+    <br>
+    <br>
+    <!-- Header -->
+    <header class="max-w-5xl mx-auto px-4 pt-10 pb-6">
+        <h1 class="text-3xl md:text-4xl font-bold">Candidate Application</h1>
+        <p class="text-white/70 mt-2">
+            Fill all required fields and upload your biodata PDF (max 10 MB).
+        </p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 pb-16">
+        <form id="candidateForm"
+            class="bg-primary-light/80 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+            enctype="multipart/form-data">
+            <!-- Personal -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-user text-amber-300"></i> Personal Details
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="applicantName" class="block text-sm mb-1">Applicant Name <span
+                                class="text-amber-300">*</span></label>
+                        <input id="applicantName" name="applicantName" type="text" placeholder="Enter full name"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="mobile" class="block text-sm mb-1">Mobile Number (10 digits)
+                            <span class="text-amber-300">*</span></label>
+                        <input id="mobile" name="mobile" type="tel" maxlength="10" placeholder="9876543210"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <p class="text-xs text-white/50 mt-1">We’ll use this to contact you.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- Location -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-location-dot text-amber-300"></i> Location
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="districtId" class="block text-sm mb-1">District <span
+                                class="text-amber-300">*</span></label>
+                        <select id="districtId" name="districtId"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="legislativeAssemblyId" class="block text-sm mb-1">Legislative Assembly <span
+                                class="text-amber-300">*</span></label>
+                        <select id="legislativeAssemblyId" name="legislativeAssemblyId"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <label for="address" class="block text-sm mb-1">Address <span
+                            class="text-amber-300">*</span></label>
+                    <input id="address" name="address" type="text" placeholder="House / Street / Area, City, PIN"
+                        class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- Campaign -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-bullhorn text-amber-300"></i> Campaign & Activities
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="gharJhandaCount" class="block text-sm mb-1">Har Ghar Jhanda Count *</label>
+                        <input id="gharJhandaCount" name="gharJhandaCount" type="number" min="0" step="1"
+                            placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="janAakroshMeetingsCount" class="block text-sm mb-1">Jan Aakrosh Meetings Count
+                            *</label>
+                        <input id="janAakroshMeetingsCount" name="janAakroshMeetingsCount" type="number" min="0"
+                            step="1" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <label for="communityMeetingsCount" class="block text-sm mb-1">Community Meetings Count *</label>
+                    <input id="communityMeetingsCount" name="communityMeetingsCount" type="number" min="0" step="1"
+                        placeholder="0"
+                        class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- Social Media -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-globe text-amber-300"></i> Social Presence
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="facebookFollowers" class="block text-sm mb-1">Facebook Followers *</label>
+                        <input id="facebookFollowers" name="facebookFollowers" type="number" min="0" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="facebookPageLink" class="block text-sm mb-1">Facebook Page Link *</label>
+                        <input id="facebookPageLink" name="facebookPageLink" type="url"
+                            placeholder="https://facebook.com/yourpage"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                    <div>
+                        <label for="instagramFollowers" class="block text-sm mb-1">Instagram Followers *</label>
+                        <input id="instagramFollowers" name="instagramFollowers" type="number" min="0" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="instagramLink" class="block text-sm mb-1">Instagram Link *</label>
+                        <input id="instagramLink" name="instagramLink" type="url"
+                            placeholder="https://instagram.com/yourhandle"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- PDF Upload -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-file-pdf text-amber-300"></i> Biodata PDF
+                </h2>
+                <label for="biodataPdf"
+                    class="flex items-center gap-4 rounded-xl border-2 border-dashed border-white/15 bg-white/5 p-6 hover:border-amber-300/60 cursor-pointer">
+                    <i class="fa-solid fa-upload text-amber-300 text-lg"></i>
+                    <div class="flex-1">
+                        <p class="text-sm">Click to upload your PDF</p>
+                        <p class="text-xs text-white/50">Max size 10 MB</p>
+                    </div>
+                    <input id="biodataPdf" name="biodataPdf" type="file" accept="application/pdf" class="hidden"
+                        required />
+                </label>
+                <p id="fileName" class="text-xs text-white/60 mt-2"></p>
+            </section>
+
+            <!-- Actions -->
+            <div class="p-6 md:p-8 flex items-center justify-between bg-white/5">
+                <span id="statusMsg" class="text-sm text-white/70"></span>
+                <div class="flex gap-3">
+                    <button type="reset"
+                        class="px-5 py-3 rounded-xl border border-white/20 text-white hover:bg-white/10">
+                        Reset
+                    </button>
+                    <button type="submit"
+                        class="px-5 py-3 rounded-xl bg-amber-400 text-black hover:bg-amber-300 font-semibold">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <br>
+    <br>
+    <footer class="bg-gray-100 text-gray-900">
+        <!-- Quote -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-12">
+            <blockquote class="text-center lg:text-left">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#021A32] leading-snug">
+                    “First, they ignore you, then they laugh at you, then they fight you and then you win.” – Mahatma
+                    Gandhi
+                </h2>
+            </blockquote>
+        </div>
+
+        <!-- Main grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Column: Org -->
+                <div class="space-y-3">
+                    <img src="jharu-removebg-preview.png" alt="AAP Logo" class="w-28 sm:w-32 mx-auto lg:mx-0" />
+                    <h3 class="font-bold text-[#0b3c82] text-base text-center lg:text-left">AAM AADMI PARTY</h3>
+                    <p class="text-sm leading-relaxed text-center lg:text-left">
+                        1, Pandit Ravi Shankar Shukla Lane, (1 – Canning Lane)<br />New Delhi – 110001
+                    </p>
+                    <ul class="text-sm space-y-1 text-center lg:text-left">
+                        <li><span class="font-semibold">Helpline:</span> 97185 00606</li>
+                        <li><span class="font-semibold">Timing:</span> 9:00 am – 6:00 pm</li>
+                        <li><span class="font-semibold">Email:</span> contact@aapbihar.org</li>
+                    </ul>
+                </div>
+
+                <!-- Column: About -->
+                <div>
+                    <h4 class="text-[#0b3c82] font-bold mb-3 text-base text-center lg:text-left">About</h4>
+                    <ul class="space-y-2 text-sm text-center lg:text-left">
+                        <li><a href="#about" class="hover:underline hover:text-[#0b3c82]">Our History</a></li>
+                        <li><a href="main_wing.html" class="hover:underline hover:text-[#0b3c82]">AAP Leadership</a>
+                        </li>
+                        <li><a href="youth.html" class="hover:underline hover:text-[#0b3c82]">Youth Wing</a></li>
+                        <li><a href="joinUS.html" class="hover:underline hover:text-[#0b3c82]">Join Us</a></li>
+                        <li><a href="index.html" class="hover:underline hover:text-[#0b3c82]">Archive Website</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column: Media -->
+                <div>
+                    <h4 class="text-[#0b3c82] font-bold mb-3 text-base text-center lg:text-left">Media Resources</h4>
+                    <ul class="space-y-2 text-sm text-center lg:text-left">
+                        <li><a href="#social" class="hover:underline hover:text-[#0b3c82]">Press Release</a></li>
+                        <li><a href="#" class="hover:underline hover:text-[#0b3c82]">Official Spokespersons</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column: Social -->
+                <div>
+                    <h4 class="text-[#0b3c82] font-bold mb-3 text-base text-center lg:text-left">Follow us on</h4>
+                    <div class="flex items-center justify-center lg:justify-start gap-4 text-xl">
+                        <a href="https://www.facebook.com/AAPBihar/" aria-label="Facebook"
+                            class="hover:text-[#0b3c82]"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/aapbihar/?hl=en" aria-label="Instagram"
+                            class="hover:text-[#0b3c82]"><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="" aria-label="YouTube" class="hover:text-[#0b3c82]"><i class="fab fa-youtube"></i></a> -->
+                        <a href="https://x.com/aapbihar?lang=en" aria-label="X" class="hover:text-[#0b3c82]"><i
+                                class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="bg-[#021A32]">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white">
+                <p class="text-center sm:text-left">&copy; 2025 Aam Aadmi Party. All rights reserved.</p>
+                <nav class="flex flex-wrap justify-center sm:justify-end gap-4">
+                    <a href="privacy.html" class="hover:underline hover:text-gray-200">Privacy Policy</a>
+                    <a href="termcondition.html" class="hover:underline hover:text-gray-200">Terms of Service</a>
+                    <a href="addmember.html" class="hover:underline hover:text-gray-200">Contact Us</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const input = document.getElementById('biodataPdf');
+        const fileNameEl = document.getElementById('fileName');
+        input?.addEventListener('change', () => {
+            const f = input.files?.[0];
+            fileNameEl.textContent = f ? `Selected: ${f.name} (${(f.size / 1024 / 1024).toFixed(2)} MB)` : '';
+        });
+    </script>
+    <script src="./candidate_application.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
