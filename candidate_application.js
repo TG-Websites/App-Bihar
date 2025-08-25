@@ -1,5 +1,5 @@
 // ----- CONFIG -----
-const API_BASE = "https://admin.aapbihar.org/";
+const API_BASE = "https://backend.aapbihar.org";
 const SIGN_ENDPOINT = `${API_BASE}/api/cloudinary/signature`;             // POST
 const CREATE_ENDPOINT = `${API_BASE}/candidate-applications`;         // POST (JSON after cloud upload)
 const DISTRICTS_ENDPOINT = `${API_BASE}/districts`;                   // GET

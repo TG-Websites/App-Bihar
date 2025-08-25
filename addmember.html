@@ -7,6 +7,7 @@
   <title>Add Member</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="./custom_datepicker.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -168,7 +169,7 @@
       </div>
 
       <!-- Login -->
-      <a href="https://admin.aapbihar.org/"
+      <a href="https://backend.aapbihar.org"
         class="block px-3 py-2 text-sm font-medium rounded hover:bg-hover hover:text-primary transition">
         लॉग इन करें
       </a>
@@ -271,6 +272,8 @@
   <div class="container mx-auto px-4 py-4 sm:py-8 max-w-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl pt-12  ">
 
     <div class="text-center mb-8 sm:mb-12">
+      <br>
+      <br>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary tracking-wide mb-4 mt-16">Registration
         for
         Volunteer</h1>
@@ -291,50 +294,53 @@
           <div id="step2"
             class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 font-semibold text-sm sm:text-base">
             2</div>
+          <div class="w-8 sm:w-16 h-1 bg-yellow-500"></div>
+          <div id="step3"
+            class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 font-semibold text-sm sm:text-base">
+            3</div>
         </div>
       </div>
     </div>
 
     <!-- Form Container -->
     <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-      <!-- Step 1 Form -->
-      <div id="form-step-1">
-        <form id="step1Form" class="space-y-4 sm:space-y-6">
-          <!-- For larger screens, create a grid layout -->
+      <!-- ONE form wrapping all steps -->
+      <!-- ONE form wrapping all steps -->
+      <form id="joinForm" class="space-y-4 sm:space-y-6" enctype="multipart/form-data">
+        <!-- Step 1 -->
+        <div id="form-step-1">
           <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
             <!-- Left Column -->
             <div class="space-y-4 sm:space-y-6">
               <!-- Full Name -->
               <div>
-                <label class="block text-yellow-500 font-medium mb-2 text-sm sm:text-base">Full
+                <label for="fullName" class="block text-aap-navy font-medium mb-2 text-sm sm:text-base">Full
                   Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Enter your name"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
 
               <!-- Date of Birth -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Date of
-                  Birth</label>
+                <label for="dateOfBirth" class="block font-medium mb-2 text-sm sm:text-base text-aap-navy">
+                  Date of Birth
+                </label>
+
                 <div class="relative">
-                  <input type="date" id="dateOfBirth" name="dateOfBirth"
-                    class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-                  <div class="absolute right-3 top-2 sm:top-3 text-gray-400">📅</div>
+                  <input type="text" id="dateOfBirth" name="dateOfBirth" placeholder="(DD/MM/YYYY)" data-datepicker
+                    readonly class="w-full bg-white rounded-lg border border-gray-200 pl-10 pr-3 py-2
+             text-sm sm:text-base text-gray-900 placeholder-gray-400
+             focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent
+             hover:border-primary/50 transition" />
                 </div>
               </div>
 
-              <!-- Age -->
-              <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Age</label>
-                <input type="number" id="age" name="age" placeholder="Enter your age"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-              </div>
 
               <!-- Gender -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Gender</label>
+                <label for="gender" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Gender</label>
                 <select id="gender" name="gender"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent appearance-none bg-white">
                   <option value="">Select your gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -344,31 +350,31 @@
 
               <!-- Mobile Number -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Mobile
+                <label for="mobileNumber" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Mobile
                   Number</label>
                 <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
             </div>
 
             <!-- Right Column -->
             <div class="space-y-4 sm:space-y-6">
-              <!-- Religion -->
-              <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Religion</label>
-                <input type="text" id="religion" name="religion" placeholder="Enter your religion"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-              </div>
-
               <!-- Profile Picture -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Profile
-                  Picture</label>
+                <label for="profilePictureInput" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                  Profile Picture
+                </label>
                 <div id="profileUploadArea"
-                  class="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-8 text-center cursor-pointer hover:border-yellow-500 transition-colors">
-                  <div class="text-gray-400 text-2xl sm:text-4xl mb-2">📷</div>
+                  class="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-8 text-center cursor-pointer hover:border-aap-navy transition-colors">
+                  <!-- Camera icon -->
+                  <svg class="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-2" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
                   <p class="text-gray-500 text-xs sm:text-sm">Click to upload image</p>
-                  <input type="file" accept="image/*" class="hidden" id="profilePictureInput">
+                  <input type="file" accept="image/*" class="hidden" id="profilePictureInput" name="profilePicture">
                 </div>
                 <img id="imagePreview" src="#" alt="Image Preview"
                   class="hidden w-24 h-24 object-cover rounded-full mt-2 mx-auto">
@@ -380,38 +386,53 @@
           <!-- Next Button -->
           <div class="pt-4">
             <button type="button" id="nextStep1Btn"
-              class="w-full sm:w-auto sm:min-w-32 bg-yellow-500 text-white py-2 sm:py-3 px-6 rounded-lg font-semibold hover:bg-yellow-600 transition-colors text-sm sm:text-base">
-              Next →
+              class="inline-flex items-center gap-2 w-full sm:w-auto sm:min-w-32 bg-aap-navy text-white py-2 sm:py-3 px-6 rounded-lg font-semibold hover:bg-primary-light transition-colors text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-hover">
+              Next
+              <!-- Chevron Right -->
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
             </button>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <!-- Step 2 Form -->
-      <div id="form-step-2" class="hidden">
-        <form id="step2Form" class="space-y-4 sm:space-y-6">
-          <!-- For larger screens, create a grid layout -->
+        <!-- Step 2 -->
+        <div id="form-step-2" class="hidden">
           <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
             <!-- Left Column -->
             <div class="space-y-4 sm:space-y-6">
               <!-- Zone Selection -->
               <div>
-                <label class="block text-gray-700 font-medium mb-4 text-sm sm:text-base">What Zone do
-                  you live
-                  in?</label>
+                <span class="block text-gray-700 font-medium mb-4 text-sm sm:text-base">What Zone do you live in?</span>
                 <div class="flex flex-wrap gap-2 sm:gap-4 mb-6">
                   <label class="flex items-center cursor-pointer transform hover:scale-105 transition-transform">
                     <input type="radio" name="zone" value="urban" class="hidden zone-radio">
                     <span
-                      class="zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300">
-                      🏢 Urban
+                      class="zone-button inline-flex items-center gap-2 bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-hover transition-all duration-300">
+                      <!-- Building icon -->
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="18"></rect>
+                        <rect x="14" y="8" width="7" height="13"></rect>
+                        <line x1="7" y1="6" x2="7" y2="6"></line>
+                        <line x1="7" y1="10" x2="7" y2="10"></line>
+                        <line x1="7" y1="14" x2="7" y2="14"></line>
+                      </svg>
+                      Urban
                     </span>
                   </label>
                   <label class="flex items-center cursor-pointer transform hover:scale-105 transition-transform">
                     <input type="radio" name="zone" value="rural" class="hidden zone-radio">
                     <span
-                      class="zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300">
-                      🌾 Rural
+                      class="zone-button inline-flex items-center gap-2 bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-hover transition-all duration-300">
+                      <!-- Home/leaf icon -->
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 10l9-7 9 7"></path>
+                        <path d="M9 21V9h6v12"></path>
+                      </svg>
+                      Rural
                     </span>
                   </label>
                 </div>
@@ -420,20 +441,28 @@
                 <div id="zone-description" class="hidden p-4 rounded-lg mb-4 transition-all duration-500">
                   <div id="urban-desc" class="hidden">
                     <div class="flex items-center mb-2">
-                      <span class="text-lg mr-2">🏙️</span>
-                      <span class="font-semibold text-yellow-600">Urban Area Selected</span>
+                      <!-- City icon -->
+                      <svg class="h-5 w-5 mr-2 text-aap-navy" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="18"></rect>
+                        <rect x="14" y="8" width="7" height="13"></rect>
+                      </svg>
+                      <span class="font-semibold text-aap-navy">Urban Area Selected</span>
                     </div>
-                    <p class="text-sm text-gray-600">You've selected Urban zone. Please fill in your
-                      city details below.
+                    <p class="text-sm text-gray-600">You've selected Urban zone. Please fill in your city details below.
                     </p>
                   </div>
                   <div id="rural-desc" class="hidden">
                     <div class="flex items-center mb-2">
-                      <span class="text-lg mr-2">🏡</span>
-                      <span class="font-semibold text-yellow-600">Rural Area Selected</span>
+                      <!-- House icon -->
+                      <svg class="h-5 w-5 mr-2 text-aap-navy" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 10l9-7 9 7"></path>
+                        <path d="M9 21V9h6v12"></path>
+                      </svg>
+                      <span class="font-semibold text-aap-navy">Rural Area Selected</span>
                     </div>
-                    <p class="text-sm text-gray-600">You've selected Rural zone. Please provide your
-                      village and
+                    <p class="text-sm text-gray-600">You've selected Rural zone. Please provide your village and
                       panchayat details below.</p>
                   </div>
                 </div>
@@ -441,9 +470,10 @@
 
               <!-- District -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">District</label>
-                <select id="district-select"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                <label for="district-select"
+                  class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">District</label>
+                <select id="district-select" name="district"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent appearance-none bg-white">
                   <option value="">Select your district</option>
                   <option>Delhi</option>
                   <option>Mumbai</option>
@@ -455,29 +485,30 @@
 
               <!-- Block -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Block</label>
-                <select id="block-select"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                <label for="block-select"
+                  class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Block</label>
+                <select id="block-select" name="block"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent appearance-none bg-white">
                   <option value="">Select your block</option>
                 </select>
               </div>
 
               <!-- Panchayat/City Name -->
               <div>
-                <label id="panchayat-label"
+                <label id="panchayat-label" for="panchayat-select"
                   class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Panchayat</label>
-                <select id="panchayat-select"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent appearance-none bg-white">
+                <select id="panchayat-select" name="panchayatOrCity"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent appearance-none bg-white">
                   <option value="" id="panchayat-option">Select your Panchayat</option>
                 </select>
               </div>
 
               <!-- Village Name -->
               <div id="village-field">
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Village
+                <label for="village-input" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Village
                   Name</label>
-                <input type="text" id="village-input" placeholder="Enter your village name"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                <input type="text" id="village-input" name="village" placeholder="Enter your village name"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
             </div>
 
@@ -485,49 +516,50 @@
             <div class="space-y-4 sm:space-y-6">
               <!-- Ward Number -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Ward
+                <label for="wardNumber" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Ward
                   Number</label>
                 <input type="text" id="wardNumber" name="wardNumber" placeholder="Enter your ward number"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
 
               <!-- Booth Number -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Booth
+                <label for="boothNumber" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Booth
                   Number</label>
                 <input type="text" id="boothNumber" name="boothNumber" placeholder="Enter your booth number"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
 
               <!-- PIN Code -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">PIN
-                  Code</label>
+                <label for="pinCode" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">PIN Code</label>
                 <input type="text" id="pinCode" name="pinCode" placeholder="Enter your pin code"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
 
               <!-- Post Office -->
               <div>
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Post
+                <label for="postOffice" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Post
                   Office</label>
                 <input type="text" id="postOffice" name="postOffice" placeholder="Enter your post office"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
 
-              <!-- City Name -->
+              <!-- City Name (Urban) -->
               <div id="city-field" class="hidden">
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">City Name</label>
+                <label for="cityName" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">City
+                  Name</label>
                 <input type="text" id="cityName" name="cityName" placeholder="Enter your city name"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
 
-              <!-- Street or Locality -->
+              <!-- Street or Locality (Urban) -->
               <div id="street-field" class="hidden">
-                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Street or Locality</label>
+                <label for="streetOrLocality" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Street
+                  or Locality</label>
                 <input type="text" id="streetOrLocality" name="streetOrLocality"
                   placeholder="Enter your street or locality"
-                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
             </div>
           </div>
@@ -535,16 +567,92 @@
           <!-- Buttons -->
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
             <button type="button" id="backStep1Btn"
-              class="w-full sm:flex-1 bg-gray-200 text-gray-700 py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-sm sm:text-base">
-              ← Back
+              class="inline-flex items-center gap-2 w-full sm:flex-1 bg-gray-200 text-gray-700 py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-hover">
+              <!-- Chevron Left -->
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+              Back
             </button>
-            <button type="submit" id="submitFormBtn"
-              class="w-full sm:flex-1 bg-yellow-500 text-white py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-yellow-600 transition-colors text-sm sm:text-base">
-              Continue →
+            <button type="button" id="nextStep2Btn"
+              class="inline-flex items-center gap-2 w-full sm:flex-1 bg-aap-navy text-white py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-primary-light transition-colors text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-hover">
+              Continue
+              <!-- Chevron Right -->
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
             </button>
           </div>
-        </form>
-      </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="form-step-3" class="hidden">
+          <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 space-y-4">
+            <!-- Left Column -->
+            <div class="space-y-4 sm:space-y-6">
+              <div>
+                <label for="whyYouWantToJoinUs" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Why
+                  You Want To Join Us</label>
+                <input type="text" id="whyYouWantToJoinUs" name="whyYouWantToJoinUs"
+                  placeholder="why you want to join us?"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
+              </div>
+
+              <div>
+                <label for="howMuchTimeYouDedicate"
+                  class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">How much time you can
+                  dedicate?</label>
+                <input type="text" id="howMuchTimeYouDedicate" name="howMuchTimeYouDedicate"
+                  placeholder="how much time you dedicate?"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-4 sm:space-y-6">
+              <div>
+                <label for="inWhichFieldYouCanContribute"
+                  class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">In which field you can
+                  contribute</label>
+                <input type="text" id="inWhichFieldYouCanContribute" name="inWhichFieldYouCanContribute"
+                  placeholder="In which field you can contribute"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
+              </div>
+              <div>
+                <label for="howCanYouHelpUs" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">How can
+                  you help us</label>
+                <input type="text" id="howCanYouHelpUs" name="howCanYouHelpUs" placeholder="how can you help us"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+            <button type="button" id="backStep2Btn"
+              class="inline-flex items-center gap-2 w-full sm:flex-1 bg-gray-200 text-gray-700 py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-hover">
+              <!-- Chevron Left -->
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+              Back
+            </button>
+            <button type="submit" id="submitFormBtn"
+              class="inline-flex items-center gap-2 w-full sm:flex-1 bg-aap-navy text-white py-2 sm:py-3 px-4 rounded-lg font-semibold hover:bg-primary-light transition-colors text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-hover">
+              Submit
+              <!-- Check icon -->
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+
     </div>
   </div>
   <br>
@@ -688,28 +796,39 @@
       }
     };
 
-    function goToStep2() {
-      document.getElementById('form-step-1').classList.add('hidden');
-      document.getElementById('form-step-2').classList.remove('hidden');
-
-      // Update progress indicators
-      document.getElementById('step1').classList.remove('bg-yellow-500');
-      document.getElementById('step1').classList.add('bg-gray-300', 'text-gray-500');
-      document.getElementById('step2').classList.remove('bg-gray-300', 'text-gray-500');
-      document.getElementById('step2').classList.add('bg-yellow-500', 'text-white');
+    // ----- Step nav helpers -----
+    function setProgress(step) {
+      const s1 = document.getElementById('step1');
+      const s2 = document.getElementById('step2');
+      const s3 = document.getElementById('step3');
+      const on = (el) => el && (el.classList.remove('bg-gray-300', 'text-gray-500'), el.classList.add('bg-yellow-500', 'text-white'));
+      const off = (el) => el && (el.classList.add('bg-gray-300', 'text-gray-500'), el.classList.remove('bg-yellow-500', 'text-white'));
+      [s1, s2, s3].forEach(off);
+      if (step === 1) on(s1);
+      if (step === 2) on(s2);
+      if (step === 3) on(s3);
     }
 
     function goToStep1() {
-      document.getElementById('form-step-2').classList.add('hidden');
       document.getElementById('form-step-1').classList.remove('hidden');
-
-      // Update progress indicators
-      document.getElementById('step2').classList.remove('bg-yellow-500', 'text-white');
-      document.getElementById('step2').classList.add('bg-gray-300', 'text-gray-500');
-      document.getElementById('step1').classList.remove('bg-gray-300', 'text-gray-500');
-      document.getElementById('step1').classList.add('bg-yellow-500', 'text-white');
+      document.getElementById('form-step-2').classList.add('hidden');
+      document.getElementById('form-step-3').classList.add('hidden');
+      setProgress(1);
+    }
+    function goToStep2() {
+      document.getElementById('form-step-1').classList.add('hidden');
+      document.getElementById('form-step-2').classList.remove('hidden');
+      document.getElementById('form-step-3').classList.add('hidden');
+      setProgress(2);
+    }
+    function goToStep3() {
+      document.getElementById('form-step-1').classList.add('hidden');
+      document.getElementById('form-step-2').classList.add('hidden');
+      document.getElementById('form-step-3').classList.remove('hidden');
+      setProgress(3);
     }
 
+    // ----- Zone / dropdown helpers -----
     function updateFormForZone(selectedZone) {
       const panchayatLabel = document.getElementById('panchayat-label');
       const villageField = document.getElementById('village-field');
@@ -719,67 +838,50 @@
       const urbanDesc = document.getElementById('urban-desc');
       const ruralDesc = document.getElementById('rural-desc');
 
-      // Show zone description
       zoneDescription.classList.remove('hidden');
+      zoneDescription.style.backgroundColor = '#FEF3C7';
+      zoneDescription.style.borderLeft = '4px solid #EAB308';
 
       if (selectedZone === 'rural') {
-        // Rural specific changes
         panchayatLabel.textContent = 'Panchayat';
         villageField.classList.remove('hidden');
         cityField.classList.add('hidden');
         streetField.classList.add('hidden');
-
-        // Show rural description
         urbanDesc.classList.add('hidden');
         ruralDesc.classList.remove('hidden');
-        zoneDescription.style.backgroundColor = '#FEF3C7'; // Light yellow background
-        zoneDescription.style.borderLeft = '4px solid #EAB308';
-
-      } else if (selectedZone === 'urban') {
-        // Urban specific changes
+      } else {
         panchayatLabel.textContent = 'Area/Ward';
         villageField.classList.add('hidden');
         cityField.classList.remove('hidden');
         streetField.classList.remove('hidden');
-
-        // Show urban description
         ruralDesc.classList.add('hidden');
         urbanDesc.classList.remove('hidden');
-        zoneDescription.style.backgroundColor = '#FEF3C7'; // Light yellow background
-        zoneDescription.style.borderLeft = '4px solid #EAB308';
       }
     }
 
     function populateBlocks(district, zone) {
       const blockSelect = document.getElementById('block-select');
       blockSelect.innerHTML = '<option value="">Select your block</option>';
-
       const data = zone === 'rural' ? ruralData : urbanData;
       const blocks = data.blocks[district] || [];
-
       blocks.forEach(block => {
         const option = document.createElement('option');
         option.value = block;
         option.textContent = block;
         blockSelect.appendChild(option);
       });
-
-      // Reset panchayat dropdown when blocks are populated
       resetPanchayatDropdown();
     }
 
     function populatePanchayats(block, zone) {
       const panchayatSelect = document.getElementById('panchayat-select');
-
       panchayatSelect.innerHTML = `<option value="">Select your Panchayat</option>`;
-
       const data = zone === 'rural' ? ruralData : urbanData;
-      const panchayats = (zone === 'rural' ? data.panchayats[block] : data.areas[block]) || [];
-
-      panchayats.forEach(panchayat => {
+      const list = (zone === 'rural' ? data.panchayats[block] : data.areas[block]) || [];
+      list.forEach(name => {
         const option = document.createElement('option');
-        option.value = panchayat;
-        option.textContent = panchayat;
+        option.value = name;
+        option.textContent = name;
         panchayatSelect.appendChild(option);
       });
     }
@@ -794,24 +896,25 @@
       blockSelect.innerHTML = '<option value="">Select your block</option>';
     }
 
-    // Profile picture upload handler
     document.addEventListener('DOMContentLoaded', function () {
+      setProgress(1); // optional progress pills, if present
+
+      // ----- Upload handling -----
       const profileUploadInput = document.getElementById('profilePictureInput');
       const profileUploadArea = document.getElementById('profileUploadArea');
       const imagePreview = document.getElementById('imagePreview');
       const uploadStatus = document.getElementById('uploadStatus');
 
-      let uploadedImageUrl = ''; // To store the Cloudinary URL
-
-      const BASE_URL = "https://admin.aapbihar.org/"; // Your backend URL
+      let uploadedImageUrl = ''; // Cloudinary URL after upload
+      const BASE_URL = "https://backend.aapbihar.org"; // backend URL
 
       async function handleProfilePictureChange(e) {
-        const file = e.target.files[0];
+        const file = e.target.files?.[0];
         if (file) {
           // Show local preview
           const reader = new FileReader();
-          reader.onload = (e) => {
-            imagePreview.src = e.target.result;
+          reader.onload = (ev) => {
+            imagePreview.src = ev.target.result;
             imagePreview.classList.remove('hidden');
           };
           reader.readAsDataURL(file);
@@ -820,49 +923,41 @@
           uploadStatus.style.color = 'blue';
 
           try {
-            // 1. Get Cloudinary signature from backend
+            // 1) get signature from backend
             const signatureResponse = await fetch(`${BASE_URL}/api/cloudinary/signature`, {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ folder: "volunteer_profiles" }),
             });
             const signatureData = await signatureResponse.json();
-
-            if (!signatureData.success) {
-              throw new Error(signatureData.message || "Failed to get Cloudinary signature");
+            if (!signatureResponse.ok || !signatureData?.success) {
+              throw new Error(signatureData?.message || "Failed to get Cloudinary signature");
             }
-
             const { signature, timestamp, cloudname, api_key } = signatureData.data;
 
-            // 2. Prepare FormData for direct Cloudinary upload
-            const cloudinaryFormData = new FormData();
-            cloudinaryFormData.append("file", file);
-            cloudinaryFormData.append("api_key", api_key);
-            cloudinaryFormData.append("timestamp", timestamp);
-            cloudinaryFormData.append("signature", signature);
-            cloudinaryFormData.append("folder", "volunteer_profiles");
+            // 2) upload to Cloudinary
+            const fd = new FormData();
+            fd.append("file", file);
+            fd.append("api_key", api_key);
+            fd.append("timestamp", timestamp);
+            fd.append("signature", signature);
+            fd.append("folder", "volunteer_profiles");
 
-            // 3. Upload to Cloudinary
-            const cloudinaryUploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, {
+            const cloudinaryRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, {
               method: "POST",
-              body: cloudinaryFormData,
+              body: fd,
             });
-            const cloudinaryResult = await cloudinaryUploadResponse.json();
+            const cloudinaryJson = await cloudinaryRes.json();
+            if (!cloudinaryRes.ok) throw new Error(cloudinaryJson?.error?.message || "Cloudinary upload failed");
 
-            if (cloudinaryUploadResponse.ok) {
-              uploadedImageUrl = cloudinaryResult.secure_url;
-              uploadStatus.textContent = 'Upload successful!';
-              uploadStatus.style.color = 'green';
-            } else {
-              throw new Error(cloudinaryResult.error?.message || "Cloudinary upload failed");
-            }
-          } catch (error) {
-            console.error("Image upload error:", error);
-            uploadStatus.textContent = `Upload failed: ${error.message}`;
+            uploadedImageUrl = cloudinaryJson.secure_url;
+            uploadStatus.textContent = 'Upload successful!';
+            uploadStatus.style.color = 'green';
+          } catch (err) {
+            console.error("Image upload error:", err);
+            uploadStatus.textContent = `Upload failed: ${err.message}`;
             uploadStatus.style.color = 'red';
-            uploadedImageUrl = ''; // Clear URL on failure
+            uploadedImageUrl = '';
           }
         } else {
           imagePreview.src = "#";
@@ -872,189 +967,197 @@
         }
       }
 
-      if (profileUploadArea) {
-        profileUploadArea.addEventListener('click', function () {
-          profileUploadInput.click();
-        });
-
+      if (profileUploadArea && profileUploadInput) {
+        profileUploadArea.addEventListener('click', () => profileUploadInput.click());
         profileUploadInput.addEventListener('change', handleProfilePictureChange);
       }
 
-      // Zone selection handler
+      // ----- Zone selection -----
       const zoneRadios = document.querySelectorAll('.zone-radio');
       zoneRadios.forEach(radio => {
         radio.addEventListener('change', function () {
-          // Reset all zone buttons
-          document.querySelectorAll('.zone-button').forEach(button => {
-            button.className = 'zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300';
+          // reset visual state for buttons
+          document.querySelectorAll('.zone-button').forEach(btn => {
+            btn.className = 'zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300';
           });
 
-          // Highlight selected zone with yellow color
           if (this.checked) {
-            const button = this.nextElementSibling;
-            button.className = 'zone-button bg-yellow-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-yellow-600 shadow-lg transform scale-105 transition-all duration-300';
+            const btn = this.nextElementSibling;
+            btn.className = 'zone-button bg-yellow-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-yellow-600 shadow-lg transform scale-105 transition-all duration-300';
 
-            // Update form based on selection
+            // Update UI for zone
             updateFormForZone(this.value);
 
             // Reset dependent dropdowns
             resetBlockDropdown();
             resetPanchayatDropdown();
 
-            // Populate blocks if district is already selected
+            // Populate blocks if district already chosen
             const selectedDistrict = document.getElementById('district-select').value;
-            if (selectedDistrict && selectedDistrict !== 'Select your district' && selectedDistrict !== '') {
+            if (selectedDistrict) {
               populateBlocks(selectedDistrict, this.value);
             }
           }
         });
       });
 
-      // District change handler
+      // ----- District / Block handlers -----
       document.getElementById('district-select')?.addEventListener('change', function () {
-        const selectedDistrict = this.value;
-        const selectedZone = document.querySelector('.zone-radio:checked')?.value;
-
-        // Reset dependent dropdowns
+        const district = this.value;
+        const zone = document.querySelector('.zone-radio:checked')?.value;
         resetBlockDropdown();
         resetPanchayatDropdown();
-
-        if (selectedDistrict && selectedDistrict !== 'Select your district' && selectedDistrict !== '' && selectedZone) {
-          populateBlocks(selectedDistrict, selectedZone);
-        }
+        if (district && zone) populateBlocks(district, zone);
       });
 
-      // Block change handler
       document.getElementById('block-select')?.addEventListener('change', function () {
-        const selectedBlock = this.value;
-        const selectedZone = document.querySelector('.zone-radio:checked')?.value;
-
-        // Reset panchayat dropdown
+        const block = this.value;
+        const zone = document.querySelector('.zone-radio:checked')?.value;
         resetPanchayatDropdown();
-
-        if (selectedBlock && selectedBlock !== 'Select your block' && selectedBlock !== '' && selectedZone) {
-          populatePanchayats(selectedBlock, selectedZone);
-        }
+        if (block && zone) populatePanchayats(block, zone);
       });
 
-      // Step 1 form submission (Next button)
-      document.getElementById('nextStep1Btn')?.addEventListener('click', function (event) {
-        event.preventDefault();
-        // Basic validation for Step 1 fields
-        const fullName = document.getElementById('fullName').value;
-        const dateOfBirth = document.getElementById('dateOfBirth').value;
-        const age = document.getElementById('age').value;
-        const gender = document.getElementById('gender').value;
-        const mobileNumber = document.getElementById('mobileNumber').value;
+      // ----- Step 1: Next -----
+      document.getElementById('nextStep1Btn')?.addEventListener('click', function (e) {
+        e.preventDefault();
+        const fullName = document.getElementById('fullName').value.trim();
+        const dateOfBirth = document.getElementById('dateOfBirth').value.trim();
+        const gender = document.getElementById('gender').value.trim();
+        const mobileNumber = document.getElementById('mobileNumber').value.trim();
 
-        if (!fullName || !dateOfBirth || !age || !gender || !mobileNumber) {
+        if (!fullName || !dateOfBirth || !gender || !mobileNumber) {
           alert('Please fill all required fields in Step 1.');
           return;
         }
-
-        // Proceed to Step 2
         goToStep2();
       });
 
-      // Step 2 form submission (Continue button)
-      document.getElementById('step2Form')?.addEventListener('submit', async function (event) {
-        event.preventDefault();
+      // ----- Step 2: Next -----
+      document.getElementById('nextStep2Btn')?.addEventListener('click', function (e) {
+        e.preventDefault();
+        const zone = document.querySelector('input[name="zone"]:checked')?.value; // 'urban' | 'rural'
+        const district = document.getElementById('district-select').value.trim();
+        const block = document.getElementById('block-select').value.trim();
+        const panchayatOrArea = document.getElementById('panchayat-select').value.trim();
 
-        const submitButton = document.getElementById('submitFormBtn');
-        submitButton.disabled = true;
-        submitButton.textContent = "Adding...";
+        if (!zone) { alert('Please select Urban or Rural.'); return; }
+        if (!district) { alert('Please select your District.'); return; }
+        if (!block) { alert('Please select your Block.'); return; }
+        if (!panchayatOrArea) { alert('Please select your Panchayat/Area.'); return; }
+
+        if (zone === 'rural') {
+          const village = document.getElementById('village-input').value.trim();
+          if (!village) { alert('Please enter your Village name.'); return; }
+        } else {
+          const city = document.getElementById('cityName').value.trim();
+          const street = document.getElementById('streetOrLocality').value.trim();
+          if (!city || !street) { alert('Please enter your City and Street/Locality.'); return; }
+        }
+
+        goToStep3();
+      });
+
+      // ----- Final Submit (whole form) -----
+      document.getElementById('joinForm')?.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Validate step 3 fields
+        const whyYouWantToJoinUs = document.getElementById('whyYouWantToJoinUs').value.trim();
+        const howMuchTimeYouDedicate = document.getElementById('howMuchTimeYouDedicate').value.trim();
+        const inWhichFieldYouCanContribute = document.getElementById('inWhichFieldYouCanContribute').value.trim();
+        const howCanYouHelpUs = document.getElementById('howCanYouHelpUs').value.trim();
+        if (!whyYouWantToJoinUs || !howMuchTimeYouDedicate || !inWhichFieldYouCanContribute || !howCanYouHelpUs) {
+          alert('Please fill all required fields in Step 3.');
+          return;
+        }
+
+        const submitBtn = document.getElementById('submitFormBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Adding...';
 
         try {
-          // Gather all form data
-          const volunteerData = {
-            fullName: document.getElementById('fullName').value,
-            dateOfBirth: document.getElementById('dateOfBirth').value,
-            age: parseInt(document.getElementById('age').value),
-            gender: document.getElementById('gender').value,
-            mobileNumber: document.getElementById('mobileNumber').value,
-            religion: document.getElementById('religion').value,
-            profilePicture: uploadedImageUrl, // Use the uploaded Cloudinary URL
-            zone: document.querySelector('input[name="zone"]:checked')?.value === 'urban' ? 'Urban' : 'Rural',
-            district: document.getElementById('district-select').value,
-            block: document.getElementById('block-select').value,
-            wardNumber: document.getElementById('wardNumber').value,
-            boothNumber: document.getElementById('boothNumber').value,
-            pinCode: document.getElementById('pinCode').value,
-            postOffice: document.getElementById('postOffice').value,
+          const zoneVal = document.querySelector('input[name="zone"]:checked')?.value;
+          const isUrban = zoneVal === 'urban';
+
+          const payload = {
+            fullName: document.getElementById('fullName').value.trim(),
+            dateOfBirth: document.getElementById('dateOfBirth').value.trim(),
+            gender: document.getElementById('gender').value.trim(),
+            mobileNumber: document.getElementById('mobileNumber').value.trim(),
+            profilePicture: uploadedImageUrl || '',
+            zone: isUrban ? 'Urban' : 'Rural',
+            district: document.getElementById('district-select').value.trim(),
+            block: document.getElementById('block-select').value.trim(),
+            wardNumber: document.getElementById('wardNumber').value.trim(),
+            boothNumber: document.getElementById('boothNumber').value.trim(),
+            pinCode: document.getElementById('pinCode').value.trim(),
+            postOffice: document.getElementById('postOffice').value.trim(),
+            whyYouWantToJoinUs,
+            howMuchTimeYouDedicate,
+            inWhichFieldYouCanContribute,
+            howCanYouHelpUs,
           };
 
-          // Add zone-specific fields
-          if (volunteerData.zone === "Urban") {
-            const cityName = document.getElementById('cityName');
-            const streetOrLocality = document.getElementById('streetOrLocality');
-            if (cityName) {
-              volunteerData.cityName = cityName.value;
-            }
-            if (streetOrLocality) {
-              volunteerData.streetOrLocality = streetOrLocality.value;
-            }
-          } else if (volunteerData.zone === "Rural") {
-            const panchayat = document.getElementById('panchayat-select');
-            const villageName = document.getElementById('village-input');
-            if (panchayat) {
-              volunteerData.panchayat = panchayat.value;
-            }
-            if (villageName) {
-              volunteerData.villageName = villageName.value;
-            }
+          if (isUrban) {
+            payload.cityName = document.getElementById('cityName').value.trim();
+            payload.streetOrLocality = document.getElementById('streetOrLocality').value.trim();
+            payload.area = document.getElementById('panchayat-select').value.trim(); // urban "areas"
+          } else {
+            payload.panchayat = document.getElementById('panchayat-select').value.trim();
+            payload.villageName = document.getElementById('village-input').value.trim();
           }
 
-          // Send volunteer data to your backend
-          const response = await fetch(`${BASE_URL}/volunteers`, {
+          // Send to backend
+          const res = await fetch(`${BASE_URL}/volunteers`, {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(volunteerData),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
           });
-          const result = await response.json();
+          const json = await res.json();
 
-          if (result.success) {
+          if (res.ok && json?.success) {
             alert("Volunteer added successfully!");
-            // Reset form and UI
-            document.getElementById('step1Form').reset();
-            document.getElementById('step2Form').reset();
+
+            // Reset form + UI
+            document.getElementById('joinForm').reset();
             imagePreview.classList.add('hidden');
+            imagePreview.src = '#';
             uploadStatus.textContent = '';
             uploadedImageUrl = '';
-            document.getElementById('profileUploadArea').innerHTML = `
-                            <div class="text-gray-400 text-2xl sm:text-4xl mb-2">📷</div>
-                            <p class="text-gray-500 text-xs sm:text-sm">Click to upload image</p>
-                            <input type="file" accept="image/*" class="hidden" id="profilePictureInput">
-                        `;
-            // Re-attach event listener for the new input element
-            document.getElementById('profilePictureInput').addEventListener('change', handleProfilePictureChange);
 
-            goToStep1(); // Go back to step 1
+            // Reset dropdowns
+            resetBlockDropdown();
+            resetPanchayatDropdown();
+
+            // Reset zone visuals
+            document.querySelectorAll('.zone-button').forEach(btn => {
+              btn.className = 'zone-button bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium border-2 border-transparent hover:border-yellow-300 transition-all duration-300';
+            });
+            document.getElementById('zone-description').classList.add('hidden');
+
+            goToStep1();
           } else {
-            alert(`Error: ${result.message}`);
+            alert(`Error: ${json?.message || 'Unknown error'}`);
           }
-        } catch (error) {
-          console.error("Submission error:", error);
-          alert(`An error occurred: ${error.message}`);
+        } catch (err) {
+          console.error("Submission error:", err);
+          alert(`An error occurred: ${err.message}`);
         } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = "Continue →";
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
         }
       });
 
-      // Back button for Step 2
-      document.getElementById('backStep1Btn')?.addEventListener('click', function () {
-        goToStep1();
-      });
+      // Back buttons
+      document.getElementById('backStep1Btn')?.addEventListener('click', () => goToStep1()); // from Step 2 -> Step 1
+      document.getElementById('backStep2Btn')?.addEventListener('click', () => goToStep2()); // from Step 3 -> Step 2
 
-      // Initial setup for zone fields
+      // Initialize zone UI if a radio is pre-checked
       const initialZone = document.querySelector('input[name="zone"]:checked');
-      if (initialZone) {
-        updateFormForZone(initialZone.value);
-      }
+      if (initialZone) updateFormForZone(initialZone.value);
     });
   </script>
+
   <script src="./app.js"></script>
   <script src="./winglist.js"></script>
 </body>

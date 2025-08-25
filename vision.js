@@ -3,7 +3,7 @@
 (function () {
     // ---- CONFIG ----
     const options = {
-        endpoint: "https://admin.aapbihar.org//visions",                       // API URL
+        endpoint: "https://backend.aapbihar.org/visions",                       // API URL
         wrapperSelector: ".vision-swiper .swiper-wrapper",  // Slides container
         swiperSelector: ".vision-swiper",                   // Swiper root (for init)
         nav: { next: ".vision-next", prev: ".vision-prev" },
