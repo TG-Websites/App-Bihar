@@ -502,8 +502,6 @@
 
 
   <script>
-
-
     // Mobile dropdown toggle
     function toggleMobileDropdown(dropdownId) {
       const dropdown = document.getElementById(dropdownId);
@@ -524,13 +522,14 @@
       });
     });
 
-    // Form validation
+    // Form validation + submission
     document.querySelector("form").addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      const state = document.getElementById("state").value;
-      const name = document.getElementById("name").value;
-      const mobile = document.getElementById("mobile").value;
+      // ✅ use let instead of const so we can modify values if needed
+      let state = document.getElementById("state").value.trim();
+      let name = document.getElementById("name").value.trim();
+      let mobile = document.getElementById("mobile").value.trim();
       const declaration = document.getElementById("declaration").checked;
       const consent = document.getElementById("consent").checked;
 
@@ -539,8 +538,8 @@
         alert("Please fill all fields and accept the terms.");
         return;
       }
-      if (mobile.length < 10) {
-        alert("Please enter a valid mobile number.");
+      if (!/^\d{10}$/.test(mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
         return;
       }
 
@@ -548,7 +547,7 @@
         const res = await fetch("https://backend.aapbihar.org/members", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json", // 👈 backend पर express.json() enable होना चाहिए
+            "Content-Type": "application/json", // 👈 backend must use express.json()
           },
           body: JSON.stringify({
             state,
@@ -556,7 +555,7 @@
             mobileNumber: mobile,
             declaration,
             consent,
-            joinedBy: "self"
+            joinedBy: "self",
           }),
         });
 
@@ -564,6 +563,8 @@
 
         if (res.ok) {
           alert("Registration submitted successfully!");
+          // ✅ reset the form properly
+          this.reset();
           console.log("Server Response:", data.data);
         } else {
           alert("Failed: " + (data.error || "Something went wrong"));
@@ -574,6 +575,7 @@
       }
     });
   </script>
+
 </body>
 <script src="./winglist.js"></script>
 
