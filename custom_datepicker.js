@@ -212,7 +212,7 @@
                 const b = this._button(year.toString());
                 if (selectedYear === year) {
                     b.dataset.selected = "1";
-                    b.style.background = "#3B82F6";
+                    b.style.background = "#FDDC1B";
                     b.style.color = "#fff";
                 }
                 b.addEventListener("click", () => {
@@ -271,7 +271,7 @@
                     selectedYear === this.displayDate.getFullYear()
                 ) {
                     b.dataset.selected = "1";
-                    b.style.background = "#3B82F6";
+                    b.style.background = "#FDDC1B";
                     b.style.color = "#fff";
                 }
                 b.addEventListener("click", () => {
@@ -365,12 +365,12 @@
                     inputDate.getDate() === d;
 
                 if (isToday && !isSelected) {
-                    btn.style.border = "1px solid #3B82F6";
+                    btn.style.border = "1px solid #FDDC1B";
                 }
 
                 if (isSelected) {
                     btn.dataset.selected = "1";
-                    btn.style.background = "#3B82F6";
+                    btn.style.background = "#FDDC1B";
                     btn.style.color = "#fff";
                 }
 
