@@ -1,6 +1,108 @@
 const API_BASE_URL = "https://backend.aapbihar.org";
 
-// --- helpers ---
+/* ---------------------------------- UX ---------------------------------- */
+function injectUX() {
+  // Only inject once
+  if (document.getElementById("app-loader-overlay")) return;
+
+  // Styles (scoped to our ids/classes to avoid conflicts)
+  const style = document.createElement("style");
+  style.id = "app-ux-inline-style";
+  style.textContent = `
+    #app-loader-overlay {
+      position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); z-index: 9999;
+    }
+    .app-spinner {
+      width: 54px; height: 54px; border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.35);
+      border-top-color: white; animation: app-spin 1s linear infinite;
+    }
+    @keyframes app-spin { to { transform: rotate(360deg); } }
+
+    #app-success-modal {
+      position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.4); z-index: 10000;
+    }
+    .app-modal-card {
+      background: #ffffff; color: #111827; border-radius: 14px; width: min(92vw, 420px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25); overflow: hidden;
+    }
+    .app-modal-head {
+      display: flex; align-items: center; gap: 10px; padding: 16px 18px; background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+    }
+    .app-modal-title { font-weight: 700; font-size: 16px; color: #92400e; }
+    .app-modal-body { padding: 18px; font-size: 14px; line-height: 1.5; color: #1f2937; }
+    .app-modal-actions {
+      padding: 14px 18px; display: flex; gap: 10px; justify-content: flex-end; background: #fafafa;
+      border-top: 1px solid #e5e7eb;
+    }
+    .app-btn {
+      padding: 10px 14px; border-radius: 10px; font-weight: 600; border: 1px solid transparent;
+      cursor: pointer; transition: transform .03s ease-in-out, background .2s;
+    }
+    .app-btn:active { transform: translateY(1px); }
+    .app-btn-primary { background: #fbbf24; color: #111827; }
+    .app-btn-primary:hover { background: #f59e0b; }
+  `;
+  document.head.appendChild(style);
+
+  // Loader overlay
+  const overlay = document.createElement("div");
+  overlay.id = "app-loader-overlay";
+  overlay.innerHTML = `
+    <div style="display:grid;place-items:center;gap:14px">
+      <div class="app-spinner" aria-label="Loading"></div>
+      <div style="color:#fff;font-weight:600">Submitting…</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // Success modal
+  const modal = document.createElement("div");
+  modal.id = "app-success-modal";
+  modal.innerHTML = `
+    <div class="app-modal-card" role="dialog" aria-modal="true" aria-labelledby="app-success-title">
+      <div class="app-modal-head">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="#92400e" stroke-width="1.6" fill="#fde68a"></circle>
+          <path d="M7 12.5l3.2 3.2L17 9" stroke="#92400e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <div id="app-success-title" class="app-modal-title">Feedback Submitted</div>
+      </div>
+      <div class="app-modal-body" id="app-success-message">Thanks! Your feedback has been recorded.</div>
+      <div class="app-modal-actions">
+        <button id="app-success-ok" class="app-btn app-btn-primary">OK</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Close modal on backdrop click or OK
+  modal.addEventListener("click", (e) => {
+    if (e.target.id === "app-success-modal") modal.style.display = "none";
+  });
+  document.getElementById("app-success-ok").addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+}
+
+function showLoader(show) {
+  const el = document.getElementById("app-loader-overlay");
+  if (!el) return;
+  el.style.display = show ? "flex" : "none";
+}
+
+function showSuccess(message = "Thanks! Your feedback has been recorded.") {
+  const modal = document.getElementById("app-success-modal");
+  const msg = document.getElementById("app-success-message");
+  if (!modal) return;
+  if (msg) msg.textContent = message;
+  modal.style.display = "flex";
+}
+
+/* ------------------------------- Helpers ------------------------------- */
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
@@ -18,7 +120,7 @@ function getInitials(name) {
   return parts.map(p => p[0]?.toUpperCase() || "").join("") || "A";
 }
 
-// --- list page (unchanged UI logic, themed card) ---
+/* --------------------------- List page (cards) -------------------------- */
 async function loadCampaigns() {
   const campaignsContainer = document.getElementById("campaigns-container");
   if (!campaignsContainer) return;
@@ -55,7 +157,7 @@ async function loadCampaigns() {
   }
 }
 
-// --- detail page ---
+/* ------------------------------ Detail page ----------------------------- */
 async function loadCampaignDetail() {
   const container = document.getElementById("campaign-detail");
   const campaignId = getQueryParam("id");
@@ -86,15 +188,6 @@ async function loadCampaignDetail() {
 
     const c = result.data;
     const fmt = (d) => (d ? new Date(d).toLocaleDateString() : null);
-    const statusClass = (s) => {
-      switch (s) {
-        case "active": return "bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300";
-        case "scheduled": return "bg-amber-100 text-amber-800 ring-1 ring-amber-300";
-        case "completed": return "bg-blue-100 text-blue-800 ring-1 ring-blue-300";
-        case "archived": return "bg-gray-200 text-gray-800 ring-1 ring-gray-300";
-        default: return "bg-gray-100 text-gray-800 ring-1 ring-gray-300";
-      }
-    };
 
     const chips = [];
     if (c.state?.name) chips.push(`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/10 text-white ring-1 ring-white/15">State: ${escapeHtml(c.state.name)}</span>`);
@@ -112,183 +205,116 @@ async function loadCampaignDetail() {
     `;
 
     const banner = c.bannerImage
-      ? `
-    <img src="${c.bannerImage}" alt="${escapeHtml(c.title)}"
-         class="w-full h-72 md:h-96 object-cover rounded-t-2xl"/>
-  `
-      : `
-    <div class="w-full h-56 md:h-72 rounded-t-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-500">
-      No Image
-    </div>
-  `;
+      ? `<img src="${c.bannerImage}" alt="${escapeHtml(c.title)}" class="w-full h-72 md:h-96 object-cover rounded-t-2xl"/>`
+      : `<div class="w-full h-56 md:h-72 rounded-t-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-500">No Image</div>`;
 
     container.innerHTML = `
-  <article class="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden">
-    ${banner}
-
-    <div class="p-6 md:p-8">
-      <!-- Title + Status -->
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900">"${escapeHtml(c.title)}"</h1>
-        
-      </div>
-
-      <!-- Meta chips -->
-      <div class="flex flex-wrap gap-2 mb-6">
-        ${dateRange}
-        ${chips.join("")}
-      </div>
-
-      <!-- Description -->
-      <div class="min-h-[300px] prose max-w-none prose-p:leading-relaxed prose-headings:mt-6 prose-headings:mb-3 prose-p:mt-0 prose-p:mb-4 text-gray-800">
-        <p>${escapeHtml(c.description || "")}</p>
-      </div>
-
-      <!-- Tags -->
-      ${tags ? `<div class="mt-6 flex flex-wrap gap-2">${tags}</div>` : ""}
-    </div>
-  </article>
-`;
-
-    // load comments after detail is in place
-    loadComments(campaignId);
+      <article class="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden">
+        ${banner}
+        <div class="p-6 md:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">"${escapeHtml(c.title)}"</h1>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-6">
+            ${dateRange}
+            ${chips.join("")}
+          </div>
+          <div class="min-h-[300px] prose max-w-none prose-p:leading-relaxed prose-headings:mt-6 prose-headings:mb-3 prose-p:mt-0 prose-p:mb-4 text-gray-800">
+            <p>${escapeHtml(c.description || "")}</p>
+          </div>
+          ${tags ? `<div class="mt-6 flex flex-wrap gap-2">${tags}</div>` : ""}
+        </div>
+      </article>
+    `;
   } catch (err) {
     console.error("Error loading campaign detail:", err);
     container.innerHTML = `<p class="text-red-400 p-6">Error loading campaign details. Please try again later.</p>`;
   }
 }
 
-// --- comments list ---
-async function loadComments(campaignId) {
-  const listEl = document.getElementById("comments-section");
-  const countEl = document.getElementById("comments-count");
-  if (!listEl) return;
-
-  // skeleton
-  listEl.innerHTML = `
-    <div class="space-y-3">
-      ${Array.from({ length: 3 }).map(() => `
-        <div class="bg-primary-light/70 backdrop-blur rounded-xl border border-white/10 p-4 animate-pulse">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-10 h-10 rounded-full bg-white/10"></div>
-            <div class="h-4 w-40 bg-white/10 rounded"></div>
-          </div>
-          <div class="h-3 w-full bg-white/10 rounded mb-2"></div>
-          <div class="h-3 w-2/3 bg-white/10 rounded"></div>
-        </div>
-      `).join("")}
-    </div>
-  `;
-  if (countEl) countEl.textContent = "";
-
-  try {
-    const res = await fetch(`${API_BASE_URL}/campaigns/${campaignId}/comments`);
-    const result = await res.json();
-
-    if (!result.success) {
-      listEl.innerHTML = `<p class="text-red-300">Failed to load comments: ${escapeHtml(result.message || "Unknown error")}</p>`;
-      return;
-    }
-
-    const data = Array.isArray(result.data) ? result.data : [];
-    if (countEl) countEl.textContent = `${data.length} comment${data.length === 1 ? "" : "s"}`;
-
-    if (data.length === 0) {
-      listEl.innerHTML = `
-        <div class="backdrop-blur p-6 text-center">
-          <p class="text-black/80">No feedback yet. Be the first to share your thoughts.</p>
-        </div>`;
-      return;
-    }
-
-    listEl.innerHTML = data.map(c => {
-      const name = c?.user?.name || c?.name || "Anonymous";
-      const initials = getInitials(name);
-      const when = c?.createdAt ? new Date(c.createdAt).toLocaleString() : "";
-      const text = c.comment || c.text || "";
-
-      return `
-        <div class=" backdrop-blur rounded-2xl border-l-2 border-primary-light/10 p-5">
-          <div class="flex items-start gap-4">
-            <div class="w-11 h-11 rounded-full bg-amber-400/20 text-amber-300 grid place-items-center font-semibold">
-              ${escapeHtml(initials)}
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <span class="text-primary-light/80 font-medium">${escapeHtml(name)}</span>
-                <span class="text-xs text-gray-300">${escapeHtml(when)}</span>
-              </div>
-              <p class="mt-2 text-black/90 leading-relaxed">${escapeHtml(text)}</p>
-            </div>
-          </div>
-        </div>`;
-    }).join("");
-  } catch (err) {
-    console.error("Error loading comments:", err);
-    listEl.innerHTML = `<p class="text-red-300">Error loading comments. Please try again later.</p>`;
-  }
-}
-
-// --- add comment ---
-async function addComment(campaignId, commentText) {
-  const btn = document.getElementById("add-comment-btn");
-  const errEl = document.getElementById("comment-error");
+/* ------------------------- Submit feedback (POST) ------------------------ */
+async function addFeedbackForm(campaignId, formData) {
+  const btn = document.getElementById("add-feedback-form-btn");
+  const errEl = document.getElementById("feedback-form-error");
   if (errEl) errEl.classList.add("hidden");
 
   try {
     if (btn) {
       btn.disabled = true;
-      btn.textContent = "Posting…";
+      btn.textContent = "Submitting…";
     }
+    showLoader(true);
 
-    const res = await fetch(`${API_BASE_URL}/campaigns/${campaignId}/comments`, {
+    const res = await fetch(`${API_BASE_URL}/campaigns/${campaignId}/feedback-forms`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: commentText })
+      body: JSON.stringify(formData)
     });
     const result = await res.json();
 
     if (!result.success) {
       if (errEl) {
-        errEl.textContent = result.message || "Failed to add comment.";
+        errEl.textContent = result.message || "Failed to add feedback form.";
         errEl.classList.remove("hidden");
       } else {
-        alert(`Failed to add comment: ${result.message}`);
+        alert(`Failed to add feedback form: ${result.message}`);
       }
       return;
     }
 
-    // Success: clear textarea and reload list
-    document.getElementById("comment-text").value = "";
-    await loadComments(getQueryParam("id"));
+    // Success: clear form
+    document.getElementById("feedback-form-name").value = "";
+    document.getElementById("feedback-form-mobile").value = "";
+    document.getElementById("feedback-form-state").value = "";
+    document.getElementById("feedback-form-district").value = "";
+    document.getElementById("feedback-form-vidhansabha").value = "";
+    document.getElementById("feedback-form-support").checked = false;
+
+    showSuccess("धन्यवाद! आपका फीडबैक सफलतापूर्वक जमा हो गया है।");
   } catch (err) {
-    console.error("Error adding comment:", err);
+    console.error("Error adding feedback form:", err);
     if (errEl) {
-      errEl.textContent = "Error adding comment. Please try again later.";
+      errEl.textContent = "Error adding feedback form. Please try again later.";
       errEl.classList.remove("hidden");
     } else {
-      alert("Error adding comment. Please try again later.");
+      alert("Error adding feedback form. Please try again later.");
     }
   } finally {
+    showLoader(false);
     if (btn) {
       btn.disabled = false;
-      btn.textContent = "Add Comment";
+      btn.textContent = "Submit Feedback";
     }
   }
 }
 
-// --- boot ---
+/* ---------------------------------- Boot --------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  // Inject loader + modal UI
+  injectUX();
+
   if (window.location.pathname.includes("campaign_detail.html")) {
     loadCampaignDetail();
-    document.getElementById("add-comment-btn").addEventListener("click", () => {
-      const campaignId = getQueryParam("id");
-      const txtEl = document.getElementById("comment-text");
-      const text = txtEl.value.trim();
-      if (!campaignId) return alert("Campaign ID missing.");
-      if (!text) return alert("Comment cannot be empty.");
-      addComment(campaignId, text);
-    });
+
+    // Attach event listener for feedback form submission
+    const addFeedbackFormBtn = document.getElementById("add-feedback-form-btn");
+    if (addFeedbackFormBtn) {
+      addFeedbackFormBtn.addEventListener("click", () => {
+        const campaignId = getQueryParam("id");
+        const name = document.getElementById("feedback-form-name").value.trim();
+        const mobile = document.getElementById("feedback-form-mobile").value.trim();
+        const state = document.getElementById("feedback-form-state").value.trim();
+        const district = document.getElementById("feedback-form-district").value.trim();
+        const vidhansabha = document.getElementById("feedback-form-vidhansabha").value.trim();
+        const support = document.getElementById("feedback-form-support").checked;
+
+        if (!campaignId) return alert("Campaign ID missing.");
+        if (!name || !mobile || !state || !district || !vidhansabha) return alert("Please fill all required feedback fields.");
+
+        const formData = { name, mobile, state, district, vidhansabha, support };
+        addFeedbackForm(campaignId, formData);
+      });
+    }
   } else if (window.location.pathname.includes("campaign.html")) {
     loadCampaigns();
   }

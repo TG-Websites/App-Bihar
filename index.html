@@ -414,7 +414,7 @@
             <div class="relative inline-block">
               <button
                 class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto">
-                <a href="./joinUS.html" class="relative z-10 flex items-center">
+                <a href="./campaign.html" class="relative z-10 flex items-center">
                   <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
@@ -456,7 +456,7 @@
             <div class="relative inline-block">
               <button
                 class="group relative overflow-hidden bg-gradient-to-r from-primary to-yellow-800 hover:from-hover hover:to-yellow-200 text-white hover:text-primary font-bold py-4 px-6 text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/50 rounded-xl w-auto">
-                <a href="./joinUS.html" class="relative z-10 flex items-center">
+                <a href="./candidate_application.html" class="relative z-10 flex items-center">
                   <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
@@ -1282,7 +1282,9 @@
                                 <span class="font-medium text-gray-900 text-sm sm:text-base">${member.name}</span>
                             </div>
                             <div class="text-gray-700 text-sm sm:text-base">${member.post} (${member.padnaam})</div>
-                            <div class="text-blue-600 font-medium text-sm sm:text-base">${member.phone}</div>
+                            <div class="text-blue-600 font-medium text-sm sm:text-base">${member.phone.replace(/^\d{6}/, "******")}
+
+</div>
                         </div>
                     `;
           tableContent.appendChild(row);

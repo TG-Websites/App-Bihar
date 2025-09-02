@@ -322,34 +322,49 @@
             <!-- JS fills the content (skeleton first, then real content) -->
         </div>
 
-        <!-- Comments -->
-        <section class="max-w-4xl mx-auto mt-8 bg-white ">
+        <!-- Feedback Forms -->
+        <section class="max-w-4xl mx-auto mt-8 bg-white rounded-2xl overflow-hidden">
             <header class="px-6 py-5 flex items-center justify-between">
-                <h2 class="text-xl md:text-2xl font-bold text-gray-900">Feedback & Comments</h2>
-                <div id="comments-count" class="text-sm text-gray-500"></div>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-900">Supporter Feedback</h2>
+                <div id="feedback-forms-count" class="text-sm text-gray-500"></div>
             </header>
 
-            <div class="p-6">
-                <!-- List -->
-                <div id="comments-section" class="space-y-4 mb-6">
-                    <!-- JS fills skeleton and comments -->
+            <!-- Composer -->
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input id="feedback-form-name" type="text" placeholder="Name"
+                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+
+                    <input id="feedback-form-mobile" type="tel" placeholder="Mobile"
+                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+
+                    <input id="feedback-form-state" type="text" placeholder="State"
+                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+
+                    <input id="feedback-form-district" type="text" placeholder="District"
+                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+
+                    <input id="feedback-form-vidhansabha" type="text" placeholder="Vidhansabha"
+                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
                 </div>
 
-                <!-- Composer -->
-                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3">
-                    <textarea id="comment-text"
-                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
-                        rows="3" placeholder="Share your thoughts about this campaign…"></textarea>
+                <label class="inline-flex items-center gap-2 select-none">
+                    <input id="feedback-form-support" type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 text-amber-500 focus:ring-amber-400">
+                    <span class="text-gray-800">haan mai samarth karta hu</span>
+                </label>
 
-                    <button id="add-comment-btn"
-                        class="h-fit md:self-end px-6 py-3 rounded-xl bg-amber-400 text-gray-900 font-semibold hover:bg-amber-300 transition disabled:opacity-60 disabled:cursor-not-allowed">
-                        Add Comment
+                <div class="flex items-center gap-3">
+                    <button id="add-feedback-form-btn"
+                        class="px-6 py-3 rounded-xl bg-amber-400 text-gray-900 font-semibold hover:bg-amber-300 transition disabled:opacity-60 disabled:cursor-not-allowed">
+                        Submit Feedback
                     </button>
+                    <p id="feedback-form-error" class="text-red-600 text-sm hidden"></p>
                 </div>
-                <p id="comment-error" class="text-red-600 text-sm mt-2 hidden"></p>
             </div>
         </section>
     </div>
+
 
     <br>
     <br>
