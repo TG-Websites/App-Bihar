@@ -329,6 +329,12 @@
                 <input type="text" id="fullName" name="fullName" placeholder="Enter your name"
                   class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
               </div>
+              <!-- Password -->
+              <div>
+                <label for="fullName" class="block text-aap-navy font-medium mb-2 text-sm sm:text-base">Password</label>
+                <input type="text" id="password" name="password" placeholder="Enter your password"
+                  class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent">
+              </div>
 
               <!-- Date of Birth -->
               <div>
@@ -1031,11 +1037,12 @@
       document.getElementById('nextStep1Btn')?.addEventListener('click', function (e) {
         e.preventDefault();
         const fullName = document.getElementById('fullName').value.trim();
+        const password = document.getElementById('password').value.trim();
         const dateOfBirth = document.getElementById('dateOfBirth').value.trim();
         const gender = document.getElementById('gender').value.trim();
         const mobileNumber = document.getElementById('mobileNumber').value.trim();
 
-        if (!fullName || !dateOfBirth || !gender || !mobileNumber) {
+        if (!fullName || !dateOfBirth || !gender || !mobileNumber || !password) {
           alert('Please fill all required fields in Step 1.');
           return;
         }
@@ -1091,6 +1098,7 @@
 
           const payload = {
             fullName: document.getElementById('fullName').value.trim(),
+            password: document.getElementById('password').value.trim(),
             dateOfBirth: document.getElementById('dateOfBirth').value.trim(),
             gender: document.getElementById('gender').value.trim(),
             mobileNumber: document.getElementById('mobileNumber').value.trim(),
