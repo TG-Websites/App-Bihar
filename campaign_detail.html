@@ -275,14 +275,25 @@
                     <input id="feedback-form-mobile" type="tel" placeholder="Mobile"
                         class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
 
-                    <input id="feedback-form-state" type="text" placeholder="State"
-                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+                    <!-- State -->
+                    <select id="feedback-form-state"
+                        class="w-full rounded-xl bg-white text-gray-900 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+                        <option value="">अपना राज्य चुनें</option>
+                    </select>
 
-                    <input id="feedback-form-district" type="text" placeholder="District"
-                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+                    <!-- District -->
+                    <select id="feedback-form-district"
+                        class="w-full rounded-xl bg-white text-gray-900 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
+                        disabled>
+                        <option value="">अपना जिला चुनें</option>
+                    </select>
 
-                    <input id="feedback-form-vidhansabha" type="text" placeholder="Vidhansabha"
-                        class="w-full rounded-xl bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400">
+                    <!-- Vidhansabha -->
+                    <select id="feedback-form-vidhansabha"
+                        class="w-full rounded-xl bg-white text-gray-900 border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
+                        disabled>
+                        <option value="">अपनी विधान सभा चुनें</option>
+                    </select>
                 </div>
 
                 <label class="inline-flex items-center gap-2 select-none">
@@ -299,6 +310,7 @@
                     <p id="feedback-form-error" class="text-red-600 text-sm hidden"></p>
                 </div>
             </div>
+
         </section>
     </div>
 

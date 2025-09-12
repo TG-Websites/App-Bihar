@@ -2,10 +2,8 @@ const API_BASE_URL = "https://backend.aapbihar.org";
 
 /* ---------------------------------- UX ---------------------------------- */
 function injectUX() {
-  // Only inject once
   if (document.getElementById("app-loader-overlay")) return;
 
-  // Styles (scoped to our ids/classes to avoid conflicts)
   const style = document.createElement("style");
   style.id = "app-ux-inline-style";
   style.textContent = `
@@ -48,7 +46,6 @@ function injectUX() {
   `;
   document.head.appendChild(style);
 
-  // Loader overlay
   const overlay = document.createElement("div");
   overlay.id = "app-loader-overlay";
   overlay.innerHTML = `
@@ -59,7 +56,6 @@ function injectUX() {
   `;
   document.body.appendChild(overlay);
 
-  // Success modal
   const modal = document.createElement("div");
   modal.id = "app-success-modal";
   modal.innerHTML = `
@@ -79,7 +75,6 @@ function injectUX() {
   `;
   document.body.appendChild(modal);
 
-  // Close modal on backdrop click or OK
   modal.addEventListener("click", (e) => {
     if (e.target.id === "app-success-modal") modal.style.display = "none";
   });
@@ -103,6 +98,11 @@ function showSuccess(message = "Thanks! Your feedback has been recorded.") {
 }
 
 /* ------------------------------- Helpers ------------------------------- */
+async function fetchData(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Network error");
+  return res.json();
+}
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
@@ -114,10 +114,6 @@ function escapeHtml(str) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
-}
-function getInitials(name) {
-  const parts = String(name || "").trim().split(/\s+/).slice(0, 2);
-  return parts.map(p => p[0]?.toUpperCase() || "").join("") || "A";
 }
 
 /* --------------------------- List page (cards) -------------------------- */
@@ -133,7 +129,7 @@ async function loadCampaigns() {
       campaignsContainer.innerHTML = "";
       result.data.forEach((c) => {
         campaignsContainer.innerHTML += `
-          <div class="bg-primary-light/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl overflow-hidden flex flex-col hover:shadow-2xl transition-shadow duration-300">
+          <div class="bg-primary-light/90 rounded-2xl border border-white/10 shadow-xl overflow-hidden flex flex-col hover:shadow-2xl transition-shadow">
             ${c.bannerImage
             ? `<img class="w-full h-48 object-cover" src="${c.bannerImage}" alt="${escapeHtml(c.title)}">`
             : `<div class="w-full h-48 bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center text-white/70 text-lg">No Image</div>`
@@ -168,67 +164,33 @@ async function loadCampaignDetail() {
     return;
   }
 
-  // skeleton
-  container.innerHTML = `
-    <div class="h-56 md:h-72 bg-gradient-to-br from-primary to-blue-900 animate-pulse"></div>
-    <div class="p-6 md:p-8">
-      <div class="h-7 w-56 bg-white/10 rounded mb-4 animate-pulse"></div>
-      <div class="h-4 w-full bg-white/10 rounded mb-2 animate-pulse"></div>
-      <div class="h-4 w-2/3 bg-white/10 rounded animate-pulse"></div>
-    </div>
-  `;
+  container.innerHTML = `<div class="h-56 md:h-72 bg-gradient-to-br from-primary to-blue-900 animate-pulse"></div>`;
 
   try {
     const res = await fetch(`${API_BASE_URL}/campaigns/${campaignId}`);
     const result = await res.json();
     if (!result.success) {
-      container.innerHTML = `<p class="text-red-400 p-6">Failed to load campaign: ${escapeHtml(result.message || "Unknown error")}</p>`;
+      container.innerHTML = `<p class="text-red-400 p-6">Failed to load campaign.</p>`;
       return;
     }
 
     const c = result.data;
-    const fmt = (d) => (d ? new Date(d).toLocaleDateString() : null);
-
-    const chips = [];
-    if (c.state?.name) chips.push(`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/10 text-white ring-1 ring-white/15">State: ${escapeHtml(c.state.name)}</span>`);
-    if (c.district?.name) chips.push(`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/10 text-white ring-1 ring-white/15">District: ${escapeHtml(c.district.name)}</span>`);
-    if (c.legislativeAssembly?.name) chips.push(`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/10 text-white ring-1 ring-white/15">LA: ${escapeHtml(c.legislativeAssembly.name)}</span>`);
-
-    const tags = (Array.isArray(c.tags) ? c.tags : [])
-      .slice(0, 8)
-      .map(t => `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/5 text-white/90 ring-1 ring-white/10">#${escapeHtml(t)}</span>`)
-      .join("");
-
-    const dateRange = `
-      ${fmt(c.startDate) ? `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/10 text-white ring-1 ring-white/15">Starts: ${fmt(c.startDate)}</span>` : ""}
-      ${fmt(c.endDate) ? `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-white/10 text-white ring-1 ring-white/15">Ends: ${fmt(c.endDate)}</span>` : ""}
-    `;
-
     const banner = c.bannerImage
       ? `<img src="${c.bannerImage}" alt="${escapeHtml(c.title)}" class="w-full h-72 md:h-96 object-cover rounded-t-2xl"/>`
-      : `<div class="w-full h-56 md:h-72 rounded-t-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-500">No Image</div>`;
+      : `<div class="w-full h-56 md:h-72 bg-gray-200 flex items-center justify-center">No Image</div>`;
 
     container.innerHTML = `
       <article class="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden">
         ${banner}
         <div class="p-6 md:p-8">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">"${escapeHtml(c.title)}"</h1>
-          </div>
-          <div class="flex flex-wrap gap-2 mb-6">
-            ${dateRange}
-            ${chips.join("")}
-          </div>
-          <div class="min-h-[300px] prose max-w-none prose-p:leading-relaxed prose-headings:mt-6 prose-headings:mb-3 prose-p:mt-0 prose-p:mb-4 text-gray-800">
-            <p>${escapeHtml(c.description || "")}</p>
-          </div>
-          ${tags ? `<div class="mt-6 flex flex-wrap gap-2">${tags}</div>` : ""}
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">${escapeHtml(c.title)}</h1>
+          <p class="text-gray-800">${escapeHtml(c.description || "")}</p>
         </div>
       </article>
     `;
   } catch (err) {
     console.error("Error loading campaign detail:", err);
-    container.innerHTML = `<p class="text-red-400 p-6">Error loading campaign details. Please try again later.</p>`;
+    container.innerHTML = `<p class="text-red-400 p-6">Error loading campaign details.</p>`;
   }
 }
 
@@ -262,7 +224,7 @@ async function addFeedbackForm(campaignId, formData) {
       return;
     }
 
-    // Success: clear form
+    // reset
     document.getElementById("feedback-form-name").value = "";
     document.getElementById("feedback-form-mobile").value = "";
     document.getElementById("feedback-form-state").value = "";
@@ -290,29 +252,83 @@ async function addFeedbackForm(campaignId, formData) {
 
 /* ---------------------------------- Boot --------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  // Inject loader + modal UI
   injectUX();
 
   if (window.location.pathname.includes("campaign_detail.html")) {
     loadCampaignDetail();
 
-    // Attach event listener for feedback form submission
     const addFeedbackFormBtn = document.getElementById("add-feedback-form-btn");
+    const stateSelect = document.getElementById("feedback-form-state");
+    const districtSelect = document.getElementById("feedback-form-district");
+    const vidhansabhaSelect = document.getElementById("feedback-form-vidhansabha");
+
+    /* submit */
     if (addFeedbackFormBtn) {
       addFeedbackFormBtn.addEventListener("click", () => {
         const campaignId = getQueryParam("id");
         const name = document.getElementById("feedback-form-name").value.trim();
         const mobile = document.getElementById("feedback-form-mobile").value.trim();
-        const state = document.getElementById("feedback-form-state").value.trim();
-        const district = document.getElementById("feedback-form-district").value.trim();
-        const vidhansabha = document.getElementById("feedback-form-vidhansabha").value.trim();
+        const state = stateSelect.value;
+        const district = districtSelect.value;
+        const vidhansabha = vidhansabhaSelect.value;
         const support = document.getElementById("feedback-form-support").checked;
 
         if (!campaignId) return alert("Campaign ID missing.");
-        if (!name || !mobile || !state || !district || !vidhansabha) return alert("Please fill all required feedback fields.");
+        if (!name || !mobile || !state || !district || !vidhansabha) {
+          return alert("Please fill all required fields.");
+        }
 
         const formData = { name, mobile, state, district, vidhansabha, support };
         addFeedbackForm(campaignId, formData);
+      });
+    }
+
+    /* dependent dropdowns */
+    async function loadStates() {
+      try {
+        const response = await fetchData(`${API_BASE_URL}/states`);
+        populateDropdown(stateSelect, response.data, "अपना राज्य चुनें");
+      } catch (err) {
+        console.error("Error loading states:", err);
+      }
+    }
+    loadStates();
+
+    stateSelect.addEventListener("change", async () => {
+      const stateId = stateSelect.options[stateSelect.selectedIndex]?.dataset.id;
+      districtSelect.disabled = true;
+      vidhansabhaSelect.disabled = true;
+      districtSelect.innerHTML = `<option value="">अपना जिला चुनें</option>`;
+      vidhansabhaSelect.innerHTML = `<option value="">अपनी विधान सभा चुनें</option>`;
+
+      if (stateId) {
+        const response = await fetchData(`${API_BASE_URL}/districts?parentId=${stateId}`);
+        populateDropdown(districtSelect, response.data, "अपना जिला चुनें");
+        districtSelect.disabled = false;
+      }
+    });
+
+    districtSelect.addEventListener("change", async () => {
+      const districtId = districtSelect.options[districtSelect.selectedIndex]?.dataset.id;
+      vidhansabhaSelect.disabled = true;
+      vidhansabhaSelect.innerHTML = `<option value="">अपनी विधान सभा चुनें</option>`;
+
+      if (districtId) {
+        const response = await fetchData(`${API_BASE_URL}/legislative-assemblies?parentId=${districtId}`);
+        populateDropdown(vidhansabhaSelect, response.data, "अपनी विधान सभा चुनें");
+        vidhansabhaSelect.disabled = false;
+      }
+    });
+
+    function populateDropdown(selectEl, items, placeholder) {
+      if (!selectEl) return;
+      selectEl.innerHTML = `<option value="">${placeholder}</option>`;
+      items.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.name;                 // DB में name जाएगा
+        option.textContent = item.name;
+        option.dataset.id = item._id || item.id;  // dependent fetch के लिए
+        selectEl.appendChild(option);
       });
     }
   } else if (window.location.pathname.includes("campaign.html")) {
