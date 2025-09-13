@@ -90,7 +90,7 @@ function submitVolunteerForm(event) {
   }
 
   // Send the request
-  fetch("https://backend.aapbihar.org/volunteers/", {
+  fetch("https://test-api.aapbihar.org/volunteers/", {
     method: "POST",
     body: finalFormData,
   })

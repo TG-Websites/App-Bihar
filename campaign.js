@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://backend.aapbihar.org";
+const API_BASE_URL = "https://test-api.aapbihar.org";
 
 /* ---------------------------------- UX ---------------------------------- */
 function injectUX() {

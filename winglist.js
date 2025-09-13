@@ -1,4 +1,4 @@
-const baseUrl = "https://backend.aapbihar.org";
+const baseUrl = "https://test-api.aapbihar.org";
 
 // ✅ Populate both desktop and mobile dropdowns (themed)
 async function fetchWings() {
