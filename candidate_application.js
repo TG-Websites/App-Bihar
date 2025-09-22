@@ -3,17 +3,27 @@
 const API_BASE = "https://test-api.aapbihar.org";
 const SIGN_ENDPOINT = `${API_BASE}/api/cloudinary/signature`;             // POST
 const CREATE_ENDPOINT = `${API_BASE}/candidate-applications`;             // POST (JSON after cloud upload)
+const STATES_ENDPOINT = `${API_BASE}/states`;                       // GET
 const DISTRICTS_ENDPOINT = `${API_BASE}/districts`;                       // GET
-const ASSEMBLIES_ENDPOINT = `${API_BASE}/legislative-assemblies`;         // GET ?district=<id>
+const ASSEMBLIES_ENDPOINT = `${API_BASE}/legislative-assemblies`;         // GET ?parentId=<id>
 const CLOUDINARY_UPLOAD_URL = (cloudName) =>
     `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
 
 // ----- HELPERS -----
 const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => c.querySelectorAll(s);
 const statusMsg = $("#statusMsg");
 const setStatus = (m, e = false) => {
     statusMsg.textContent = m || "";
     statusMsg.className = e ? "text-sm text-red-300" : "text-sm text-green-300";
+};
+
+const setError = (field, message) => {
+    const errorEl = $(`#${field}-error`);
+    if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.style.display = message ? "block" : "none";
+    }
 };
 
 // ---------- POPUP (Shadow DOM, fully encapsulated) ----------
@@ -174,12 +184,37 @@ const setStatus = (m, e = false) => {
     };
 })();
 
-// (same master-loaders as before)
-async function loadDistricts() {
-    const sel = $("#districtId");
+async function loadStates() {
+    const sel = $("#state");
     sel.innerHTML = `<option value="">Loading...</option>`;
     try {
-        const res = await fetch(DISTRICTS_ENDPOINT, { credentials: "include" });
+        const res = await fetch(STATES_ENDPOINT, { credentials: "include" });
+        const json = await res.json();
+        const list = Array.isArray(json?.data) ? json.data : json;
+        sel.innerHTML = `<option value="">Choose...</option>`;
+        list.forEach(s => {
+            const o = document.createElement("option");
+            o.className = "text-gray-800 py-1";
+            o.value = s._id || s.id; o.textContent = s.name;
+            sel.appendChild(o);
+        });
+    } catch {
+        sel.innerHTML = `<option value="">Failed to load</option>`;
+    }
+}
+
+async function loadDistricts(state) {
+    const sel = $("#district");
+    if (!state) {
+        sel.innerHTML = `<option value="">Choose state first</option>`;
+        sel.disabled = true;
+        return;
+    }
+    sel.disabled = false;
+    sel.innerHTML = `<option value="">Loading...</option>`;
+    try {
+        const res = await fetch(`${DISTRICTS_ENDPOINT}?parentId=${encodeURIComponent(state)}`,
+            { credentials: "include" });
         const json = await res.json();
         const list = Array.isArray(json?.data) ? json.data : json;
         sel.innerHTML = `<option value="">Choose...</option>`;
@@ -194,12 +229,17 @@ async function loadDistricts() {
     }
 }
 
-async function loadAssemblies(districtId) {
-    const sel = $("#legislativeAssemblyId");
-    if (!districtId) { sel.innerHTML = `<option value="">Choose district first</option>`; return; }
+async function loadAssemblies(district) {
+    const sel = $("#legislativeAssembly");
+    if (!district) {
+        sel.innerHTML = `<option value="">Choose district first</option>`;
+        sel.disabled = true;
+        return;
+    }
+    sel.disabled = false;
     sel.innerHTML = `<option value="">Loading...</option>`;
     try {
-        const res = await fetch(`${ASSEMBLIES_ENDPOINT}?parentId=${encodeURIComponent(districtId)}`,
+        const res = await fetch(`${ASSEMBLIES_ENDPOINT}?parentId=${encodeURIComponent(district)}`,
             { credentials: "include" });
         const json = await res.json();
         const list = Array.isArray(json?.data) ? json.data : json;
@@ -249,31 +289,66 @@ async function uploadPdfToCloudinary(file, sig) {
     return data; // { secure_url, public_id, ... }
 }
 
+function addTeamMember() {
+    const container = $("#teamMembersContainer");
+    const index = $$(".team-member").length;
+    const div = document.createElement("div");
+    div.className = "grid grid-cols-1 md:grid-cols-2 gap-5 team-member";
+    div.innerHTML = `
+        <div>
+            <label for="teamMemberName${index}" class="block text-sm mb-1">Team Member ${index + 1} Name</label>
+            <input id="teamMemberName${index}" name="teamMembers[${index}][name]" type="text" placeholder="Enter name"
+                class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+        </div>
+        <div>
+            <label for="teamMemberMobile${index}" class="block text-sm mb-1">Team Member ${index + 1} Mobile</label>
+            <input id="teamMemberMobile${index}" name="teamMembers[${index}][mobile]" type="tel" maxlength="10" placeholder="9876543210"
+                class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function validateForm() {
+    let isValid = true;
+    const form = $("#candidateForm");
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    // Clear all previous errors
+    $$(".error-message").forEach(el => el.textContent = "");
+
+    if (!payload.applicantName) { setError("applicantName", "Applicant name is required"); isValid = false; }
+    if (!payload.fatherName) { setError("fatherName", "Father name is required"); isValid = false; }
+    if (!payload.dob) { setError("dob", "Date of birth is required"); isValid = false; }
+    if (!payload.gender) { setError("gender", "Gender is required"); isValid = false; }
+    if (!payload.state) { setError("state", "State is required"); isValid = false; }
+    if (!payload.district) { setError("district", "District is required"); isValid = false; }
+    if (!payload.legislativeAssembly) { setError("legislativeAssembly", "Legislative Assembly is required"); isValid = false; }
+    if (!payload.address) { setError("address", "Address is required"); isValid = false; }
+    if (!/^[0-9]{10}$/.test(payload.mobile)) { setError("mobile", "Mobile number must be 10 digits."); isValid = false; }
+    if (payload.whatsapp && !/^[0-9]{10}$/.test(payload.whatsapp)) { setError("whatsapp", "WhatsApp number must be 10 digits."); isValid = false; }
+    if (payload.pincode && !/^[0-9]{6}$/.test(payload.pincode)) { setError("pincode", "Pincode must be 6 digits."); isValid = false; }
+    if (!$("#biodataPdf").files[0]) { setError("biodataPdf", "Biodata PDF is required"); isValid = false; }
+
+    const submitBtn = $("button[type='submit']");
+    if (isValid) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
+    } else {
+        submitBtn.disabled = true;
+        submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+
+    return isValid;
+}
+
 // ----- FORM SUBMIT -----
 async function onSubmit(e) {
     e.preventDefault();
     setStatus("");
 
-    const applicantName = $("#applicantName").value.trim();
-    const mobile = $("#mobile").value.trim();
-    const district = $("#districtId").value;
-    const legislativeAssembly = $("#legislativeAssemblyId").value;
-    const address = $("#address").value.trim();
-
-    const gharJhandaCount = +($("#gharJhandaCount").value || 0);
-    const janAakroshMeetingsCount = +($("#janAakroshMeetingsCount").value || 0);
-    const communityMeetingsCount = +($("#communityMeetingsCount").value || 0);
-
-    const facebookFollowers = +($("#facebookFollowers").value || 0);
-    const facebookPageLink = $("#facebookPageLink").value.trim();
-    const instagramFollowers = +($("#instagramFollowers").value || 0);
-    const instagramLink = $("#instagramLink").value.trim();
-
-    const pdfFile = $("#biodataPdf").files[0];
-
-    // basic checks
-    if (!applicantName || !/^\d{10}$/.test(mobile) || !district || !legislativeAssembly || !address || !pdfFile) {
-        setStatus("Please complete required fields correctly.", true);
+    if (!validateForm()) {
         showPopup({
             title: "Incomplete form",
             message: "Please complete required fields correctly.",
@@ -281,6 +356,23 @@ async function onSubmit(e) {
         });
         return;
     }
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    const teamMembers = [];
+    const teamMemberInputs = $$(".team-member");
+    teamMemberInputs.forEach((memberDiv, index) => {
+        const name = $(`[name="teamMembers[${index}][name]"]`, memberDiv).value.trim();
+        const mobile = $(`[name="teamMembers[${index}][mobile]"]`, memberDiv).value.trim();
+        if (name && mobile) {
+            teamMembers.push({ name, mobile });
+        }
+    });
+    payload.teamMembers = teamMembers;
+
+    const pdfFile = $("#biodataPdf").files[0];
 
     try {
         setStatus("Requesting upload signature...");
@@ -290,22 +382,8 @@ async function onSubmit(e) {
         const uploaded = await uploadPdfToCloudinary(pdfFile, sig.data);
 
         setStatus("Saving application...");
-        const payload = {
-            applicantName,
-            mobile,
-            district,
-            legislativeAssembly,
-            address,
-            harGharJhandaCount: gharJhandaCount,
-            janAakroshMeetingsCount,
-            communityMeetingsCount,
-            facebookFollowers,
-            facebookPageLink,
-            instagramFollowers,
-            instagramLink,
-            biodataPdfUrl: uploaded.secure_url,
-            biodataPdfPublicId: uploaded.public_id,
-        };
+        payload.biodataPdf = uploaded.secure_url;
+        payload.biodataPdfPublicId = uploaded.public_id;
 
         const res = await fetch(CREATE_ENDPOINT, {
             method: "POST",
@@ -329,8 +407,8 @@ async function onSubmit(e) {
             autoCloseMs: 3000
         });
 
-        $("#candidateForm").reset();
-        $("#legislativeAssemblyId").innerHTML = `<option value="">Choose...</option>`;
+        form.reset();
+        $("#legislativeAssembly").innerHTML = `<option value="">Choose...</option>`;
     } catch (err) {
         const msg = err?.message || "Something went wrong";
         setStatus(msg, true);
@@ -340,7 +418,14 @@ async function onSubmit(e) {
 
 // ----- BOOT -----
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadDistricts();
-    $("#districtId").addEventListener("change", (e) => loadAssemblies(e.target.value));
+    await loadStates();
+    $("#state").addEventListener("change", (e) => loadDistricts(e.target.value));
+    $("#district").addEventListener("change", (e) => loadAssemblies(e.target.value));
     $("#candidateForm").addEventListener("submit", onSubmit);
+    $("#addTeamMemberBtn").addEventListener("click", addTeamMember);
+    addTeamMember(); // Add one team member by default
+
+    const form = $("#candidateForm");
+    form.addEventListener("input", validateForm);
+    validateForm(); // Initial validation
 });

@@ -1,5 +1,13 @@
 
 /*! CustomDatePicker (vanilla JS) - single file - no deps */
+// example
+{/* <script src="./custom_datepicker.js"></script> // include this in your HTML
+<div class="relative">
+    <input type="text" id="dateOfBirth" name="dateOfBirth" placeholder="(DD/MM/YYYY)" data-datepicker readonly class="w-full bg-white rounded-lg border border-gray-200 pl-10 pr-3 py-2
+             text-sm sm:text-base text-gray-900 placeholder-gray-400
+             focus:outline-none focus:ring-2 focus:ring-hover focus:border-transparent
+             hover:border-primary/50 transition" />
+                                        </div> */}
 (function () {
     class CustomDatePicker {
         /**
@@ -71,6 +79,7 @@
             this.panel.style.minWidth = "270px";
             this.panel.style.zIndex = "9999";
             this.panel.style.background = "#fff";
+            this.panel.style.color = "#000";
             this.panel.style.border = "1px solid #FDDC1B";
             this.panel.style.borderRadius = "0.375rem";
             this.panel.style.boxShadow =

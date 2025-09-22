@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./custom_datepicker.js"></script>
 
     <script>
         tailwind.config = {
@@ -33,6 +34,17 @@
             },
         };
     </script>
+    <style>
+        .error-message {
+            color: #f87171;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .text-black select {
+            color: black;
+        }
+    </style>
 </head>
 
 <body class="bg-primary min-h-screen text-white">
@@ -238,10 +250,11 @@
         <form id="candidateForm"
             class="bg-primary-light/80 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
             enctype="multipart/form-data">
-            <!-- Personal -->
+
+            <!-- 1. व्यक्तिगत विवरण -->
             <section class="p-6 md:p-8">
                 <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
-                    <i class="fa-solid fa-user text-amber-300"></i> Personal Details
+                    <i class="fa-solid fa-user text-amber-300"></i> 1. व्यक्तिगत विवरण
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
@@ -249,121 +262,316 @@
                                 class="text-amber-300">*</span></label>
                         <input id="applicantName" name="applicantName" type="text" placeholder="Enter full name"
                             class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <span id="applicantName-error" class="error-message"></span>
                     </div>
                     <div>
-                        <label for="mobile" class="block text-sm mb-1">Mobile Number (10 digits)
-                            <span class="text-amber-300">*</span></label>
+                        <label for="fatherName" class="block text-sm mb-1">Father Name <span
+                                class="text-amber-300">*</span></label>
+                        <input id="fatherName" name="fatherName" type="text" placeholder="Enter father's name"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <span id="fatherName-error" class="error-message"></span>
+                    </div>
+                    <div>
+                        <label for="fatherOccupation" class="block text-sm mb-1">Father Occupation</label>
+                        <input id="fatherOccupation" name="fatherOccupation" type="text"
+                            placeholder="Enter father's occupation"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="dob" class="block text-sm mb-1">Date of Birth <span
+                                class="text-amber-300">*</span></label>
+                        <input type="text" id="dob" name="dob" placeholder="(DD/MM/YYYY)" data-datepicker readonly
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+
+                        <span id="dob-error" class="error-message"></span>
+                    </div>
+                    <div>
+                        <label for="age" class="block text-sm mb-1">Age</label>
+                        <input id="age" name="age" type="number" placeholder="Enter age"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="gender" class="block text-sm mb-1">Gender <span
+                                class="text-amber-300">*</span></label>
+                        <select id="gender" name="gender"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span id="gender-error" class="error-message"></span>
+                    </div>
+                    <div>
+                        <label for="religion" class="block text-sm mb-1">Religion</label>
+                        <input id="religion" name="religion" type="text" placeholder="Enter religion"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="maritalStatus" class="block text-sm mb-1">Marital Status</label>
+                        <select id="maritalStatus" name="maritalStatus"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose...</option>
+                            <option value="Married">Married</option>
+                            <option value="Unmarried">Unmarried</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="state" class="block text-sm mb-1">State <span
+                                class="text-amber-300">*</span></label>
+                        <select id="state" name="state"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose...</option>
+                        </select>
+                        <span id="state-error" class="error-message"></span>
+                    </div>
+                    <div>
+                        <label for="district" class="block text-sm mb-1">District <span
+                                class="text-amber-300">*</span></label>
+                        <select id="district" name="district" disabled
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose state first</option>
+                        </select>
+                        <span id="district-error" class="error-message"></span>
+                    </div>
+                    <div>
+                        <label for="legislativeAssembly" class="block text-sm mb-1">Legislative Assembly <span
+                                class="text-amber-300">*</span></label>
+                        <select id="legislativeAssembly" name="legislativeAssembly" disabled
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose district first</option>
+                        </select>
+                        <span id="legislativeAssembly-error" class="error-message"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="address" class="block text-sm mb-1">Address <span
+                                class="text-amber-300">*</span></label>
+                        <input id="address" name="address" type="text" placeholder="House / Street / Area, City, PIN"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <span id="address-error" class="error-message"></span>
+                    </div>
+                    <div>
+                        <label for="pincode" class="block text-sm mb-1">Pincode</label>
+                        <input id="pincode" name="pincode" type="text" maxlength="6" placeholder="Enter 6-digit pincode"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <span id="pincode-error" class="error-message"></span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- 2. संपर्क विवरण -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-phone text-amber-300"></i> 2. संपर्क विवरण
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="mobile" class="block text-sm mb-1">Mobile Number (10 digits) <span
+                                class="text-amber-300">*</span></label>
                         <input id="mobile" name="mobile" type="tel" maxlength="10" placeholder="9876543210"
                             class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
-                        <p class="text-xs text-white/50 mt-1">We’ll use this to contact you.</p>
-                    </div>
-                </div>
-            </section>
-
-            <div class="border-t border-white/10"></div>
-
-            <!-- Location -->
-            <section class="p-6 md:p-8">
-                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
-                    <i class="fa-solid fa-location-dot text-amber-300"></i> Location
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                        <label for="districtId" class="block text-sm mb-1">District <span
-                                class="text-amber-300">*</span></label>
-                        <select id="districtId" name="districtId"
-                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
-                            <option value="">Choose...</option>
-                        </select>
+                        <span id="mobile-error" class="error-message"></span>
                     </div>
                     <div>
-                        <label for="legislativeAssemblyId" class="block text-sm mb-1">Legislative Assembly <span
-                                class="text-amber-300">*</span></label>
-                        <select id="legislativeAssemblyId" name="legislativeAssemblyId"
-                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
-                            <option value="">Choose...</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="mt-5">
-                    <label for="address" class="block text-sm mb-1">Address <span
-                            class="text-amber-300">*</span></label>
-                    <input id="address" name="address" type="text" placeholder="House / Street / Area, City, PIN"
-                        class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
-                </div>
-            </section>
-
-            <div class="border-t border-white/10"></div>
-
-            <!-- Campaign -->
-            <section class="p-6 md:p-8">
-                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
-                    <i class="fa-solid fa-bullhorn text-amber-300"></i> Campaign & Activities
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                        <label for="gharJhandaCount" class="block text-sm mb-1">Har Ghar Jhanda Count *</label>
-                        <input id="gharJhandaCount" name="gharJhandaCount" type="number" min="0" step="1"
-                            placeholder="0"
-                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <label for="whatsapp" class="block text-sm mb-1">WhatsApp Number</label>
+                        <input id="whatsapp" name="whatsapp" type="tel" maxlength="10" placeholder="9876543210"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <span id="whatsapp-error" class="error-message"></span>
                     </div>
                     <div>
-                        <label for="janAakroshMeetingsCount" class="block text-sm mb-1">Jan Aakrosh Meetings Count
-                            *</label>
-                        <input id="janAakroshMeetingsCount" name="janAakroshMeetingsCount" type="number" min="0"
-                            step="1" placeholder="0"
-                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                        <label for="email" class="block text-sm mb-1">Email</label>
+                        <input id="email" name="email" type="email" placeholder="Enter email address"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
                     </div>
-                </div>
-                <div class="mt-5">
-                    <label for="communityMeetingsCount" class="block text-sm mb-1">Community Meetings Count *</label>
-                    <input id="communityMeetingsCount" name="communityMeetingsCount" type="number" min="0" step="1"
-                        placeholder="0"
-                        class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
-                </div>
-            </section>
-
-            <div class="border-t border-white/10"></div>
-
-            <!-- Social Media -->
-            <section class="p-6 md:p-8">
-                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
-                    <i class="fa-solid fa-globe text-amber-300"></i> Social Presence
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label for="facebookFollowers" class="block text-sm mb-1">Facebook Followers *</label>
+                        <label for="facebookFollowers" class="block text-sm mb-1">Facebook Followers</label>
                         <input id="facebookFollowers" name="facebookFollowers" type="number" min="0" placeholder="0"
                             class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
                     </div>
                     <div>
-                        <label for="facebookPageLink" class="block text-sm mb-1">Facebook Page Link *</label>
-                        <input id="facebookPageLink" name="facebookPageLink" type="url"
+                        <label for="facebookLink" class="block text-sm mb-1">Facebook Link</label>
+                        <input id="facebookLink" name="facebookLink" type="url"
                             placeholder="https://facebook.com/yourpage"
-                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
                     </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
                     <div>
-                        <label for="instagramFollowers" class="block text-sm mb-1">Instagram Followers *</label>
+                        <label for="instagramFollowers" class="block text-sm mb-1">Instagram Followers</label>
                         <input id="instagramFollowers" name="instagramFollowers" type="number" min="0" placeholder="0"
                             class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
                     </div>
                     <div>
-                        <label for="instagramLink" class="block text-sm mb-1">Instagram Link *</label>
+                        <label for="instagramLink" class="block text-sm mb-1">Instagram Link</label>
                         <input id="instagramLink" name="instagramLink" type="url"
                             placeholder="https://instagram.com/yourhandle"
-                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
                     </div>
                 </div>
             </section>
 
             <div class="border-t border-white/10"></div>
 
-            <!-- PDF Upload -->
+            <!-- 3. शैक्षिक एवं आर्थिक विवरण -->
             <section class="p-6 md:p-8">
                 <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
-                    <i class="fa-solid fa-file-pdf text-amber-300"></i> Biodata PDF
+                    <i class="fa-solid fa-graduation-cap text-amber-300"></i> 3. शैक्षिक एवं आर्थिक विवरण
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="education" class="block text-sm mb-1">Education</label>
+                        <input id="education" name="education" type="text" placeholder="Enter highest qualification"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="panNumber" class="block text-sm mb-1">PAN Number</label>
+                        <input id="panNumber" name="panNumber" type="text" placeholder="Enter PAN number"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="occupation" class="block text-sm mb-1">Occupation</label>
+                        <input id="occupation" name="occupation" type="text" placeholder="Enter occupation"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="occupation1" class="block text-sm mb-1">Occupation 1</label>
+                        <input id="occupation1" name="occupation1" type="text" placeholder="Enter occupation 1"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="occupation2" class="block text-sm mb-1">Occupation 2</label>
+                        <input id="occupation2" name="occupation2" type="text" placeholder="Enter occupation 2"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="occupation3" class="block text-sm mb-1">Occupation 3</label>
+                        <input id="occupation3" name="occupation3" type="text" placeholder="Enter occupation 3"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="itrAmount" class="block text-sm mb-1">ITR Amount</label>
+                        <input id="itrAmount" name="itrAmount" type="number" min="0" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="totalAssets" class="block text-sm mb-1">Total Assets</label>
+                        <input id="totalAssets" name="totalAssets" type="number" min="0" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="vehicleDetails" class="block text-sm mb-1">Vehicle Details</label>
+                        <input id="vehicleDetails" name="vehicleDetails" type="text" placeholder="Enter vehicle details"
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- 4. चुनाव सम्बन्धी विवरण -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-check-to-slot text-amber-300"></i> 4. चुनाव सम्बन्धी विवरण
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="text-black">
+                        <label for="pastElection" class="block text-sm mb-1 text-white">Past Election</label>
+                        <select id="pastElection" name="pastElection"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60">
+                            <option value="">Choose...</option>
+                            <option value="लोकसभा">लोकसभा</option>
+                            <option value="विधानसभा">विधानसभा</option>
+                            <option value="नगर पालिका">नगर पालिका</option>
+                            <option value="वार्ड पार्षद">वार्ड पार्षद</option>
+                            <option value="सांसद">सांसद</option>
+                            <option value="उप मुख्य पार्षद">उप मुख्य पार्षद</option>
+                            <option value="मुख्य पार्षद">मुख्य पार्षद</option>
+                            <option value="ग्राम पंचायत के सदस्य">ग्राम पंचायत के सदस्य</option>
+                            <option value="ग्राम कचहरी के पंच">ग्राम कचहरी के पंच</option>
+                            <option value="ग्राम पंचायत के मुखिया">ग्राम पंचायत के मुखिया</option>
+                            <option value="ग्राम कचहरी के सरपंच">ग्राम कचहरी के सरपंच</option>
+                            <option value="पंचायत समिति के सदस्य">पंचायत समिति के सदस्य</option>
+                            <option value="जिला परिषद्  के सदस्य">जिला परिषद् के सदस्य</option>
+                            <option value="पैक्स">पैक्स</option>
+                            <option value="अन्य">अन्य</option>
+                            <option value="नहीं">नहीं</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="totalBooths" class="block text-sm mb-1">Total Booths</label>
+                        <input id="totalBooths" name="totalBooths" type="number" min="0" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                    <div>
+                        <label for="activeBooths" class="block text-sm mb-1">Active Booths</label>
+                        <input id="activeBooths" name="activeBooths" type="number" min="0" placeholder="0"
+                            class="w-full rounded-xl bg-white/5 text-white border border-white/10 px-4 py-3 focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+                    </div>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- 5. टीम विवरण -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-users text-amber-300"></i> 5. टीम विवरण
+                </h2>
+                <div id="teamMembersContainer" class="space-y-4">
+                    <!-- Team member fields will be injected here -->
+                </div>
+                <button type="button" id="addTeamMemberBtn"
+                    class="mt-4 px-4 py-2 rounded-xl bg-white/10 text-white hover:bg-white/20">+ Add Team
+                    Member</button>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- 6. सामाजिक गतिविधियाँ -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-hand-holding-heart text-amber-300"></i> 6. सामाजिक गतिविधियाँ
+                </h2>
+                <div>
+                    <label for="socialPrograms" class="block text-sm mb-1">Social Programs</label>
+                    <textarea id="socialPrograms" name="socialPrograms" rows="4"
+                        placeholder="Describe your social activities"
+                        class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60"></textarea>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- 7. आगामी कार्यक्रम -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-calendar-days text-amber-300"></i> 7. आगामी कार्यक्रम
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="programDate" class="block text-sm mb-1">Program Date</label>
+                        <input type="text" id="programDate" name="programDate" placeholder="(DD/MM/YYYY)"
+                            data-datepicker readonly
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+
+                    </div>
+                    <div>
+                        <label for="meetingDate" class="block text-sm mb-1">Meeting Date</label>
+                        <input type="text" id="meetingDate" name="meetingDate" placeholder="(DD/MM/YYYY)"
+                            data-datepicker readonly
+                            class="w-full rounded-xl bg-white/5 text-white placeholder-white/40 border border-white/10 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-300/60" />
+
+                    </div>
+                </div>
+            </section>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- 8. जीवनी -->
+            <section class="p-6 md:p-8">
+                <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+                    <i class="fa-solid fa-file-pdf text-amber-300"></i> 8. जीवनी
                 </h2>
                 <label for="biodataPdf"
                     class="flex items-center gap-4 rounded-xl border-2 border-dashed border-white/15 bg-white/5 p-6 hover:border-amber-300/60 cursor-pointer">
@@ -376,6 +584,7 @@
                         required />
                 </label>
                 <p id="fileName" class="text-xs text-white/60 mt-2"></p>
+                <span id="biodataPdf-error" class="error-message"></span>
             </section>
 
             <!-- Actions -->
@@ -387,7 +596,8 @@
                         Reset
                     </button>
                     <button type="submit"
-                        class="px-5 py-3 rounded-xl bg-amber-400 text-black hover:bg-amber-300 font-semibold">
+                        class="px-5 py-3 rounded-xl bg-amber-400 text-black hover:bg-amber-300 font-semibold opacity-50 cursor-not-allowed"
+                        disabled>
                         Submit
                     </button>
                 </div>
@@ -488,6 +698,7 @@
             fileNameEl.textContent = f ? `Selected: ${f.name} (${(f.size / 1024 / 1024).toFixed(2)} MB)` : '';
         });
     </script>
+    <script src="./custom_datepicker.js"></script>
     <script src="./candidate_application.js"></script>
     <script src="./app.js"></script>
     <script src="./winglist.js"></script>
