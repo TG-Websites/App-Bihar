@@ -1086,13 +1086,24 @@
           <div
             class="w-12 h-12 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
             4</div>
-          <div class="flex-1">
+          <div class="flex-1 relative">
             <h3 class="text-lg font-semibold text-yellow-500 mb-2">बूथ</h3>
-            <select id="booth"
-              class="w-full px-4 py-2 bg-yellow-500 rounded-md focus:ring-yellow-500 focus:border-yellow-500 text-gray-900"
-              disabled>
-              <option value="">अपना बूथ चुनें</option>
-            </select>
+
+            <!-- Visible selected box -->
+            <div id="boothSelectBox"
+              class="w-full px-4 py-2 bg-yellow-500 rounded-md cursor-pointer text-gray-900 flex justify-between items-center">
+              <span id="selectedBoothLabel">अपना बूथ चुनें</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+
+            <!-- Custom dropdown list -->
+            <div id="boothDropdown"
+              class="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-md hidden">
+              <div class="text-center py-2 text-gray-400 text-sm">Loading...</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1152,8 +1163,7 @@
   <script>
     const stateSelect = document.getElementById("state");
     const districtSelect = document.getElementById("district");
-    const legislativeAssemblySelect = document.getElementById("assembly"); // Corrected ID
-    const boothSelect = document.getElementById("booth");
+    const legislativeAssemblySelect = document.getElementById("assembly");
 
     const tableContent = document.getElementById("tableContent");
     const noRecordDiv = document.getElementById("noRecord");
@@ -1165,92 +1175,102 @@
     const prabhariTab = document.getElementById("prabhariTab");
     const adhyakshTab = document.getElementById("adhyakshTab");
 
-    const BASE_URL = "https://test-api.aapbihar.org"; // Assuming your backend runs on this port
+    const BASE_URL = "https://test-api.aapbihar.org";
 
     let currentPage = 1;
-    const membersPerPage = 5; // Define how many members per page
-    let currentBoothName = ""; // Store the currently selected booth name
-    let currentPostFilter = "Prabhari"; // Default filter
+    const membersPerPage = 5;
+    let currentBoothName = "";
+    let currentPostFilter = "Prabhari";
 
-    // Function to fetch data from API
+    // ✅ Custom Booth Dropdown Elements
+    const boothBox = document.getElementById("boothSelectBox");
+    const boothDropdown = document.getElementById("boothDropdown");
+    const selectedBoothLabel = document.getElementById("selectedBoothLabel");
+
+    // --- Pagination Variables for Booths
+    let currentAssemblyId = "";
+    let boothPage = 1;
+    let hasNextBoothPage = true;
+    let boothLoading = false;
+
+    // === Common Fetch Function ===
     async function fetchData(url) {
       try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data; // Return full response including pagination metadata
-      } catch (error) {
-        console.error("Fetch error:", error);
-        return { data: [], currentPage: 1, totalPages: 1, totalMembers: 0 };
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const data = await res.json();
+        return data;
+      } catch (err) {
+        console.error("Fetch error:", err);
+        return { data: [], pagination: { total: 0, page: 1, limit: 100, hasNextPage: false } };
       }
     }
 
-    // Function to populate dropdowns
+    // === Dropdown Population ===
     function populateDropdown(dropdown, items, placeholder) {
       dropdown.innerHTML = `<option value="">${placeholder}</option>`;
-      items.forEach(item => {
-        const option = document.createElement("option");
-        option.value = item._id;
-        option.textContent = item.name;
-        dropdown.appendChild(option);
+      items.forEach((item) => {
+        const opt = document.createElement("option");
+        opt.value = item._id;
+        opt.textContent = item.name;
+        dropdown.appendChild(opt);
       });
       dropdown.disabled = false;
     }
 
-    // Function to render booth team members in the table
+    // === Table Render ===
     function renderBoothTeamMembers(members, page, totalPages, totalMembers) {
-      tableContent.innerHTML = ""; // Clear previous content
+      tableContent.innerHTML = "";
       if (members.length === 0) {
-        noRecordDiv.style.display = "flex"; // Show no record message
+        noRecordDiv.style.display = "flex";
         tableContent.appendChild(noRecordDiv);
       } else {
-        noRecordDiv.style.display = "none"; // Hide no record message
-        members.forEach(member => {
+        noRecordDiv.style.display = "none";
+        members.forEach((member) => {
           const row = document.createElement("div");
           row.className = "px-6 py-4 border-b border-gray-100";
           row.innerHTML = `
-                        <div class="grid grid-cols-3 gap-4 items-center">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <span class="font-medium text-gray-900 text-sm sm:text-base">${member.name}</span>
-                            </div>
-                            <div class="text-gray-700 text-sm sm:text-base">${member.post} (${member.padnaam})</div>
-                            <div class="text-blue-600 font-medium text-sm sm:text-base">${member.phone.replace(/^\d{6}/, "******")}
-
-</div>
-                        </div>
-                    `;
+          <div class="grid grid-cols-3 gap-4 items-center">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+              <span class="font-medium text-gray-900 text-sm sm:text-base">${member.name}</span>
+            </div>
+            <div class="text-gray-700 text-sm sm:text-base">${member.post} (${member.padnaam})</div>
+            <div class="text-blue-600 font-medium text-sm sm:text-base">${member.phone.replace(
+            /^\d{6}/,
+            "******"
+          )}</div>
+          </div>`;
           tableContent.appendChild(row);
         });
       }
 
-      // Update pagination controls
       pageInfoSpan.textContent = `Page ${page} of ${totalPages} (${totalMembers} members)`;
       prevPageBtn.disabled = page === 1;
       nextPageBtn.disabled = page === totalPages;
       paginationControls.style.display = totalMembers > 0 ? "block" : "none";
     }
 
-    // Function to load booth team members for the current booth, post filter, and page
+    // === Load Team Members ===
     async function loadBoothTeamMembers(boothName, pageNum, postFilter = currentPostFilter) {
       if (!boothName) {
-        renderBoothTeamMembers([], 1, 1, 0); // Clear table if no booth name
+        renderBoothTeamMembers([], 1, 1, 0);
         return;
       }
-      const response = await fetchData(`${BASE_URL}/booth-team?boothName=${boothName}&post=${postFilter}&page=${pageNum}&limit=${membersPerPage}`);
-      currentPage = response.currentPage;
-      renderBoothTeamMembers(response.data, response.currentPage, response.totalPages, response.totalMembers);
+      const res = await fetchData(
+        `${BASE_URL}/booth-team?boothName=${boothName}&post=${postFilter}&page=${pageNum}&limit=${membersPerPage}`
+      );
+      currentPage = res.currentPage;
+      renderBoothTeamMembers(res.data, res.currentPage, res.totalPages, res.totalMembers);
     }
 
-    // Function to set active tab
+    // === Tabs Handling ===
     function setActiveTab(activeTabId) {
       prabhariTab.classList.remove("active", "inactive");
       adhyakshTab.classList.remove("active", "inactive");
@@ -1264,117 +1284,141 @@
       }
     }
 
-    // Load States
+    // === State / District / Assembly Loading ===
     async function loadStates() {
-      const response = await fetchData(`${BASE_URL}/states`);
-      populateDropdown(stateSelect, response.data, "अपना राज्य चुनें");
+      const res = await fetchData(`${BASE_URL}/states`);
+      populateDropdown(stateSelect, res.data, "अपना राज्य चुनें");
     }
 
-    // Load Districts based on selected State
     stateSelect.addEventListener("change", async () => {
       const stateId = stateSelect.value;
       districtSelect.disabled = true;
       legislativeAssemblySelect.disabled = true;
-      boothSelect.disabled = true;
       districtSelect.innerHTML = `<option value="">अपना जिला चुनें</option>`;
       legislativeAssemblySelect.innerHTML = `<option value="">अपनी विधान सभा चुनें</option>`;
-      boothSelect.innerHTML = `<option value="">अपना बूथ चुनें</option>`;
-      loadBoothTeamMembers("", 1); // Clear table when state changes
+      loadBoothTeamMembers("", 1);
 
       if (stateId) {
-        const response = await fetchData(`${BASE_URL}/districts?parentId=${stateId}`);
-        populateDropdown(districtSelect, response.data, "अपना जिला चुनें");
+        const res = await fetchData(`${BASE_URL}/districts?parentId=${stateId}`);
+        populateDropdown(districtSelect, res.data, "अपना जिला चुनें");
       }
     });
 
-    // Load Legislative Assemblies based on selected District
     districtSelect.addEventListener("change", async () => {
       const districtId = districtSelect.value;
       legislativeAssemblySelect.disabled = true;
-      boothSelect.disabled = true;
       legislativeAssemblySelect.innerHTML = `<option value="">अपनी विधान सभा चुनें</option>`;
-      boothSelect.innerHTML = `<option value="">अपना बूथ चुनें</option>`;
-      loadBoothTeamMembers("", 1); // Clear table when district changes
+      loadBoothTeamMembers("", 1);
 
       if (districtId) {
-        const response = await fetchData(`${BASE_URL}/legislative-assemblies?parentId=${districtId}`);
-        populateDropdown(legislativeAssemblySelect, response.data, "अपनी विधान सभा चुनें");
+        const res = await fetchData(`${BASE_URL}/legislative-assemblies?parentId=${districtId}`);
+        populateDropdown(legislativeAssemblySelect, res.data, "अपनी विधान सभा चुनें");
       }
     });
 
-    // Load Booths based on selected Legislative Assembly
+    //  Custom Booth Dropdown Infinite Scroll
+    async function loadBooths(parentId, page = 1, append = false) {
+      if (boothLoading) return;
+      boothLoading = true;
+
+      const res = await fetchData(`${BASE_URL}/booths?parentId=${parentId}&page=${page}&limit=100`);
+      const booths = res.data || [];
+      hasNextBoothPage = res.pagination?.hasNextPage || false;
+      boothPage = res.pagination?.page || page;
+
+      if (!append) boothDropdown.innerHTML = "";
+
+      booths.forEach((b) => {
+        const div = document.createElement("div");
+        div.textContent = b.name;
+        div.className =
+          "px-3 py-2 text-sm hover:bg-yellow-100 cursor-pointer border-b border-gray-100";
+        div.addEventListener("click", () => {
+          selectedBoothLabel.textContent = b.name;
+          boothDropdown.classList.add("hidden");
+          currentBoothName = b.name;
+          loadBoothTeamMembers(b.name, 1);
+        });
+        boothDropdown.appendChild(div);
+      });
+
+      if (hasNextBoothPage) {
+        const loadDiv = document.createElement("div");
+        loadDiv.id = "loadMoreIndicator";
+        loadDiv.className = "text-center py-2 text-gray-400 text-sm";
+        loadDiv.textContent = "लोड हो रहा है...";
+        boothDropdown.appendChild(loadDiv);
+      }
+
+      boothLoading = false;
+    }
+
+    boothDropdown.addEventListener("scroll", async () => {
+      if (
+        hasNextBoothPage &&
+        !boothLoading &&
+        boothDropdown.scrollTop + boothDropdown.clientHeight >= boothDropdown.scrollHeight - 10
+      ) {
+        document.getElementById("loadMoreIndicator")?.remove();
+        await loadBooths(currentAssemblyId, boothPage + 1, true);
+      }
+    });
+
+    // On Assembly Select
     legislativeAssemblySelect.addEventListener("change", async () => {
-      const assemblyId = legislativeAssemblySelect.value;
-      boothSelect.disabled = true;
-      boothSelect.innerHTML = `<option value="">अपना बूथ चुनें</option>`;
-      loadBoothTeamMembers("", 1); // Clear table when assembly changes
-
-      if (assemblyId) {
-        const response = await fetchData(`${BASE_URL}/booths?parentId=${assemblyId}`);
-        populateDropdown(boothSelect, response.data, "अपना बूथ चुनें");
-      }
-    });
-
-    // Load Booth Team Members based on selected Booth
-    boothSelect.addEventListener("change", async () => {
-      const boothId = boothSelect.value;
-      if (boothId) {
-        const response = await fetchData(`${BASE_URL}/booths?_id=${boothId}`);
-        if (response.data && response.data.length > 0) {
-          currentBoothName = response.data[0].name;
-          currentPage = 1; // Reset to first page for new booth
-          loadBoothTeamMembers(currentBoothName, currentPage, currentPostFilter);
-        } else {
-          loadBoothTeamMembers("", 1); // No booth found, clear table
-        }
+      currentAssemblyId = legislativeAssemblySelect.value;
+      boothDropdown.innerHTML =
+        '<div class="text-center py-2 text-gray-400 text-sm">लोड हो रहा है...</div>';
+      if (currentAssemblyId) {
+        boothPage = 1;
+        hasNextBoothPage = true;
+        await loadBooths(currentAssemblyId, 1);
       } else {
-        loadBoothTeamMembers("", 1); // No booth selected, clear table
+        boothDropdown.innerHTML =
+          '<div class="text-center py-2 text-gray-400 text-sm">कोई विधान सभा नहीं चुनी गई</div>';
       }
     });
 
-    // Pagination button event listeners
+    // Toggle Dropdown
+    boothBox.addEventListener("click", () => {
+      boothDropdown.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!boothBox.contains(e.target) && !boothDropdown.contains(e.target)) {
+        boothDropdown.classList.add("hidden");
+      }
+    });
+
+    // Pagination Controls
     prevPageBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        loadBoothTeamMembers(currentBoothName, currentPage - 1, currentPostFilter);
-      }
+      if (currentPage > 1) loadBoothTeamMembers(currentBoothName, currentPage - 1, currentPostFilter);
     });
-
     nextPageBtn.addEventListener("click", () => {
-      // totalPages is updated by renderBoothTeamMembers
-      const totalPagesText = pageInfoSpan.textContent.split(" of ")[1];
-      const totalPages = parseInt(totalPagesText.split(" ")[0]);
-      if (currentPage < totalPages) {
+      const totalPages = parseInt(pageInfoSpan.textContent.split(" of ")[1]);
+      if (currentPage < totalPages)
         loadBoothTeamMembers(currentBoothName, currentPage + 1, currentPostFilter);
-      }
     });
 
-    // Tab event listeners
+    // Tabs
     prabhariTab.addEventListener("click", () => {
       currentPostFilter = "Prabhari";
       setActiveTab("prabhariTab");
-      currentPage = 1; // Reset to first page when tab changes
-      if (currentBoothName) {
-        loadBoothTeamMembers(currentBoothName, currentPage, currentPostFilter);
-      } else {
-        renderBoothTeamMembers([], 1, 1, 0); // Clear table if no booth selected
-      }
+      if (currentBoothName) loadBoothTeamMembers(currentBoothName, 1, currentPostFilter);
     });
 
     adhyakshTab.addEventListener("click", () => {
       currentPostFilter = "Adhyaksh";
       setActiveTab("adhyakshTab");
-      currentPage = 1; // Reset to first page when tab changes
-      if (currentBoothName) {
-        loadBoothTeamMembers(currentBoothName, currentPage, currentPostFilter);
-      } else {
-        renderBoothTeamMembers([], 1, 1, 0); // Clear table if no booth selected
-      }
+      if (currentBoothName) loadBoothTeamMembers(currentBoothName, 1, currentPostFilter);
     });
 
-    // Initial load
+    // === Init ===
     loadStates();
-    setActiveTab("prabhariTab"); // Set default active tab
+    setActiveTab("prabhariTab");
   </script>
+
+
 
   <!-- footer section  -->
 
