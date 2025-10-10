@@ -425,7 +425,7 @@
                     }
 
                     try {
-                        const res = await fetch("https://test-api.aapbihar.org/members", {
+                        const res = await fetch("https://backend.aapbihar.org/members", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json", // 👈 backend must use express.json()
@@ -1105,7 +1105,7 @@
                     const uploadStatus = document.getElementById('uploadStatus');
 
                     let uploadedImageUrl = ''; // Cloudinary URL after upload
-                    const BASE_URL = "https://test-api.aapbihar.org"; // backend URL
+                    const BASE_URL = "https://backend.aapbihar.org"; // backend URL
 
                     async function handleProfilePictureChange(e) {
                         const file = e.target.files?.[0];
